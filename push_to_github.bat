@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 echo ========================================================
-echo   SolderCam Pro: Отправка проекта на GitHub
+echo   SolderCam Pro: Отправка проекта на GitHub (nadyalife2)
 echo ========================================================
 echo.
 
@@ -11,19 +11,11 @@ if not exist "%GIT_CMD%" (
     set "GIT_CMD=git"
 )
 
-echo [1/3] Проверка статуса репозитория...
+echo [1/3] Проверка статуса локального репозитория...
 "%GIT_CMD%" status
 
 echo.
-echo [2/3] Настройка remote origin...
-rem Если имя репозитория на GitHub отличается, укажите ваш URL ниже:
-set /p REPO_URL="Введите URL вашего GitHub репозитория (например, https://github.com/nadyalife2/SolderCam-Pro.git): "
-
-if not "%REPO_URL%"=="" (
-    "%GIT_CMD%" remote remove origin 2>nul
-    "%GIT_CMD%" remote add origin %REPO_URL%
-)
-
+echo [2/3] Текущий remote:
 "%GIT_CMD%" remote -v
 
 echo.
@@ -34,10 +26,18 @@ if %ERRORLEVEL% EQU 0 (
     echo.
     echo ========================================================
     echo   [OK] Проект успешно опубликован на GitHub!
+    echo   URL: https://github.com/nadyalife2/SolderCam-Pro
     echo ========================================================
 ) else (
     echo.
-    echo [!] Ошибка при отправке. Убедитесь, что репозиторий создан на GitHub и авторизован в Git.
+    echo ========================================================
+    echo   [!] Не удалось отправить.
+    echo   Если репозиторий еще не создан на GitHub:
+    echo   1. Откройте в браузере: https://github.com/new
+    echo   2. Имя репозитория (Repository name): SolderCam-Pro
+    echo   3. Сделайте его Public (или Private) и нажмите "Create repository"
+    echo   4. Запустите этот файл снова!
+    echo ========================================================
 )
 
 echo.
