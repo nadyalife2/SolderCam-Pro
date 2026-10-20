@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <TextureView
+        android:id="@+id/textureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Левая панель: Ручной микрофокус -->
+    <LinearLayout
+        android:id="@+id/layoutFocusPanel"
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvFocusLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MF: 5.0"
+            android:textColor="#00E676"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/sliderFocus"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:rotation="270"
+            android:stepSize="0.05"
+            android:value="5.0"
+            android:valueFrom="0.0"
+            android:valueTo="10.0"
+            app:thumbColor="#00E676"
+            app:trackColorActive="#00E676"
+            app:trackColorInactive="#55FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ФОКУС"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <!-- Верхняя панель управления сенсором -->
+    <LinearLayout
+        android:id="@+id/layoutTopBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="#99000000"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRawProcessing"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="Чистый сенсор: ВКЛ"
+            android:textColor="#00E676"
+            android:textSize="11sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLockExposure"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:text="AE/AWB: АВТО"
+            android:textColor="#FFFFFF"
+            android:textSize="11sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCaptureDng"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:text="RAW DNG Фото"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Правая панель: Спуск / Запись видео 60 Mbps -->
+    <LinearLayout
+        android:id="@+id/layoutRightBar"
+        android:layout_width="84dp"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF1744"
+            android:contentDescription="Record"
+            android:src="@android:drawable/ic_media_play"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="СТОП\n60 Mbps"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
