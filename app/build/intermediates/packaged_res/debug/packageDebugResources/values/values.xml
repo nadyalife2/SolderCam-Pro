@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="neon_green">#FF00E676</color>
+    <color name="panel_bg">#99000000</color>
+    <color name="rec_red">#FFFF1744</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">SolderCam Pro</string>
+    <style name="Theme.SolderCamPro" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

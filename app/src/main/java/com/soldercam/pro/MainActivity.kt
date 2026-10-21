@@ -88,6 +88,11 @@ class MainActivity : AppCompatActivity() {
             captureRawDng()
         }
 
+        // Диагностика аккумулятора OnePlus Nord N10 5G
+        binding.btnBatteryDiag.setOnClickListener {
+            startActivity(android.content.Intent(this, BatteryDiagnosticsActivity::class.java))
+        }
+
         // Запись видео 60 Mbps
         binding.fabRecord.setOnClickListener {
             if (isRecording) {
@@ -142,8 +147,10 @@ class MainActivity : AppCompatActivity() {
                     setupRawReader(chars)
 
                     runOnUiThread {
-                        binding.sliderFocus.valueTo = minFocusDistance
-                        binding.sliderFocus.value = (minFocusDistance * 0.7f).coerceIn(0f, minFocusDistance)
+                        val maxFocus = if (minFocusDistance > 0f) minFocusDistance else 10.0f
+                        binding.sliderFocus.valueFrom = 0.0f
+                        binding.sliderFocus.valueTo = maxFocus
+                        binding.sliderFocus.value = (maxFocus * 0.7f).coerceIn(0f, maxFocus)
                     }
                     break
                 }
@@ -224,6 +231,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun applySensorSettings() {
+        if (!::previewRequestBuilder.isInitialized) return
         if (isRawSensorMode) {
             // Отключаем размытие/шумодав ISP процессора Qualcomm
             previewRequestBuilder.set(CaptureRequest.NOISE_REDUCTION_MODE, CaptureRequest.NOISE_REDUCTION_MODE_OFF)
@@ -239,33 +247,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateManualFocus(focusDistance: Float) {
+        if (!::previewRequestBuilder.isInitialized) return
         previewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_OFF)
         previewRequestBuilder.set(CaptureRequest.LENS_FOCUS_DISTANCE, focusDistance)
         applyRepeating()
     }
 
     private fun applyExposureLock() {
+        if (!::previewRequestBuilder.isInitialized) return
         previewRequestBuilder.set(CaptureRequest.CONTROL_AE_LOCK, isAeAwbLocked)
         previewRequestBuilder.set(CaptureRequest.CONTROL_AWB_LOCK, isAeAwbLocked)
         applyRepeating()
     }
 
     private fun applyRepeating() {
+        val session = captureSession ?: return
+        if (!::previewRequestBuilder.isInitialized) return
         try {
-            captureSession?.setRepeatingRequest(previewRequestBuilder.build(), null, backgroundHandler)
+            session.setRepeatingRequest(previewRequestBuilder.build(), null, backgroundHandler)
         } catch (e: Exception) {
             Log.e("SolderCam", "Ошибка обновления запроса", e)
         }
     }
 
     private fun captureRawDng() {
+        val device = cameraDevice ?: return
         val readerSurface = rawImageReader?.surface ?: run {
             Toast.makeText(this, "RAW формат не поддерживается данным потоком", Toast.LENGTH_SHORT).show()
             return
         }
 
         try {
-            val captureBuilder = cameraDevice!!.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
+            val captureBuilder = device.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
             captureBuilder.addTarget(readerSurface)
             captureBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_OFF)
             captureBuilder.set(CaptureRequest.LENS_FOCUS_DISTANCE, binding.sliderFocus.value)
@@ -332,7 +345,7 @@ class MainActivity : AppCompatActivity() {
 
         isRecording = true
         binding.tvStatus.text = "REC\n60 Mbps"
-        binding.fabRecord.setImageResource(android.drawable.ic_media_pause)
+        binding.fabRecord.setImageResource(android.R.drawable.ic_media_pause)
         Toast.makeText(this, "Запись 60 Mbps запущена", Toast.LENGTH_SHORT).show()
     }
 
@@ -347,7 +360,7 @@ class MainActivity : AppCompatActivity() {
         }
         isRecording = false
         binding.tvStatus.text = "СТОП\n60 Mbps"
-        binding.fabRecord.setImageResource(android.drawable.ic_media_play)
+        binding.fabRecord.setImageResource(android.R.drawable.ic_media_play)
         Toast.makeText(this, "Видео сохранено в папку Movies", Toast.LENGTH_SHORT).show()
     }
 

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.soldercam.pro.app-debug-31:/xml_file_paths.xml.flat",
+        "source": "com.soldercam.pro.app-main-33:/xml/file_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\MSI\\.gradle\\daemon\\8.6\\com.soldercam.pro.app-debug-31:\\layout_activity_battery_diagnostics.xml.flat",
+        "source": "C:\\Users\\MSI\\.gradle\\daemon\\8.6\\com.soldercam.pro.app-main-33:\\layout\\activity_battery_diagnostics.xml"
+    },
+    {
+        "merged": "com.soldercam.pro.app-debug-31:/layout_activity_battery_diagnostics.xml.flat",
+        "source": "com.soldercam.pro.app-main-33:/layout/activity_battery_diagnostics.xml"
+    },
+    {
+        "merged": "C:\\Users\\MSI\\.gradle\\daemon\\8.6\\com.soldercam.pro.app-debug-31:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\MSI\\.gradle\\daemon\\8.6\\com.soldercam.pro.app-main-33:\\layout\\activity_main.xml"
+    }
+]
