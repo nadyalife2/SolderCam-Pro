@@ -93,6 +93,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(android.content.Intent(this, BatteryDiagnosticsActivity::class.java))
         }
 
+        // Журнал багов, крашей и тестов
+        binding.btnBugTracker.setOnClickListener {
+            startActivity(android.content.Intent(this, BugTrackerActivity::class.java))
+        }
+
         // Запись видео 60 Mbps
         binding.fabRecord.setOnClickListener {
             if (isRecording) {
@@ -265,6 +270,7 @@ class MainActivity : AppCompatActivity() {
         if (!::previewRequestBuilder.isInitialized) return
         try {
             session.setRepeatingRequest(previewRequestBuilder.build(), null, backgroundHandler)
+            BugTracker.currentCameraInfo = "OV64B активна | Фокус: ${String.format("%.2f", binding.sliderFocus.value)} dpt | Сенсор: $isRawSensorMode | AE/AWB Lock: $isAeAwbLocked"
         } catch (e: Exception) {
             Log.e("SolderCam", "Ошибка обновления запроса", e)
         }

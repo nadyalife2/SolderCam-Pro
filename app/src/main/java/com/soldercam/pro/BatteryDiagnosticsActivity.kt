@@ -94,6 +94,10 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
             clearCsvLog()
         }
 
+        binding.btnOpenBugTracker.setOnClickListener {
+            startActivity(Intent(this, BugTrackerActivity::class.java))
+        }
+
         binding.btnRunNtcTest.setOnClickListener {
             if (!isStressRunning) {
                 startNtcStressTest()

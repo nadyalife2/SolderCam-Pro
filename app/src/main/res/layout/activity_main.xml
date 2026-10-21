@@ -105,6 +105,16 @@
             android:text="⚡ Тест АКБ"
             android:textColor="#FFB74D"
             android:textSize="11sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBugTracker"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:text="🐞 Баги/Лог"
+            android:textColor="#EF5350"
+            android:textSize="11sp" />
     </LinearLayout>
 
     <!-- Правая панель: Спуск / Запись видео 60 Mbps -->

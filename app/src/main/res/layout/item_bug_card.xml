@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardBug"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardBackgroundColor="#1E1E1E"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:strokeColor="#333333"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Top Row: Type Badge + Time + Delete -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTypeBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#33FF5252"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="CRASH"
+                android:textColor="#FF5252"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTimestamp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="2026-10-21 17:30:00"
+                android:textColor="#9E9E9E"
+                android:textSize="11sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="Удалить"
+                app:icon="@android:drawable/ic_menu_delete"
+                app:iconSize="16dp"
+                app:iconTint="#757575" />
+        </LinearLayout>
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Название ошибки или теста"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Подробное описание проблемы или проверенного решения."
+            android:textColor="#CCCCCC"
+            android:textSize="12sp" />
+
+        <!-- Telemetry Details Container -->
+        <LinearLayout
+            android:id="@+id/layoutTelemetry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#161616"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvBatteryStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="⚡ АКБ: 75%, 4120mV, 1200mA, 24.0°C"
+                android:textColor="#FFB74D"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvCameraStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="📷 Сенсор: Чистый сенсор ВКЛ | Фокус: 5.0 dpt"
+                android:textColor="#00E676"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Stack Trace block (if present) -->
+        <TextView
+            android:id="@+id/tvStackTrace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#0A0A0A"
+            android:fontFamily="monospace"
+            android:padding="8dp"
+            android:textColor="#FF8A80"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
