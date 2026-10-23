@@ -12,6 +12,8 @@
 
 ## 2. Разрешенные скилы для проекта
 В рамках работы над данным проектом используются исключительно следующие профильные скилы:
+- [`gadget-camera-tuning`](file:///d:/для%20one%20plus%20nord%20n10/.agents/skills/gadget-camera-tuning/SKILL.md) — сенсоры камер, тюнинг OV64B, Camera2 API, алгоритмы HDR+, диагностика питания, PMIC и NTC-термисторов.
+- [`mobile-android-design`](file:///d:/для%20one%20plus%20nord%20n10/.agents/skills/mobile-android-design/SKILL.md) — мобильная эргономика, Material Design 3, touch targets, адаптивная верстка и удобство пользования.
 - [`android-cli`](file:///C:/Users/MSI/.gemini/config/plugins/android-cli-plugin/skills/SKILL.md) — управление Android SDK, эмуляторами, сборкой и ADB-командами.
 - [`reverse-engineer-anything`](file:///C:/Users/MSI/.gemini/config/skills/reverse-engineer-anything/SKILL.md) — реверс-инжиниринг APK, библиотек `.so` и байткода.
 - [`impeccable`](file:///C:/Users/MSI/.gemini/config/skills/impeccable/SKILL.md) — дизайн и верстка мобильного интерфейса.

@@ -8,6 +8,8 @@
 
 ## Active Skills for This Workspace
 Only the following skills are authorized for this project:
+- `gadget-camera-tuning` (Camera2 API, OV64B sensor tuning, PMIC/NTC diagnostics)
+- `mobile-android-design` (Material Design 3, touch targets, mobile UX)
 - `android-cli`
 - `reverse-engineer-anything`
 - `impeccable`
