@@ -13,6 +13,8 @@ Only the following skills are authorized for this project:
 - `android-cli`
 - `reverse-engineer-anything`
 - `impeccable`
+- `melvin-edge-ai` (On-device LLM, PRoot Alpine, hybrid Bionic stack, fast tools & voice assistant)
+- `budget-tablet-unmasking-tuning` (Hardware unmasking, anti-spoofing, fastboot driver fixes, debloating, AOT compilation & DPI bypass)
 - Built-in Antigravity utilities (`agy-customizations`, `automation`, `generative_ui`)
 
 ## Excluded Skills

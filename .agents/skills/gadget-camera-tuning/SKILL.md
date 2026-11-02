@@ -76,3 +76,30 @@ cat /sys/class/thermal/thermal_zone*/temp
 ### Оптимизация ночной съемки (Night Sight vs Astrophotography)
 * **Астрофотография (Astrophotography)**: делает 15–30 выдержек суммарно на 2–3 минуты. Предназначена **строго для штатива**.
 * **Быстрая ночная съемка с рук**: отключение пункта «Астрофотография» в шторке режимов переводит камеру в быстрый HDR+ стекинг за 1–2 секунды с сохранением резкости и стабилизации.
+
+---
+
+## 4. Низкоуровневая диагностика, раскирпичивание (Unbrick) и Fastboot Protocol
+
+### Аппаратная идентификация SoC по шине USB (PnP & VID/PID)
+Критически важно отличать платформы до прошивки во избежание перманентного окирпичивания загрузочных секторов:
+* **MediaTek (MTK Helio X20 / MT6797, Helio G-серия, Dimensity):**
+  * `0E8D:0003` — BROM (Boot ROM режим для SP Flash Tool / mtkclient).
+  * `0E8D:2000` — Preloader VCOM порт.
+  * `18D1:D00D` / `2717:D00D` — Fastboot режим (`product: nikel`).
+* **Qualcomm Snapdragon (SD625 mido, SD690 n10, SD860 vayu):**
+  * `05C6:9008` — EDL (Emergency Download Mode / Sahara protocol).
+  * `18D1:D00D` — Android Bootloader Interface.
+
+### Архитектура DeviceInterfaceGUID в Google Fastboot
+Утилита `fastboot.exe` (AOSP platform-tools) не связывается с произвольными устройствами под управлением `WinUSB.sys`. При вызове Win32 API `SetupDiGetClassDevs` поиск выполняется строго по интерфейсному GUID:
+$$\text{DeviceInterfaceGUID} = \{F726BE74-803B-4650-BDE0-FF5619ED320B\}$$
+* **Проблема Zadig:** Установка generic WinUSB через Zadig назначает случайный GUID или стандартный USB-класс `{A5DCBF10-6530-11D2-901F-00C04FB951ED}`, из-за чего `fastboot` бесконечно ожидает устройство (`< waiting for any device >`).
+* **Решение:** Использование официально подписанного пакета Xiaomi/Google (`android_winusb.inf` + `xiaomiwinusba64.cat`), регистрирующего правильный GUID в `Device Parameters\DeviceInterfaceGUIDs`.
+
+### Безопасные алгоритмы прошивки разделов
+* **Режим `clean all` (`flash_all.bat`):** Полная перезапись разделов (`boot`, `recovery`, `system`, `cust`, `lk`, `scp`, `trustzone`, `md1rom`). Не производит блокировку загрузчика.
+* **Ловушка `clean all and lock` (`flash_all_lock.bat`):** Категорически запрещена при прошивке устройств с несовпадающим региональным идентификатором (например, Global ROM на China-аппарат) из-за принудительной блокировки OEM и срабатывания аппаратной защиты Xiaomi Anti-Rollback (ARB), приводящей к перманентному бутлупу BROM.
+* **Интерпретация логов MiFlash:**
+  Сообщение `error:Not catch checkpoint ($fastboot -s .* lock)` при зеленом индикаторе статуса не является сбоем прошивки — это штатное подтверждение того, что загрузчик остался разблокированным в соответствии с конфигурацией `flash_all.bat`.
+

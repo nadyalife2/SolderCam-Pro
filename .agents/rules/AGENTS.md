@@ -17,6 +17,8 @@
 - [`android-cli`](file:///C:/Users/MSI/.gemini/config/plugins/android-cli-plugin/skills/SKILL.md) — управление Android SDK, эмуляторами, сборкой и ADB-командами.
 - [`reverse-engineer-anything`](file:///C:/Users/MSI/.gemini/config/skills/reverse-engineer-anything/SKILL.md) — реверс-инжиниринг APK, библиотек `.so` и байткода.
 - [`impeccable`](file:///C:/Users/MSI/.gemini/config/skills/impeccable/SKILL.md) — дизайн и верстка мобильного интерфейса.
+- [`melvin-edge-ai`](file:///d:/для%20one%20plus%20nord%20n10/.agents/skills/melvin-edge-ai/SKILL.md) — автономный локальный ИИ-ассистент, Bionic + PRoot Alpine, нативный llama.cpp ARMv8, быстрый роутер инструментов, новости, таймеры и WebAudio.
+- [`budget-tablet-unmasking-tuning`](file:///d:/для%20one%20plus%20nord%20n10/.agents/skills/budget-tablet-unmasking-tuning/SKILL.md) — снятие масок фейковых характеристик, формулы физической памяти, драйверы Fastboot MediaTek, не-рут деблоат, AOT-компиляция в speed mode и 1-кнопочный обход ТСПУ/DPI.
 - Базовые системные скилы Antigravity ([`antigravity-guide`](file:///C:/Users/MSI/.gemini/antigravity/builtin/skills/antigravity_guide/SKILL.md), [`automation`](file:///C:/Users/MSI/.gemini/antigravity/builtin/skills/automation/SKILL.md), [`generative_ui`](file:///C:/Users/MSI/.gemini/antigravity/builtin/skills/generative_ui/SKILL.md), [`agy-customizations`](file:///C:/Users/MSI/.gemini/antigravity/builtin/skills/agy-customizations/SKILL.md)).
 
 ---
@@ -28,3 +30,10 @@
 - ❌ Непрофильные темы ([`palmistry-chirology`](file:///C:/Users/MSI/.gemini/config/skills/palmistry-chirology/SKILL.md)).
 
 Агент должен фокусироваться только на коде проекта, Android-архитектуре, аппаратной части смартфона и алгоритмах обработки изображения.
+
+---
+
+## 4. Авторский стиль и голос публикаций
+При подготовке любых статей, гайдов, отчетов или постов от лица автора агент обязан руководствоваться профилем авторского стиля:
+- [`USER_VOICE_STYLE_GUIDE.md`](file:///d:/для%20one%20plus%20nord%20n10/USER_VOICE_STYLE_GUIDE.md) — живой диалог, женский род прошедшего времени, инженерная конкретика, разбор фейлов и граблей, нулевая терпимость к «воде».
+
