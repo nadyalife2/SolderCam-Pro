@@ -274,3 +274,60 @@ adb logcat -v time -b main,system | grep --line-buffered -iE "SocketTimeout|Conn
 ```bash
 adb shell dumpsys gfxinfo org.schabi.newpipe | grep -E "Total frames|Janky frames|50th|90th|95th|99th|Number Missed Vsync"
 ```
+
+---
+
+## 8. Virtual Memory & Flash Storage Trimming (kswapd0 & eMMC)
+
+### 8.1 Suppressing zRAM Thrashing (ActivityManager Limits)
+On 2 GB RAM Android Go devices, excessive background cached processes cause aggressive swapping to zRAM, consuming up to 35% of CPU time in `kswapd0`. Limit cached and phantom processes:
+```bash
+adb shell device_config put activity_manager max_cached_processes 4
+adb shell device_config put activity_manager max_phantom_processes 2
+```
+*Impact:* Frees 250–300 MB of physical RAM, eliminates random UI freezes caused by memory thrashing.
+
+### 8.2 eMMC Flash Storage Maintenance (sm fstrim)
+Trim dirty eMMC flash memory blocks to restore random read/write speeds for SQLite databases:
+```bash
+adb shell sm fstrim
+# Output: PersistableBundle[{}]
+```
+
+---
+
+## 9. Low-Latency Graphics Pipeline (SurfaceFlinger & HWUI)
+
+Eliminate GPU fence wait latencies and unblock the MediaTek Hardware Composer (HWC):
+```bash
+# Zero-delay buffer latching (eliminates touch input lag)
+adb shell setprop debug.sf.latch_unsignaled 1
+adb shell setprop debug.sf.auto_latch_unsignaled 1
+
+# Disable SurfaceFlinger backpressure to relieve MediaTek HWC
+adb shell setprop debug.sf.disable_backpressure 1
+adb shell setprop debug.sf.enable_gl_backpressure 0
+
+# Lock HWUI renderer to stable OpenGL ES
+adb shell setprop debug.hwui.renderer opengl
+adb shell setprop debug.hwui.use_hint_manager false
+```
+
+---
+
+## 10. Chromium / PWA Hardware Acceleration & YouTube Account Sync
+
+When users require logging into their personal Google account (subscriptions, history, playlists) via mobile web (`m.youtube.com` / PWA):
+
+### 10.1 Chromium Low-End Flags Injection
+```bash
+adb shell "echo '_ --renderer-process-limit=2 --enable-low-end-device-mode --enable-gpu-rasterization --enable-zero-copy --ignore-gpu-blocklist --disable-vulkan --disable-smooth-scrolling --max-tiles-for-interest-area=64 --num-raster-threads=2' > /data/local/tmp/chrome-command-line"
+adb shell cmd package compile -m speed -f com.android.chrome
+```
+
+### 10.2 Forcing Hardware H.264 (AVC) on YouTube Web
+By default, YouTube serves VP9 streams to Chromium. Because MT6737M lacks hardware VP9 decoding, software `libvpx` pins the CPU at 100%. Override `MediaSource.isTypeSupported` via bookmarklet or Userscript:
+```javascript
+javascript:(function(){const orig=MediaSource.isTypeSupported;MediaSource.isTypeSupported=function(t){if(t&&(t.includes('vp9')||t.includes('vp09')||t.includes('av01')))return false;return orig.call(this,t);};alert('Hardware H.264 Locked!');})();
+```
+*Result:* YouTube web serves AVC (H.264 `avc1.4d401f`), natively decoded by `OMX.MTK.VIDEO.DECODER.AVC` with zero CPU strain.

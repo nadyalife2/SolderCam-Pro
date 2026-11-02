@@ -74,6 +74,12 @@
    * Отключение комментариев в Контенте: мгновенный старт страниц (<1 сек).
    * Бутылочное горлышко кремния: почему `720p60` захлебывало шину M4U и как фиксация `720p` 30fps + `M4A` ускорила запуск плеера до 1.4 секунды.
 
+9. [**Часть 6: Экстремальный твикинг Android Go: укрощение kswapd0, трим eMMC, разгон SurfaceFlinger и аппаратный YouTube в браузере**](09_EXTREME_AOSP_KERNEL_AND_CHROME_ACCELERATION.md)
+   * Борьба с zRAM Thrashing: ограничение зомби-процессов \ctivity_manager max_cached_processes 4\.
+   * Аппаратный fstrim флеш-памяти eMMC 5.0 для ускорения чтения баз SQLite.
+   * Снижение инпут-лага ввода через \debug.sf.latch_unsignaled=1\ и разгрузку HWC.
+   * YouTube под личным Google-аккаунтом: инъекция флагов Chromium, AOT-компиляция Chrome и трюк с \MediaSource.isTypeSupported\ для аппаратного H.264.
+
 
 ---
 
