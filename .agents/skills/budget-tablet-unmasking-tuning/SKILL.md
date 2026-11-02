@@ -218,15 +218,59 @@ When users report that YouTube or NewPipe has an intolerably long response time 
   ExoPlayer delays stream initialization while waiting for the master page payload, introducing a 10–15s freeze.
 - **Fix:** NewPipe $\rightarrow$ **Настройки** $\rightarrow$ **Контент** $\rightarrow$ Turn OFF **"Показать комментарии"** (`checked=false`). Page navigation and stream parsing become immediate (<1s).
 
-#### 3. 60fps Stream Memory Bus Saturation (M4U Bottleneck)
-- **Root Cause:** Defaulting to `720p60` or `1080p60` on entry-level SoCs with single-channel 32-bit LPDDR3 (640 MHz) saturates memory bandwidth:
-  ```text
-  ioctl MTK_M4U_T_CONFIG_PORT fail! 22, Invalid argument
-  SurfaceView RunningBehind, queued size:3
-  ```
-  The hardware video decoder (VDEC) starves for frame buffers, causing ExoPlayer to drop frames and endlessly re-buffer.
+#### 3. 60fps Stream Memory Bus Saturation (M4U Bottleneck & Bus Math)
+- **Mathematical Root Cause:** 
+  - Raw 1080p YUV420 frame $\approx 3.11\text{ MB}$.
+  - At 60 fps: Hardware VDEC writes $\approx 186.6\text{ MB/s}$, and `SurfaceFlinger` / HWC reads another $\approx 186.6\text{ MB/s}$ for screen composition.
+  - Total video DMA load: **$\approx 373.2\text{ MB/s}$ continuous bandwidth**!
+  - On single-channel 32-bit LPDDR3 (640 MHz) with effective mixed bandwidth limit $\le 3.2\text{ GB/s}$, the MediaTek Multimedia Memory Management Unit (M4U) TLB tables experience severe misses:
+    ```text
+    ioctl MTK_M4U_T_CONFIG_PORT fail! 22, Invalid argument
+    SurfaceView RunningBehind, queued size:3
+    ```
+    This causes driver-level blocks in `dequeueBuffer()`, endless re-buffering and audio desync.
 - **Fix:** NewPipe $\rightarrow$ **Настройки** $\rightarrow$ **Видео и аудио**:
   - **Разрешение по умолчанию:** Set to standard **`720p`** (30fps, matching native 1280x800 display) or `480p`.
   - **Формат видео по умолчанию:** **MPEG-4** (H.264/AVC hardware decoded by `OMX.MTK.VIDEO.DECODER.AVC`).
   - **Формат аудио по умолчанию:** **M4A** (AAC hardware decoded by `OMX.MTK.AUDIO.DECODER.AAC`).
   - **Настройки ExoPlayer:** Keep buffer chunk at **64 KiB** for instant prefetch.
+
+#### 4. Safe Background Hibernation for Google Play Store (Standby Bucket)
+Do NOT uninstall `com.google.android.gms` or `com.android.vending` on budget Go Edition devices, as this causes `SystemUI` crashing loops. Instead, restrict it to the deep sleep standby bucket:
+```bash
+adb shell am set-standby-bucket com.android.vending rare
+adb shell cmd appops set com.android.vending RUN_IN_BACKGROUND ignore
+adb shell cmd appops set com.android.vending RUN_ANY_IN_BACKGROUND ignore
+```
+
+#### 5. Vendor Spyware & Logger Neutralization (MediaTek / Unisoc)
+Disable intrusive vendor loggers eating I/O and RAM cycles in the background:
+```bash
+adb shell pm disable-user --user 0 com.mediatek.mtklogger 2>/dev/null
+adb shell pm disable-user --user 0 com.debug.loggerui 2>/dev/null
+```
+
+---
+
+## 7. Fast Triage One-Liners (Production Diagnostic Toolkit)
+
+### 7.1 Instant CPU, Memory & SurfaceFlinger Health Check
+```bash
+adb shell "top -b -n 1 -m 8; echo '--- SURFACEFLINGER ---'; dumpsys SurfaceFlinger | grep -E 'missed frame|totalMissed|BufferQueue|HWC layers'"
+```
+
+### 7.2 Hardware vs Software Decoder Check
+```bash
+adb shell dumpsys media.player | grep -E "OMX\.|c2\.|mime|width|height|frame-rate|Component"
+```
+*Rule:* `OMX.MTK.*` / `OMX.qcom.*` = ASIC Hardware (Safe). `OMX.google.*` / `c2.android.*` = Software CPU Thrashing (Kill/Reconfigure).
+
+### 7.3 Real-Time Network & DPI Socket Timeout Interceptor
+```bash
+adb logcat -v time -b main,system | grep --line-buffered -iE "SocketTimeout|Connection reset|SSLHandshake|ExoPlayerImplInternal|AudioTrack.*underrun"
+```
+
+### 7.4 UI Jank & Missed VSync Metric
+```bash
+adb shell dumpsys gfxinfo org.schabi.newpipe | grep -E "Total frames|Janky frames|50th|90th|95th|99th|Number Missed Vsync"
+```
