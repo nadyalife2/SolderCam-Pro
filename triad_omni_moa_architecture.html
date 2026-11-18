@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triad-Omni & Tochka Plavleniya: MoA Architecture Map</title>
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: #0d121d;
+      --card-border: #1e293b;
+      --cyan: #06b6d4;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; }
+    body { background: var(--bg); color: var(--text); padding: 20px; line-height: 1.5; }
+    header { text-align: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--card-border); }
+    h1 { font-size: 24px; color: var(--cyan); margin-bottom: 6px; letter-spacing: -0.5px; }
+    p.subtitle { color: var(--text-muted); font-size: 14px; }
+
+    /* Navigation Tabs */
+    .tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+    .tab-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+    .tab-btn:hover { border-color: var(--cyan); color: var(--text); }
+    .tab-btn.active { background: rgba(6, 182, 212, 0.15); border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 10px rgba(6, 182, 212, 0.2); }
+
+    /* Tab Content */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Grid Layouts */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+    .card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
+    .card.cloud-deepseek::before { background: var(--blue); }
+    .card.cloud-sonnet::before { background: var(--purple); }
+    .card.cloud-gemini::before { background: var(--amber); }
+    .card.node-1::before { background: var(--cyan); }
+    .card.node-2::before { background: var(--green); }
+    .card.node-3::before { background: var(--red); }
+
+    .card-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 10px; }
+    .badge-cloud { background: rgba(168, 85, 247, 0.2); color: var(--purple); border: 1px solid rgba(168, 85, 247, 0.4); }
+    .badge-edge { background: rgba(16, 185, 129, 0.2); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.4); }
+
+    .card-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+    .card-role { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .spec-list { list-style: none; font-size: 13px; margin-bottom: 14px; }
+    .spec-list li { margin-bottom: 6px; padding-left: 14px; position: relative; }
+    .spec-list li::before { content: "•"; position: absolute; left: 0; color: var(--cyan); }
+
+    .pill-box { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+    .pill { font-size: 11px; background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); padding: 2px 8px; border-radius: 12px; color: var(--text-muted); }
+
+    /* Interactive Simulator */
+    .sim-container { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 20px; }
+    .pipeline-steps { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 10px; }
+    .step-node { flex: 1; min-width: 140px; background: #131b29; border: 1px solid var(--card-border); padding: 12px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .step-node.active { border-color: var(--cyan); background: rgba(6,182,212,0.1); box-shadow: 0 0 12px rgba(6,182,212,0.25); }
+    .step-num { font-size: 10px; font-weight: 800; color: var(--cyan); margin-bottom: 4px; }
+    .step-name { font-size: 12px; font-weight: 600; }
+
+    .sim-display { background: #080c14; border: 1px solid #1a2333; border-radius: 6px; padding: 16px; min-height: 200px; }
+    .sim-title { font-size: 16px; color: var(--cyan); font-weight: 700; margin-bottom: 8px; }
+    .sim-details { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.6; }
+    .sim-log { background: #04060a; border: 1px solid #151e2e; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px; color: #38bdf8; max-height: 140px; overflow-y: auto; }
+
+    /* Matrix Table */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--card-border); }
+    th { background: #0c121e; color: var(--cyan); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .cost-free { color: var(--green); font-weight: 700; }
+    .cost-paid { color: var(--amber); }
+
+    .callout { background: rgba(6,182,212,0.08); border-left: 3px solid var(--cyan); padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 13px; margin-top: 15px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>⚡ Архитектура Mixture-of-Agents (MoA)</h1>
+    <p class="subtitle">Разделение труда: Облачные гиганты (Sonnet / DeepSeek / Gemini) &times; Суверенный кластер Triad-Omni (Snapdragon 865/690)</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('map')">🗺️ Карта ролей (Кто за что отвечает)</button>
+    <button class="tab-btn" onclick="switchTab('sim')">🚀 Интерактивный симулятор пайплайна</button>
+    <button class="tab-btn" onclick="switchTab('matrix')">📊 Матрица выбора моделей (Бенчмарк)</button>
+    <button class="tab-btn" onclick="switchTab('hardware')">📱 Физика кластера на смартфонах</button>
+  </div>
+
+  <!-- TAB 1: ROLES MAP -->
+  <div id="tab-map" class="tab-panel active">
+    <h3 style="margin-bottom: 14px; font-size: 16px; color: var(--purple);">☁️ Облачные гиганты: Стратегия, Синтез и Мультимодальность</h3>
+    <div class="grid-3">
+      <!-- DeepSeek -->
+      <div class="card cloud-deepseek">
+        <span class="card-badge badge-cloud">Cloud • Reasoning Core</span>
+        <div class="card-title">DeepSeek-R1 / V3 <span>🧠</span></div>
+        <div class="card-role">Генератор идей, рассуждения (CoT) и дистилляция</div>
+        <ul class="spec-list">
+          <li><strong>Рассуждения Chain-of-Thought:</strong> Продумывает структуру сложных тем (дефекты BGA, химия флюсов).</li>
+          <li><strong>Синтез обучающих датасетов:</strong> Генерирует примеры для дообучения нашего локального Qwen.</li>
+          <li><strong>Низкая стоимость:</strong> В 10 раз дешевле других API при выдающемся уровне логики.</li>
+        </ul>
+        <div class="pill-box">
+          <span class="pill">Генерация CoT</span>
+          <span class="pill">Датасеты</span>
+          <span class="pill">Бриф статей</span>
+        </div>
+      </div>
+
+      <!-- Claude 3.7 Sonnet -->
+      <div class="card cloud-sonnet">
+        <span class="card-badge badge-cloud">Cloud • Code & Voice</span>
+        <div class="card-title">Claude 3.7 Sonnet <span>✍️</span></div>
+        <div class="card-role">Главный инженер кода и хранитель авторского голоса</div>
+        <ul class="spec-list">
+          <li><strong>Код скриптов и схем:</strong> Идеальный рефакторинг Python, PHP-шаблонов WordPress, JSON Schema v1.1.</li>
+          <li><strong>Стиль Practico 1 и Practico 2:</strong> Точнейшее соблюдение редполитики без канцеляризмов и галлюцинаций.</li>
+          <li><strong>Финальная вёрстка:</strong> Сборка Markdown и вычитка перед публикацией.</li>
+        </ul>
+        <div class="pill-box">
+          <span class="pill">WordPress Theme</span>
+          <span class="pill">Авторский голос</span>
+          <span class="pill">JSON Contracts</span>
+        </div>
+      </div>
+
+      <!-- Gemini 2.5 Pro -->
+      <div class="card cloud-gemini">
+        <span class="card-badge badge-cloud">Cloud • Multimodal & 2M Context</span>
+        <div class="card-title">Gemini 2.5 Pro / Flash <span>👁️</span></div>
+        <div class="card-role">Зрение (микроскоп, рентген BGA) и аудит терабайтных документов</div>
+        <ul class="spec-list">
+          <li><strong>Контекст 1M+ токенов:</strong> Можно скормить весь 500-страничный скан ГОСТа или полный дамп сайта.</li>
+          <li><strong>Визуальный реверс:</strong> Анализ рентгеновских снимков BGA (пустоты), фото пайки с SolderCam Pro.</li>
+          <li><strong>Аудит каннибализации:</strong> Поиск пересечений среди 100+ опубликованных статей сайта.</li>
+        </ul>
+        <div class="pill-box">
+          <span class="pill">Vision микроскоп</span>
+          <span class="pill">1M Context</span>
+          <span class="pill">SEO-аудит сайта</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin: 20px 0 14px; font-size: 16px; color: var(--green);">📱 Локальный кластер Triad-Omni: Автономия, Векторы и ОТК</h3>
+    <div class="grid-3">
+      <!-- NODE-1: Mi 10T -->
+      <div class="card node-1">
+        <span class="card-badge badge-edge">Edge • Node-1 (Mi 10T 5G)</span>
+        <div class="card-title">Qwen3.5-9B + LoRA <span>🛡️</span></div>
+        <div class="card-role">Автономный инспектор ОТК и мозг паяльного видоискателя</div>
+        <ul class="spec-list">
+          <li><strong>Инспектор качества (ОТК):</strong> Проверяет готовую статью на соответствие ГОСТам перед отправкой в веб.</li>
+          <li><strong>Автономность 24/7:</strong> 8GB LPDDR5, ядра Kryo 585 A77, прямое питание без деградации АКБ.</li>
+          <li><strong>Быстрый отклик:</strong> Задержка инференса 6.1 с благодаря инъекции сменного LoRA-картриджа (45 МБ).</li>
+        </ul>
+        <div class="pill-box">
+          <span class="pill">ОТК-проверка</span>
+          <span class="pill">LoRA hot-swap</span>
+          <span class="pill">Порт :8080</span>
+        </div>
+      </div>
+
+      <!-- NODE-2: Nord N10 -->
+      <div class="card node-2">
+        <span class="card-badge badge-edge">Edge • Node-2 (Nord N10 5G)</span>
+        <div class="card-title">BGE-M3 + LFM2.5 <span>⚡</span></div>
+        <div class="card-role">Векторный поиск по ГОСТам и семантический рефлекс</div>
+        <ul class="spec-list">
+          <li><strong>Векторный поиск стандартов:</strong> Модель BGE-M3 на 6 энергоэффективных ядрах A55 на порту :8082.</li>
+          <li><strong>Поиск за ~1.5 мс:</strong> Рассчитывает косинусное сходство между статьей и базой ГОСТов.</li>
+          <li><strong>Фильтрация фактов:</strong> Вытягивает нужный пункт ГОСТа без расхода токенов в облаке.</li>
+        </ul>
+        <div class="pill-box">
+          <span class="pill">BGE-M3 эмбеддинги</span>
+          <span class="pill">Порт :8082</span>
+          <span class="pill">Семантика RAG</span>
+        </div>
+      </div>
+
+      <!-- NODE-3: Redmi Note 4 -->
+      <div class="card node-3">
+        <span class="card-badge badge-edge">Edge • Node-3 (Redmi Note 4)</span>
+        <div class="card-title">Hub Router & Deck <span>🎛️</span></div>
+        <div class="card-role">Шлюз маршрутизации, FTS5 база знаний и экранный киоск</div>
+        <ul class="spec-list">
+          <li><strong>Маршрутизатор :8000:</strong> Fast-Path Router отсекает regex-команды за рекордные 0.02 мс.</li>
+          <li><strong>Локальная база SQLite FTS5:</strong> Мгновенный поиск по 54 статьям за ~2-4 мс.</li>
+          <li><strong>Кибердек 24/7:</strong> DC-DC прямое питание 4.18V без батареи, сенсорный статус-монитор.</li>
+        </ul>
+        <div class="pill-box">
+          <span class="pill">Шлюз :8000</span>
+          <span class="pill">FTS5 SQLite</span>
+          <span class="pill">DC-DC 4.18V</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: PIPELINE SIMULATOR -->
+  <div id="tab-sim" class="tab-panel">
+    <div class="sim-container">
+      <div class="pipeline-steps">
+        <div class="step-node active" onclick="setStep(1)">
+          <div class="step-num">ШАГ 1</div>
+          <div class="step-name">Идея и Семантика</div>
+        </div>
+        <div class="step-node" onclick="setStep(2)">
+          <div class="step-num">ШАГ 2</div>
+          <div class="step-name">DeepSeek CoT</div>
+        </div>
+        <div class="step-node" onclick="setStep(3)">
+          <div class="step-num">ШАГ 3</div>
+          <div class="step-name">Sonnet Написание</div>
+        </div>
+        <div class="step-node" onclick="setStep(4)">
+          <div class="step-num">ШАГ 4</div>
+          <div class="step-name">Nord N10 Вектор</div>
+        </div>
+        <div class="step-node" onclick="setStep(5)">
+          <div class="step-num">ШАГ 5</div>
+          <div class="step-name">Mi 10T ОТК-аудит</div>
+        </div>
+        <div class="step-node" onclick="setStep(6)">
+          <div class="step-num">ШАГ 6</div>
+          <div class="step-name">Публикация WordPress</div>
+        </div>
+      </div>
+
+      <div class="sim-display">
+        <div class="sim-title" id="sim-title">Шаг 1: Формирование темы и семантического ядра</div>
+        <div class="sim-details" id="sim-desc">Поиск незанятых кластеров в semantic_core_FULL_v11.xlsx и защита от каннибализации контента с помощью Gemini 2.5 (проверка 100+ опубликованных URL).</div>
+        <div class="sim-log" id="sim-log">[AGENT-01-SEO] Выбран кластер: "BGA реболлинг термопрофиль"\n[GEO-CHECK] Запрос уникален, риск каннибализации = 0%</div>
+      </div>
+
+      <div class="callout">
+        💡 <strong>Зачем здесь связка моделей?</strong> Облачный DeepSeek генерирует глубокую физику процесса, Sonnet оттачивает стиль Practico, а локальный кластер смартфонов бесплатно проверяет нормы по ГОСТам за доли секунды и дает добро на публикацию.
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: MATRIX TABLE -->
+  <div id="tab-matrix" class="tab-panel">
+    <div class="card" style="padding: 10px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Задача в проекте</th>
+            <th>Где выполняется</th>
+            <th>Рекомендуемая модель</th>
+            <th>Стоимость</th>
+            <th>Скорость отклика</th>
+            <th>Почему именно она</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Глубокие CoT рассуждения</strong></td>
+            <td>Облако (API)</td>
+            <td>DeepSeek-R1 / V3</td>
+            <td class="cost-paid">$0.002 / 1k токенов</td>
+            <td>3 - 8 сек</td>
+            <td>Непревзойденная логика физики и математики за копейки</td>
+          </tr>
+          <tr>
+            <td><strong>Инженерный текст Practico</strong></td>
+            <td>Облако (API)</td>
+            <td>Claude 3.7 Sonnet</td>
+            <td class="cost-paid">$0.015 / 1k токенов</td>
+            <td>2 - 5 сек</td>
+            <td>Идеальный русский язык без штампов, женский/мужской стиль</td>
+          </tr>
+          <tr>
+            <td><strong>Анализ фото микроскопа / BGA</strong></td>
+            <td>Облако (API)</td>
+            <td>Gemini 2.5 Pro Vision</td>
+            <td class="cost-paid">$0.003 / фото</td>
+            <td>1 - 3 сек</td>
+            <td>Лучшее компьютерное зрение для пайки и гигантский контекст</td>
+          </tr>
+          <tr>
+            <td><strong>Векторный поиск по ГОСТам</strong></td>
+            <td>OnePlus Nord N10</td>
+            <td>BGE-M3 (GGUF)</td>
+            <td class="cost-free">0.00 ₽ (Автономно)</td>
+            <td><strong>1.5 мс</strong></td>
+            <td>Работает локально на 6 ядрах A55, нулевой расход интернета</td>
+          </tr>
+          <tr>
+            <td><strong>ОТК-проверка статьи по нормам</strong></td>
+            <td>Xiaomi Mi 10T 5G</td>
+            <td>Qwen3.5-9B + LoRA</td>
+            <td class="cost-free">0.00 ₽ (Автономно)</td>
+            <td><strong>6.1 сек</strong></td>
+            <td>Обученный адаптер помнит ГОСТ 21931 и IPC-7095 наизусть</td>
+          </tr>
+          <tr>
+            <td><strong>Маршрутизация и телеметрия</strong></td>
+            <td>Redmi Note 4</td>
+            <td>Fast-Path Router</td>
+            <td class="cost-free">0.00 ₽ (Автономно)</td>
+            <td><strong>0.02 мс</strong></td>
+            <td>Мгновенная сортировка запросов на прямопитаемом хабе</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 4: HARDWARE CLUSTER -->
+  <div id="tab-hardware" class="tab-panel">
+    <div class="grid-3">
+      <div class="card node-1">
+        <div class="card-title">Xiaomi Mi 10T 5G (apollo)</div>
+        <div class="card-role">Snapdragon 865 • 8GB LPDDR5 • LibreMobileOS 15</div>
+        <ul class="spec-list">
+          <li><strong>Процессор:</strong> 1x A77 @ 2.84GHz + 3x A77 @ 2.42GHz + 4x A55</li>
+          <li><strong>Нагрузка:</strong> llama-server :8080 (taskset -c 4,5,6,7 под A77)</li>
+          <li><strong>Питание:</strong> battery_charging_enabled=0 (байпас батареи)</li>
+          <li><strong>Статус:</strong> <span style="color:var(--green)">В сети (192.168.1.4) • Готов к ОТК</span></li>
+        </ul>
+      </div>
+
+      <div class="card node-2">
+        <div class="card-title">OnePlus Nord N10 5G (billie)</div>
+        <div class="card-role">Snapdragon 690 • 6GB LPDDR4X • OxygenOS 11</div>
+        <ul class="spec-list">
+          <li><strong>Процессор:</strong> 2x Kryo 560 Gold (A77) + 6x Silver (A55)</li>
+          <li><strong>Нагрузка:</strong> BGE-M3 :8082 (на 6x A55) + LFM2.5 :8081</li>
+          <li><strong>Питание:</strong> TWRP permanent flash + Battery Guard 24/7</li>
+          <li><strong>Статус:</strong> <span style="color:var(--green)">Узел векторов и эмбеддингов</span></li>
+        </ul>
+      </div>
+
+      <div class="card node-3">
+        <div class="card-title">Redmi Note 4 (mido/nikel)</div>
+        <div class="card-role">Snapdragon 625 / Helio X20 • 3GB • DC-DC 4.18V</div>
+        <ul class="spec-list">
+          <li><strong>Питание:</strong> Батарея удалена! Прямое питание 4.18V от импульсника</li>
+          <li><strong>Нагрузка:</strong> Fast-Path Router :8000 + SQLite FTS5 RAG</li>
+          <li><strong>Интерфейс:</strong> Сенсорный экран-пульт кибердека Kiosk Web HUD</li>
+          <li><strong>Статус:</strong> <span style="color:var(--green)">Главный шлюз телеметрии</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    const stepData = {
+      1: {
+        title: "Шаг 1: Формирование темы и семантического ядра",
+        desc: "Поиск незанятых кластеров в semantic_core_FULL_v11.xlsx и защита от каннибализации контента с помощью Gemini 2.5 (проверка 100+ опубликованных URL сайта).",
+        log: "[AGENT-01-SEO] Анализ листа semantic_core: кластер 'BGA реболлинг термопрофиль'\n[GEMINI-PRO] Поиск совпадений: найдено 0 дублей, каннибализация исключена."
+      },
+      2: {
+        title: "Шаг 2: Глубокое рассуждение физики (DeepSeek-R1)",
+        desc: "Формирование доказательного базиса статьи: физика оплавления шаров SAC305, теплоемкость подложки, расчет интерметаллидов Cu6Sn5 и генерация Chain-of-Thought аргументов.",
+        log: "[DEEPSEEK-R1] Генерация CoT: интервал TAL=55с, пик 242°C, дельта T по плате < 8°C.\n[DATA-EXTRACT] Сформирована таблица температурных зон для конвекционной печи."
+      },
+      3: {
+        title: "Шаг 3: Написание статьи в авторском голосе (Claude 3.7 Sonnet)",
+        desc: "Claude 3.7 Sonnet пишет текст строго по правилам Master Editorial Book в утвержденном голосе Practico: живой язык, женский род прошедшего времени, нулевая терпимость к воде.",
+        log: "[SONNET-3.7] Сформирован Markdown со структурой:\n- Паспорт статьи (PassCard)\n- Технические тезисы с цифрами\n- FAQ (5 вопросов) + Schema.org JSON-LD"
+      },
+      4: {
+        title: "Шаг 4: Векторная вычитка ГОСТов (Nord N10 5G / BGE-M3)",
+        desc: "Локальный поисковик standards_rag_search на OnePlus Nord N10 за 1.4 мс извлекает точные нормативы из standards_vector_index.json (IPC-7095E: пустотность <= 25%).",
+        log: "[NORD-N10:8082] Запрос BGE-M3: 'допустимая пустотность BGA по рентгену'\n[RAG-HIT] Чанк CHUNK-IPC-7095-BGA найден за 1.4 мс! Релевантность 23.7%."
+      },
+      5: {
+        title: "Шаг 5: Автономный аудит ОТК (Xiaomi Mi 10T 5G)",
+        desc: "Модель Qwen3.5-9B на Xiaomi Mi 10T сопоставляет написанный текст с найденным нормативом IPC-7095E и проверяет корректность всех допусков и температур.",
+        log: "[MI-10T:8080] ОТК-проверка завершена за 6.1 сек.\n[VERDICT] Статья полностью соответствует IPC-7095E Class 2. Допуски соблюдены."
+      },
+      6: {
+        title: "Шаг 6: Доставка и публикация в WordPress (delivery_cli.py)",
+        desc: "Упаковка в контракт v1.1, проверка GEO-факторов N/6, генерация микроразметки TechArticle + FAQPage и автоматическое создание черновика на сайте tochka-plavleniya.ru.",
+        log: "[DELIVERY-CLI] Валидация по article-contract-v1.1.schema.json: УСПЕХ!\n[WP-API] Черновик создан на tochka-plavleniya.ru! Rank Math SEO балл: 92/100."
+      }
+    };
+
+    function setStep(stepNum) {
+      document.querySelectorAll('.step-node').forEach((node, i) => {
+        if (i + 1 === stepNum) node.classList.add('active');
+        else node.classList.remove('active');
+      });
+      const data = stepData[stepNum];
+      document.getElementById('sim-title').innerText = data.title;
+      document.getElementById('sim-desc').innerText = data.desc;
+      document.getElementById('sim-log').innerText = data.log;
+    }
+  </script>
+</body>
+</html>
