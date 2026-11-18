@@ -31,3 +31,12 @@ mtkclient/
 usb_driver/
 android-ad-cleaner/
 
+
+# Binary artifacts & large models
+*.gguf
+*.zip
+*.img
+*.tar.gz
+*.bin
+cartridges/cartridge/*.gguf
+cartridges/*.zip
