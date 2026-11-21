@@ -1,0 +1,28 @@
+{
+  "quota_max_mb": 1024,
+  "quota_used_mb": 154.2,
+  "quota_percent": 15.1,
+  "active_tag": "triad_omni_fast_tool",
+  "cartridges": [
+    {
+      "tag": "triad_omni_fast_tool",
+      "slug": "triad-omni-fast-tool",
+      "version": "v1.0",
+      "size_mb": 154.2,
+      "is_active": true,
+      "description": "LoRA-картридж быстрого роутинга и базы знаний Triad-Omni v5.0 (включая Tochka-Plavleniya SaaS)",
+      "adapter_url": "/cartridges/v3_tochka_rea/adapter.gguf",
+      "card_url": "/cartridges/triad_omni_fast_tool/card.json"
+    },
+    {
+      "tag": "triad-omni-persona_v1.0_20261117_1900",
+      "slug": "triad-omni-persona",
+      "version": "v1.0",
+      "size_mb": 154.2,
+      "is_active": false,
+      "description": "LoRA-картридж авторского голоса и инженерной терминологии",
+      "adapter_url": "/cartridges/cartridge/adapter.gguf",
+      "card_url": "/cartridges/cartridge/card.json"
+    }
+  ]
+}

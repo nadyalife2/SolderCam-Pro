@@ -46,6 +46,8 @@ BURP_PATHS = ["/melvin/burp.mp3", "/sdcard/melvin/burp.mp3", "burp.mp3", "d:/esp
 LLAMA_URL = "http://127.0.0.1:8080/completion"
 
 app = Flask("MelvinAgent")
+import logging
+logging.getLogger('werkzeug').setLevel(logging.ERROR)
 
 CURRENT_PERSONA = "melvin"
 speech_rec = sr.Recognizer()

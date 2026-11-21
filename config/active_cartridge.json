@@ -1,0 +1,16 @@
+{
+  "schema": "omni.lora.card/1",
+  "slug": "triad-omni-persona",
+  "rank": 16,
+  "alpha": 16,
+  "sha256": "315faf52c0f5a7a66231f50065d462dfac20852d6c19c7f7f087d59b16b02b74",
+  "base": "Qwen2.5-7B-Instruct",
+  "device_target": "Xiaomi Mi 10T 5G (Snapdragon 865)",
+  "description": "LoRA-картридж инженерного стиля и базы знаний Triad-Omni v5.0",
+  "verified_sha256": "102d302ab5218d6d60361067c21e51215b62ab0f62d5c46cce0502ba63a9bf66",
+  "main_gguf": "adapter.gguf",
+  "main_gguf_size_mb": 154.03,
+  "active_path": "D:\\для one plus nord n10\\cartridges\\cartridge",
+  "active": true,
+  "scale": 1.0
+}

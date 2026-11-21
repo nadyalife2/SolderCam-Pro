@@ -195,6 +195,11 @@ def search_duckduckgo(query: str) -> str:
     return ""
 
 NEWS_FEEDS = {
+    "google": {
+        "name": "Google News",
+        "url": "https://news.google.com/rss?hl=ru&gl=RU&ceid=RU:ru",
+        "keywords": ["гугл", "google", "в мире", "главное", "новости дня", "сми"]
+    },
     "habr": {
         "name": "Хабра",
         "url": "https://habr.com/ru/rss/news/?fl=ru",
@@ -364,9 +369,13 @@ def parse_rss_items(url: str, source_name: str, max_items: int = 25) -> list:
         title_str = clean_rss_text(t.text) if t is not None and t.text else ""
         desc_str = clean_rss_text(d.text) if d is not None and d.text else ""
         link_str = (l.text or "").strip() if l is not None else ""
+        src_tag = it.find("source")
+        actual_source = src_tag.text if src_tag is not None and src_tag.text else source_name
+        if actual_source and actual_source != source_name:
+            title_str = re.sub(rf'\s*-\s*{re.escape(actual_source)}\s*$', '', title_str).strip()
         if title_str:
             parsed.append({
-                "source": source_name,
+                "source": actual_source,
                 "title": title_str,
                 "desc": desc_str,
                 "link": link_str
@@ -390,10 +399,17 @@ def get_live_news(query: str = "", count: int = 5) -> str:
             target_key = key
             break
             
-    feed = NEWS_FEEDS.get(target_key, NEWS_FEEDS["habr"])
-    source_name = feed["name"]
-    url = feed["url"]
     topic = extract_news_topic(q)
+    
+    # Если указана конкретная тема и не выбран узкий источник (vc, 4pda и т.д.) - ищем в Google News
+    if topic and target_key == "habr" and not any(k in q for k in ["хабр", "habr"]):
+        target_key = "google"
+        source_name = "Google News"
+        url = f"https://news.google.com/rss/search?q={urllib.parse.quote(topic)}&hl=ru&gl=RU&ceid=RU:ru"
+    else:
+        feed = NEWS_FEEDS.get(target_key, NEWS_FEEDS["habr"])
+        source_name = feed["name"]
+        url = feed["url"]
     
     try:
         articles = parse_rss_items(url, source_name, max_items=25)
@@ -522,7 +538,7 @@ def route_web_fact(user_msg: str) -> str:
     if any(k in q for k in [
         "новост", "что нового", "что происходит", "сводка", "дайджест", "хабр", "habr",
         "vc.ru", "vc", "вц", "тинькофф", "т-ж", "тж", "4pda", "ixbt", "dtf", "дтф", "naked science", "cnews",
-        "forklog", "rozetked", "код дурова", "риа", "ria"
+        "forklog", "rozetked", "код дурова", "риа", "ria", "google", "гугл"
     ]):
         news_fact = get_live_news(q, count=5)
         if news_fact:

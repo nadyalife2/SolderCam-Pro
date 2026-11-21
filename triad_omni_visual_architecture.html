@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triad-Omni v4.0 — Архитектурная Иллюстрация Кластера</title>
+<style>
+  :root {
+    --bg: #090d16;
+    --card-bg: rgba(17, 24, 39, 0.85);
+    --border: #1f293d;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --deck: #0ea5e9;
+    --reflex: #10b981;
+    --brain: #a855f7;
+    --pc: #f59e0b;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body { background: var(--bg); color: var(--text); padding: 24px; min-height: 100vh; overflow-x: hidden; }
+  
+  .header { text-align: center; margin-bottom: 24px; }
+  .header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .header h1 span { color: var(--deck); }
+  .header p { color: var(--text-muted); font-size: 15px; max-width: 800px; margin: 0 auto; line-height: 1.5; }
+  
+  .mode-switch {
+    display: flex; justify-content: center; gap: 12px; margin: 20px 0 28px 0;
+  }
+  .mode-btn {
+    padding: 10px 20px; border-radius: 99px; border: 1px solid #334155; background: #1e293b; color: #cbd5e1;
+    font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px;
+  }
+  .mode-btn.active {
+    background: #0284c7; border-color: #38bdf8; color: #fff; box-shadow: 0 0 16px rgba(14, 165, 233, 0.4);
+  }
+  
+  /* Top-level Diagram Container */
+  .canvas {
+    max-width: 1280px; margin: 0 auto; background: radial-gradient(circle at 50% 20%, rgba(30, 41, 59, 0.5) 0%, rgba(9, 13, 22, 0.95) 75%);
+    border: 1px solid var(--border); border-radius: 20px; padding: 28px; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  }
+  
+  /* 4 Nodes Grid */
+  .nodes-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 30px; position: relative; z-index: 2;
+  }
+  
+  .node-box {
+    background: var(--card-bg); border: 2px solid var(--border); border-radius: 16px; padding: 18px;
+    backdrop-filter: blur(8px); transition: all 0.25s ease; position: relative; display: flex; flex-direction: column;
+  }
+  .node-box:hover { transform: translateY(-4px); }
+  .node-box.deck { border-color: var(--deck); box-shadow: 0 4px 20px rgba(14, 165, 233, 0.15); }
+  .node-box.reflex { border-color: var(--reflex); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15); }
+  .node-box.brain { border-color: var(--brain); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); }
+  .node-box.pc { border-color: var(--pc); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15); }
+  
+  .node-tag {
+    display: inline-block; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .tag-deck { background: rgba(14, 165, 233, 0.2); color: #38bdf8; }
+  .tag-reflex { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+  .tag-brain { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+  .tag-pc { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+  
+  .node-title { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .node-soc { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+  
+  .spec-pill {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 5px 10px; border-radius: 8px;
+    font-size: 12px; font-weight: 600; margin-bottom: 6px; display: flex; justify-content: space-between;
+  }
+  .spec-pill span.val { color: #f8fafc; font-family: monospace; }
+  
+  .feature-list { margin-top: 10px; font-size: 12px; line-height: 1.6; color: #cbd5e1; }
+  .feature-list li { margin-left: 16px; margin-bottom: 4px; }
+  
+  /* Central Flow Diagram */
+  .flow-section {
+    background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 22px; margin-bottom: 28px;
+  }
+  .flow-title { font-size: 16px; font-weight: 800; color: #38bdf8; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  
+  .flow-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; position: relative;
+  }
+  .flow-card {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 14px; position: relative;
+  }
+  .flow-num {
+    position: absolute; top: -10px; left: 14px; background: #38bdf8; color: #090d16; font-size: 11px; font-weight: 900;
+    width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .flow-card h4 { font-size: 14px; font-weight: 700; margin-top: 4px; margin-bottom: 6px; color: #f8fafc; }
+  .flow-card p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+  
+  /* Callout Badges */
+  .callouts-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .callout-box {
+    background: #111827; border-left: 4px solid var(--border); border-radius: 10px; padding: 14px; font-size: 13px;
+  }
+  .callout-box.red { border-left-color: var(--red); background: rgba(239, 68, 68, 0.05); }
+  .callout-box.green { border-left-color: var(--reflex); background: rgba(16, 185, 129, 0.05); }
+  .callout-box.purple { border-left-color: var(--brain); background: rgba(168, 85, 247, 0.05); }
+  .callout-box h5 { font-size: 13px; font-weight: 800; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+  .callout-box p { color: var(--text-muted); line-height: 1.5; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚡ Triad-Omni v4.0 <span>[Hardware Deck Edition]</span></h1>
+  <p>Архитектурная схема распределенного локального ИИ на 3 смартфонах и ПК. Автономный инференс, ролевая маршрутизация, тактильный экран-пульт и динамические LoRA-картриджи.</p>
+  
+  <div class="mode-switch">
+    <button class="mode-btn active" id="btn-day" onclick="setMode('day')">☀️ ДНЕВНОЙ РЕЖИМ (Автономный 9B+8B, ПК свободен)</button>
+    <button class="mode-btn" id="btn-night" onclick="setMode('night')">🌙 НОЧНОЙ РЕЖИМ (33B Учитель RPC + QLoRA обучение)</button>
+  </div>
+</div>
+
+<div class="canvas">
+  <!-- 4 Nodes Grid -->
+  <div class="nodes-grid">
+    
+    <!-- NODE 3: REDMI NOTE 4 -->
+    <div class="node-box deck">
+      <div class="node-tag tag-deck">NODE-3 • DECK & HUB</div>
+      <div class="node-title">Redmi Note 4</div>
+      <div class="node-soc">Helio X20 MT6797 • 3 ГБ ОЗУ • 64 ГБ</div>
+      
+      <div class="spec-pill"><span>IP / Шлюз:</span><span class="val">192.168.31.48:8000</span></div>
+      <div class="spec-pill"><span>SSH порт:</span><span class="val">:8022 (ED25519)</span></div>
+      <div class="spec-pill"><span>База RAG:</span><span class="val">SQLite FTS5 (WAL)</span></div>
+      <div class="spec-pill"><span>Экран:</span><span class="val">Chrome 56 Kiosk 15%</span></div>
+      
+      <ul class="feature-list">
+        <li><b>Физический пульт:</b> сенсорная панель управления кластером.</li>
+        <li><b>WebAudio:</b> синтезатор сирен перегрева и щелчков без MP3.</li>
+        <li><b>Мульти-протокол:</b> OpenAI, Claude Code CLI, Ollama.</li>
+        <li><b>Sysfs сторож:</b> аварийное выключение при >46.5°C или <12% АКБ.</li>
+      </ul>
+    </div>
+
+    <!-- NODE 2: ONEPLUS NORD N10 -->
+    <div class="node-box reflex">
+      <div class="node-tag tag-reflex">NODE-2 • REFLEX</div>
+      <div class="node-title">OnePlus Nord N10</div>
+      <div class="node-soc">Snapdragon 690 • 6 ГБ ОЗУ • UFS 2.1</div>
+      
+      <div class="spec-pill"><span>Роутер MoE:</span><span class="val">:8081 (22 ток/с)</span></div>
+      <div class="spec-pill"><span>Векторный BGE:</span><span class="val">:8082 (BGE-M3)</span></div>
+      <div class="spec-pill"><span>Модель роутера:</span><span class="val">LFM2.5-8B-A1B</span></div>
+      <div class="spec-pill"><span>Экран:</span><span class="val">Погашен (0% тока)</span></div>
+      
+      <ul class="feature-list">
+        <li><b>Мгновенный роутинг:</b> классификация намерения за 80 мс.</li>
+        <li><b>Cortex-A77 ядра:</b> привязка потоков через taskset.</li>
+        <li><b>Семантический вектор:</b> отсекает дубликаты навыков (cos >= 0.88).</li>
+        <li><b>Легкие ответы:</b> сам отвечает на короткие реплики без Mi 10T.</li>
+      </ul>
+    </div>
+
+    <!-- NODE 1: XIAOMI MI 10T -->
+    <div class="node-box brain">
+      <div class="node-tag tag-brain">NODE-1 • BRAIN</div>
+      <div class="node-title">Xiaomi Mi 10T</div>
+      <div class="node-soc">Snapdragon 865 • 8 ГБ LPDDR5 • 128 ГБ</div>
+      
+      <div class="spec-pill"><span>Инференс 9B:</span><span class="val">:8080 (14 ток/с)</span></div>
+      <div class="spec-pill"><span>Модель мозга:</span><span class="val">Qwen3.5-9B-UD-Q4</span></div>
+      <div class="spec-pill"><span>LoRA Hot-Swap:</span><span class="val">40 мс переключение</span></div>
+      <div class="spec-pill"><span>Графика:</span><span class="val">Остановлена (7.3 ГБ free)</span></div>
+      
+      <ul class="feature-list">
+        <li><b>Тяжелый кодер:</b> C/C++, Ghidra ReVa, Android NDK, пайка.</li>
+        <li><b>Картриджи LoRA:</b> solder, reva_android, esp32, ui_video.</li>
+        <li><b>Память LPDDR5:</b> 44–51 ГБ/с — быстрее настольной DDR4!</li>
+        <li id="mi10t-mode-desc"><b>Ночной режим:</b> выделяет 6 ГБ LPDDR5 под RPC для 33B модели.</li>
+      </ul>
+    </div>
+
+    <!-- NODE 4: HOME PC -->
+    <div class="node-box pc">
+      <div class="node-tag tag-pc">NODE-4 • TRAINER</div>
+      <div class="node-title">Домашний ПК</div>
+      <div class="node-soc">GTX 1050 Ti (4 ГБ) • 16 ГБ DDR4 • SSD</div>
+      
+      <div class="spec-pill"><span>Среда разработки:</span><span class="val">Claude Code, IDE</span></div>
+      <div class="spec-pill"><span>Дневная нагрузка:</span><span class="val" id="pc-load">0% (Свободен для работы)</span></div>
+      <div class="spec-pill"><span>Тренер:</span><span class="val">4-bit QLoRA Auto</span></div>
+      <div class="spec-pill"><span>33B Учитель:</span><span class="val" id="pc-teacher">Nanbeige 4.3 (RPC)</span></div>
+      
+      <ul class="feature-list">
+        <li><b>Zero-Lag Desktop:</b> днем ПК не грузится тяжелыми сетями.</li>
+        <li><b>Ночной авто-тренер:</b> собирает датасеты и обучает LoRA за 35 мин.</li>
+        <li><b>Сборка картриджей:</b> конвертирует веса в .gguf и шлет на Mi 10T.</li>
+        <li><b>Harness & Tools:</b> сканер папок скилов и авто-тесты.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Realtime Dataflow Section -->
+  <div class="flow-section">
+    <div class="flow-title">🔄 Сквозной поток выполнения запроса (Dataflow)</div>
+    
+    <div class="flow-steps" id="flow-steps">
+      <div class="flow-card">
+        <div class="flow-num">1</div>
+        <h4>Вход запроса</h4>
+        <p>Запрос из Claude Code CLI или браузера прилетает на шлюз <b>Redmi Note 4 (:8000)</b> по OpenAI / Anthropic API.</p>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-num">2</div>
+        <h4>RAG + Обогащение</h4>
+        <p>SQLite FTS5 мгновенно (<2 мс) извлекает релевантные факты и подмешивает в системный контекст промпта.</p>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-num">3</div>
+        <h4>Reflex MoE Роутинг</h4>
+        <p><b>OnePlus Nord N10 (:8081)</b> за 80 мс решает: короткий диалог (отвечает сам) или сложный код (передает на Mi 10T).</p>
+      </div>
+
+      <div class="flow-card">
+        <div class="flow-num">4</div>
+        <h4>Brain Генерация</h4>
+        <p><b>Xiaomi Mi 10T (:8080)</b> на скорости 14 т/с выдает готовый код с активным LoRA-картриджем и стримит ответ клиенту.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial Callouts -->
+  <div class="callouts-grid">
+    <div class="callout-box red">
+      <h5>🔴 Вскрытая мина MIUI 10</h5>
+      <p>В ядре <code>SecurityManagerService</code> зашит жесткий поиск <code>com.xiaomi.finddevice</code> каждые 7 секунд. При обычном деблоате система падала в бесконечный краш-луп. Вылечено прошивкой чистого <code>userdata.img</code> через Fastboot!</p>
+    </div>
+
+    <div class="callout-box green">
+      <h5>🟢 Физика LPDDR5 против DDR4</h5>
+      <p>GTX 1050 Ti с 4 ГБ VRAM вываливает 9B веса в медленную системную DDR4 (32 ГБ/с). А смартфоны имеют Unified LPDDR5 (51 ГБ/с) — поэтому 9B летает на смартфонах быстрее ПК при потреблении всего 5 Ватт!</p>
+    </div>
+
+    <div class="callout-box purple">
+      <h5>🟣 Спасение 16 ГБ ПК через RPC</h5>
+      <p>Запуск 33B модели на 16 ГБ ПК подвесил бы систему файлом подкачки (15 ГБ RAM на веса + KV-кэш). Через <code>rpc-server</code> на Mi 10T мы отгружаем 6 ГБ слоев на телефон — и ПК остается быстрым и отзывчивым!</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setMode(mode) {
+  var btnDay = document.getElementById('btn-day');
+  var btnNight = document.getElementById('btn-night');
+  var pcLoad = document.getElementById('pc-load');
+  var miDesc = document.getElementById('mi10t-mode-desc');
+  var steps = document.getElementById('flow-steps');
+
+  if (mode === 'day') {
+    btnDay.classList.add('active');
+    btnNight.classList.remove('active');
+    pcLoad.innerText = '0% (Свободен для работы)';
+    miDesc.innerHTML = '<b>Дневной режим:</b> Qwen3.5-9B-UD + LoRA (14 т/с) полностью автономно.';
+    steps.innerHTML = `
+      <div class="flow-card"><div class="flow-num">1</div><h4>Вход запроса</h4><p>Запрос из Claude Code CLI прилетает на шлюз <b>Redmi Note 4 (:8000)</b>.</p></div>
+      <div class="flow-card"><div class="flow-num">2</div><h4>RAG + FTS5</h4><p>Полнотекстовый поиск FTS5 подмешивает факты из базы знаний за <2 мс.</p></div>
+      <div class="flow-card"><div class="flow-num">3</div><h4>MoE Роутер</h4><p><b>Nord N10 (:8081)</b> на Cortex-A77 распределяет ветки логики со скоростью 22 т/с.</p></div>
+      <div class="flow-card"><div class="flow-num">4</div><h4>9B Кодер</h4><p><b>Mi 10T (:8080)</b> генерирует код с нужным LoRA-картриджем в памяти LPDDR5.</p></div>
+    `;
+  } else {
+    btnNight.classList.add('active');
+    btnDay.classList.remove('active');
+    pcLoad.innerText = '100% GPU (Обучение 4-bit LoRA)';
+    miDesc.innerHTML = '<b>Ночной режим:</b> RPC-память (:50052) выделяет 6 ГБ LPDDR5 для Nanbeige 33B.';
+    steps.innerHTML = `
+      <div class="flow-card"><div class="flow-num">1</div><h4>Ночной триггер</h4><p>Шлюз Redmi Note 4 сбрасывает накопленный датасет сложных вопросов на ПК.</p></div>
+      <div class="flow-card"><div class="flow-num">2</div><h4>RPC Связка</h4><p>ПК запускает <b>Nanbeige 33B</b>, используя 6 ГБ Unified памяти Xiaomi Mi 10T.</p></div>
+      <div class="flow-card"><div class="flow-num">3</div><h4>Дистилляция</h4><p>33B-Учитель решает задачи и генерирует эталонный датасет SFT за 40 минут.</p></div>
+      <div class="flow-card"><div class="flow-num">4</div><h4>4-bit QLoRA</h4><p>GTX 1050 Ti компилирует свежий картридж .gguf и по scp заливает в Mi 10T к утру.</p></div>
+    `;
+  }
+}
+</script>
+</body>
+</html>

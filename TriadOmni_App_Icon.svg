@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient: Deep Onyx Space -->
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#161f33" />
+      <stop offset="50%" stop-color="#0e1524" />
+      <stop offset="100%" stop-color="#070a10" />
+    </radialGradient>
+
+    <!-- Outer Rim Neon Gradient -->
+    <linearGradient id="rim-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffcc" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#00ff88" />
+    </linearGradient>
+
+    <!-- Triad Core Glow -->
+    <linearGradient id="omega-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="50%" stop-color="#00ffcc" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+
+    <!-- Node 1 Prime Core (Gold) -->
+    <radialGradient id="node1-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#ffd700" />
+      <stop offset="100%" stop-color="#ff9900" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Node 2 Reflex Core (Cyan) -->
+    <radialGradient id="node2-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#00ffcc" />
+      <stop offset="100%" stop-color="#0088ff" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Node 3 Hub Core (Emerald) -->
+    <radialGradient id="node3-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#00ff88" />
+      <stop offset="100%" stop-color="#009944" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Neon Glow Filter -->
+    <filter id="neon-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="subtle-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base Squircle with Cyberdeck Bevel -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bg-grad)" stroke="url(#rim-grad)" stroke-width="4" />
+
+  <!-- Hexagonal PCB Micro-grid -->
+  <g opacity="0.12" stroke="#00ffcc" stroke-width="1.5" fill="none">
+    <path d="M 120 70 L 150 120 L 120 170 L 60 170 L 30 120 L 60 70 Z" />
+    <path d="M 450 70 L 480 120 L 450 170 L 390 170 L 360 120 L 390 70 Z" />
+    <path d="M 120 370 L 150 420 L 120 470 L 60 470 L 30 420 L 60 370 Z" />
+    <path d="M 450 370 L 480 420 L 450 470 L 390 470 L 360 420 L 390 370 Z" />
+    <!-- Cyber Traces -->
+    <path d="M 70 256 H 180 L 220 290" />
+    <path d="M 442 256 H 332 L 292 290" />
+    <path d="M 256 70 V 150" />
+    <path d="M 256 442 V 380" />
+  </g>
+
+  <!-- Triad Cluster Connectivity Mesh (Triangle) -->
+  <polygon points="256,120 380,360 132,360" fill="none" stroke="#00ffcc" stroke-width="2.5" opacity="0.4" stroke-dasharray="6,6" filter="url(#subtle-glow)" />
+
+  <!-- Stylized Cyberdeck Omega (Ω) Glyph -->
+  <path d="M 160 370 H 120 C 120 370, 110 320, 150 250 C 180 190, 210 165, 256 165 C 302 165, 332 190, 362 250 C 402 320, 392 370, 392 370 H 352 C 342 370, 345 320, 315 260 C 290 215, 275 205, 256 205 C 237 205, 222 215, 197 260 C 167 320, 170 370, 160 370 Z" 
+        fill="url(#omega-grad)" 
+        filter="url(#neon-glow)" />
+
+  <!-- Center Quantum Processing Core -->
+  <circle cx="256" cy="270" r="32" fill="#090d16" stroke="#00ffcc" stroke-width="3" filter="url(#subtle-glow)" />
+  <circle cx="256" cy="270" r="16" fill="#00ffcc" opacity="0.85" filter="url(#neon-glow)" />
+  <circle cx="256" cy="270" r="6" fill="#ffffff" />
+
+  <!-- Node 1: Xiaomi Mi 10T 5G (Apex - Gold/Prime Core) -->
+  <circle cx="256" cy="120" r="28" fill="url(#node1-glow)" filter="url(#neon-glow)" />
+  <circle cx="256" cy="120" r="12" fill="#ffd700" />
+  <circle cx="256" cy="120" r="5" fill="#ffffff" />
+
+  <!-- Node 2: OnePlus Nord N10 5G (Reflex & Vector - Cyan) -->
+  <circle cx="380" cy="360" r="28" fill="url(#node2-glow)" filter="url(#neon-glow)" />
+  <circle cx="380" cy="360" r="12" fill="#00ffcc" />
+  <circle cx="380" cy="360" r="5" fill="#ffffff" />
+
+  <!-- Node 3: Redmi Note 4 (Telemetry & Power Hub - Emerald) -->
+  <circle cx="132" cy="360" r="28" fill="url(#node3-glow)" filter="url(#neon-glow)" />
+  <circle cx="132" cy="360" r="12" fill="#00ff88" />
+  <circle cx="132" cy="360" r="5" fill="#ffffff" />
+
+  <!-- Subtle Label Overlay -->
+  <text x="256" y="440" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif" 
+        font-size="28" font-weight="800" fill="#f3f4f6" letter-spacing="4" text-anchor="middle" opacity="0.9">
+    TRIAD OMNI
+  </text>
+  <text x="256" y="468" font-family="'SF Mono', 'Consolas', monospace" 
+        font-size="13" font-weight="600" fill="#00ffcc" letter-spacing="2" text-anchor="middle" opacity="0.75">
+    EDGE AI CLUSTER
+  </text>
+</svg>

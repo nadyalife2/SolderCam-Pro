@@ -86,6 +86,18 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
         }
         binding.tvLogFilePath.text = "Файл: ${csvLogFile.name} (${csvLogFile.length() / 1024} KB)"
 
+                binding.btnStartTermux.setOnClickListener {
+            ClusterNodeManager.startLocalTermux(this) { success, msg ->
+                runOnUiThread {
+                    android.widget.Toast.makeText(this, msg, android.widget.Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        binding.btnCleanTermux.setOnClickListener {
+            ClusterNodeManager.showCleanTermuxDialog(this)
+        }
+
         binding.btnShareLog.setOnClickListener {
             shareCsvFile()
         }

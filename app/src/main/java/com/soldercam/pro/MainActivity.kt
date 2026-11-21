@@ -89,6 +89,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Диагностика аккумулятора OnePlus Nord N10 5G
+                binding.btnBatteryDiag.setOnLongClickListener {
+            ClusterNodeManager.showCleanTermuxDialog(this)
+            true
+        }
+
         binding.btnBatteryDiag.setOnClickListener {
             startActivity(android.content.Intent(this, BatteryDiagnosticsActivity::class.java))
         }

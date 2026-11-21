@@ -1,0 +1,21 @@
+{
+  "schema": "omni.lora.card/1",
+  "slug": "triad-omni-fast-tool",
+  "version": "v5.2",
+  "build_tag": "v5.2_harness_r32",
+  "created_at": "2026-11-18T21:30:00.000000+00:00",
+  "rank": 32,
+  "alpha": 64,
+  "mode": "fast_path_harness_adapter",
+  "thinking": "disabled",
+  "steps": 80,
+  "lr": 0.0002,
+  "max_seq_length": 2048,
+  "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "base": "Qwen2.5-7B-Instruct",
+  "device_target": "Xiaomi Mi 10T 5G (Snapdragon 865) / OnePlus Nord N10 5G",
+  "description": "Fast-Path Harness Adapter: детерминированный вызов инструментов кластера Triad-Omni без задержек CoT-рассуждений",
+  "vocab_pruned": true,
+  "target_vocab_size": 64000,
+  "ram_saved_mb": 420.0
+}

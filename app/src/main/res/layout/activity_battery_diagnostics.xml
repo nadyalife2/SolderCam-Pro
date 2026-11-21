@@ -421,6 +421,27 @@
             android:text="Звуковая сирена при перезаряде (> 4.35V)"
             android:textColor="#E0E0E0" />
 
+        <!-- TERMUX CLUSTER CONTROL BUTTONS -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartTermux"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#2E7D32"
+            android:text="▶️ Запустить Termux &amp; Кластер ИИ"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCleanTermux"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#D32F2F"
+            android:text="🛑 Отключить Termux &amp; Приложение"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="8dp" />
+
         <!-- RECOMMENDATIONS -->
         <TextView
             android:layout_width="match_parent"

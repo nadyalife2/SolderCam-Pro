@@ -10,14 +10,12 @@
 .DS_Store
 /build
 app/build
-*.apk
 /captures
 .externalNativeBuild
 .cxx
 local.properties
 
 # Temporary dumps, logs & databases
-*.xml
 *.log
 *.db
 __pycache__/
@@ -25,18 +23,63 @@ __pycache__/
 installed_packages.txt
 system_enabled_packages.txt
 
-# Heavy vendor dumps & third-party clones
-tecno_lh7n/
-mtkclient/
-usb_driver/
-android-ad-cleaner/
-
-
-# Binary artifacts & large models
+# Heavy archives, packages, disk images & models
+*.apk
 *.gguf
 *.zip
 *.img
 *.tar.gz
+*.tgz
+*.tar
+*.7z
 *.bin
-cartridges/cartridge/*.gguf
-cartridges/*.zip
+*.cpio
+*.iso
+*.exe
+
+# Personal downloads & heavy backups (gigabytes of firmware, ROMs, videos)
+DOWNLOADS_ARCHIVE/
+BACKUP_ONEPLUS_NORD_N10_BILLIE/
+BACKUP_XIAOMI_MI10T_APOLLO/
+backups/
+tv_apps/
+note4_apks/
+tecno_lh7n/
+mtkclient/
+usb_driver/
+android-ad-cleaner/
+zapret-v72.13/
+temp_*/
+dtbo_extracted/
+exported_harness_bundle/
+Awesome-REA/
+models/
+cartridges/*/*.gguf
+cartridges/unpacked_mi10t/
+cartridges/v3_tochka_rea/
+cartridges/triad_omni_fast_tool/
+
+# Keys, Certificates & Tokens
+*.pem
+*.key
+*.crt
+
+# Media & Videos
+*.mp4
+
+# Temporary test scraps & UI dumps
+1.txt
+99insecure.txt
+ujx1Bf_resp.txt
+snippets.txt
+/*.xml
+*uidump*.xml
+screenshots/*.xml
+ARTICLES/*.xml
+temp_*.js
+temp_*.c
+temp_*.py
+
+# Graphify massive raw graph and cache
+graphify-out/cache/
+graphify-out/graph.json

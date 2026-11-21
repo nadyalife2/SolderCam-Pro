@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triad-Omni // Архитектурный аудит и iOS-трансформация приложения</title>
+<style>
+  :root {
+    --ios-bg: #000000;
+    --ios-surface: rgba(28, 28, 30, 0.75);
+    --ios-card: rgba(30, 35, 45, 0.7);
+    --ios-border: rgba(255, 255, 255, 0.12);
+    --apple-blue: #007aff;
+    --apple-cyan: #00f0ff;
+    --apple-green: #30d158;
+    --apple-orange: #ff9f0a;
+    --apple-purple: #bf5af2;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(235, 235, 245, 0.6);
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+    --font-mono: "SF Mono", Menlo, Monaco, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ios-bg);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    padding: 24px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header {
+    border-bottom: 1px solid var(--ios-border);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .title-chip {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--apple-cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  h1 { font-size: 26px; font-weight: 700; color: #fff; margin-top: 4px; }
+  
+  .badge {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .badge-green { background: rgba(48, 209, 88, 0.15); color: var(--apple-green); border: 1px solid rgba(48, 209, 88, 0.3); }
+  .badge-blue { background: rgba(0, 122, 255, 0.15); color: var(--apple-blue); border: 1px solid rgba(0, 122, 255, 0.3); }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--ios-card);
+    border: 1px solid var(--ios-border);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(20px);
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* List & items */
+  .audit-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .audit-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  .audit-item.fix { border-left: 4px solid var(--apple-green); }
+  .audit-item.remove { border-left: 4px solid #ff453a; }
+  .audit-item.add { border-left: 4px solid var(--apple-cyan); }
+
+  .audit-item strong { color: #fff; display: block; margin-bottom: 3px; }
+  .audit-item p { color: var(--text-secondary); font-size: 12px; line-height: 1.4; }
+
+  /* Tab Bar Demo */
+  .tabbar-demo {
+    background: rgba(18, 20, 26, 0.95);
+    border: 1px solid var(--ios-border);
+    border-radius: 16px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 14px;
+  }
+  .td-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+  .td-item.active { color: var(--apple-cyan); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 10px; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  th { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); text-transform: uppercase; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <span class="title-chip">Triad-Omni Architecture v5.2</span>
+        <h1>Аудит логики и iOS-редизайн приложения</h1>
+      </div>
+      <div>
+        <span class="badge badge-green">Apple HIG Craft</span>
+        <span class="badge badge-blue">Xiaomi Mi 10T 5G (Snapdragon 865)</span>
+      </div>
+    </header>
+
+    <div class="grid-2">
+      <!-- Card 1: What was Wrong & Removed -->
+      <div class="card">
+        <div class="card-title">
+          <span>❌</span> Что было нелогично и убрано (Антипаттерны)
+        </div>
+        <ul class="audit-list">
+          <li class="audit-item remove">
+            <strong>Двойная шапка (Double Header Collapse)</strong>
+            <p>В Android-оболочке <code>ai.melvin.app</code> была своя нативная плашка, а внутри WebView рендерилась еще одна гигантская шапка. Съедалось 35% высоты экрана смартфона.</p>
+          </li>
+          <li class="audit-item remove">
+            <strong>Перегруженная выпадающая шторка</strong>
+            <p>Датасеты, картриджи, облачные ссылки, Colab и порты были свалены в одну выпадающую простыню сверху. На телефоне 6.67" до нее было тяжело дотягиваться пальцем.</p>
+          </li>
+          <li class="audit-item remove">
+            <strong>Неочевидные IP-адреса и порты</strong>
+            <p>Было непонятно, где крутится студия (ПК <code>:8090</code>), а где инференс модели (Телефон <code>:8080</code>). Теперь настроен прозрачный ADB-мост и разделение.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 2: What was Added in iOS Style -->
+      <div class="card">
+        <div class="card-title">
+          <span>🍏</span> Что добавлено в стиле приложений iPhone
+        </div>
+        <ul class="audit-list">
+          <li class="audit-item add">
+            <strong>Плавающий нижний Tab Bar (iOS Dock)</strong>
+            <p>Навигация перенесена в удобную зону большого пальца (Thumb Zone): 💬 Чат, 💾 Картриджи, ☁️ Обучение, ⚡ Кластер.</p>
+          </li>
+          <li class="audit-item add">
+            <strong>iOS Segmented Control (Fast vs CoT)</strong>
+            <p>Тактильный переключатель режима мгновенного отклика (Fast-Path &lt;0.05s) и глубоких рассуждений (Deep CoT &lt;think&gt;) со скользящей плашкой.</p>
+          </li>
+          <li class="audit-item add">
+            <strong>Матовое стекло Liquid Dark</strong>
+            <p>OLED черная палитра <code>#000000</code>, размытие <code>backdrop-filter: blur(25px)</code>, правильные скругления 20px (squircle) и неоновые акценты.</p>
+          </li>
+          <li class="audit-item fix">
+            <strong>Интерактивный пульт Cartridge Vault</strong>
+            <p>Шкала квоты 1024 МБ, переключение версий в 1 тап и прямое скачивание весов GGUF прямо на телефон.</p>
+          </li>
+        </ul>
+
+        <div class="tabbar-demo">
+          <div class="td-item active"><span>💬</span><span>Чат</span></div>
+          <div class="td-item"><span>💾</span><span>Картриджи</span></div>
+          <div class="td-item"><span>☁️</span><span>Обучение</span></div>
+          <div class="td-item"><span>⚡</span><span>Кластер</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logic Matrix Table -->
+    <div class="card">
+      <div class="card-title">
+        <span>⚖️</span> Логическая матрица архитектуры Triad-Omni
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Узел / Слой</th>
+            <th>Аппаратная часть</th>
+            <th>Роль в системе</th>
+            <th>Интерфейс & Доступ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>NODE-1 (Мозг)</strong></td>
+            <td>Xiaomi Mi 10T 5G (Snapdragon 865, 8GB LPDDR5)</td>
+            <td>Инференс Qwen2.5-7B, hot-cache, Cartridge Vault</td>
+            <td><code>http://192.168.1.4:8080</code> (Приложение TriadOmni)</td>
+          </tr>
+          <tr>
+            <td><strong>ПК Студия</strong></td>
+            <td>Рабочая станция (Python 3.11, PyDrive2)</td>
+            <td>Генерация датасетов, контроль квоты, запуск Colab</td>
+            <td><code>http://192.168.1.3:8090</code> (Omni-Forge Studio)</td>
+          </tr>
+          <tr>
+            <td><strong>Облачный мозг</strong></td>
+            <td>Google Colab (Tesla T4 GPU, 16GB VRAM)</td>
+            <td>Обучение LoRA за 3-5 мин, автовыгрузка в Google Drive</td>
+            <td>PyDrive2 в папки <code>1UNP2g3jOf...</code> и кастомные</td>
+          </tr>
+          <tr>
+            <td><strong>NODE-2 & 3</strong></td>
+            <td>OnePlus N10 (690 5G) + Redmi 4 (625, DC-DC)</td>
+            <td>Векторный поиск BGE-M3, Fast-Router &lt;0.02ms</td>
+            <td>Порты <code>:8081</code>, <code>:8082</code>, <code>:8000</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

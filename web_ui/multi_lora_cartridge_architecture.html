@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triad-Omni // Архитектура нескольких LoRA-картриджей</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.85);
+      --card-border: rgba(56, 189, 248, 0.2);
+      --cyan: #00f0ff;
+      --emerald: #10b981;
+      --purple: #a855f7;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --text-main: #f1f5f9;
+      --text-dim: #94a3b8;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .title-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .badge-emerald { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .badge-cyan { background: rgba(0, 240, 255, 0.15); color: var(--cyan); border: 1px solid rgba(0, 240, 255, 0.4); }
+    .badge-purple { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 860px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* RAM & Cartridges Schema */
+    .ram-container {
+      background: rgba(10, 14, 23, 0.9);
+      border: 1px dashed rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+      padding: 18px;
+      position: relative;
+    }
+    .ram-label {
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      background: var(--bg);
+      padding: 0 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .base-model-box {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .base-info h4 { font-size: 15px; color: #fff; margin-bottom: 2px; }
+    .base-info p { font-size: 12px; color: var(--text-dim); }
+    .lock-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: rgba(148, 163, 184, 0.15);
+      padding: 4px 10px;
+      border-radius: 20px;
+      color: #94a3b8;
+    }
+
+    .slots-deck {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .slot-card {
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 8px;
+      padding: 12px 14px;
+      border-left: 4px solid #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    .slot-card.persona { border-left-color: var(--purple); }
+    .slot-card.soldercam { border-left-color: var(--cyan); }
+    .slot-card.telemetry { border-left-color: var(--amber); }
+
+    .slot-info h5 { font-size: 14px; color: #fff; margin-bottom: 2px; }
+    .slot-info p { font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); }
+
+    /* Interactive Simulator */
+    .slider-row {
+      margin-bottom: 16px;
+    }
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    input[type=range] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.1);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--cyan);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--cyan);
+    }
+    .formula-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--cyan);
+      margin: 16px 0;
+      text-align: center;
+    }
+    .preview-response {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 8px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 14px;
+      font-size: 13px;
+      color: #e2e8f0;
+      min-height: 80px;
+    }
+
+    /* Comparison Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    th {
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <span class="title-badge">Triad-Omni v4.9 // Modular Weight Architecture</span>
+        <h1>Стек нескольких LoRA-картриджей <span class="badge badge-emerald">Active Stack</span></h1>
+      </div>
+      <div>
+        <span class="badge badge-cyan">Snapdragon 865</span>
+        <span class="badge badge-purple">Multi-Adapter Blending</span>
+      </div>
+    </header>
+
+    <div class="grid-2">
+      <!-- Left Card: Architecture & Memory Deck -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>💾</span> Память ОЗУ LPDDR5 (Xiaomi Mi 10T)
+          </div>
+          <span class="badge badge-emerald">Zero Reload</span>
+        </div>
+
+        <div class="ram-container">
+          <span class="ram-label">8 GB Physical RAM</span>
+
+          <!-- Base Model -->
+          <div class="base-model-box">
+            <div class="base-info">
+              <h4>Базовый монолит: brain.gguf</h4>
+              <p>Qwen2.5-7B-Instruct (Q4_K_M) • ~4.8 ГБ</p>
+            </div>
+            <span class="lock-pill">🔒 Загружена 1 раз</span>
+          </div>
+
+          <!-- Slots Deck -->
+          <div class="slots-deck">
+            <!-- Slot 1 -->
+            <div class="slot-card persona">
+              <div class="slot-info">
+                <h5>Слот 1: triad-omni-persona.omni.zip</h5>
+                <p>v1.2 • 45 MB • Характер, авторский стиль, живой голос</p>
+              </div>
+              <span class="badge badge-purple" id="badge-slot1">Scale 1.0</span>
+            </div>
+
+            <!-- Slot 2 -->
+            <div class="slot-card soldercam">
+              <div class="slot-info">
+                <h5>Слот 2: soldercam-vision.omni.zip</h5>
+                <p>v1.0 • 42 MB • Схемотехника, пайка, NTC термисторы</p>
+              </div>
+              <span class="badge badge-cyan" id="badge-slot2">Scale 0.7</span>
+            </div>
+
+            <!-- Slot 3 -->
+            <div class="slot-card telemetry">
+              <div class="slot-info">
+                <h5>Слот 3: hardware-tuning.omni.zip</h5>
+                <p>v1.0 • 39 MB • Ядра Kryo, троттлинг, sysfs bypass</p>
+              </div>
+              <span class="badge" style="background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.4);" id="badge-slot3">Scale 0.0</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; font-size: 13px; color: var(--text-dim);">
+          <strong style="color: #fff;">💡 Ответ на твой вопрос:</strong><br>
+          • <strong>Если обновляешь персону</strong> (тот же <code>slug: triad-omni-persona</code>) — заменяется только файл в слоте 1 (~45 МБ).<br>
+          • <strong>Если обучаешь новый навык</strong> (другой <code>slug</code>, напр. <code>soldercam-vision</code>) — он встает в <strong>новый параллельный слот</strong>, не затирая первый!
+        </div>
+      </div>
+
+      <!-- Right Card: Live Multi-LoRA Simulator -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🎛️</span> Мульти-LoRA Микшер весов (Live)
+          </div>
+          <span class="badge badge-cyan">POST /lora-adapters</span>
+        </div>
+
+        <!-- Sliders -->
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>🎭 Персона (Характер автора)</span>
+            <span id="val1" style="color: var(--purple); font-family: var(--font-mono);">1.0</span>
+          </div>
+          <input type="range" id="scale1" min="0" max="1" step="0.1" value="1.0" oninput="updateMix()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>🔬 SolderCam (Пайка & Сенсоры)</span>
+            <span id="val2" style="color: var(--cyan); font-family: var(--font-mono);">0.7</span>
+          </div>
+          <input type="range" id="scale2" min="0" max="1" step="0.1" value="0.7" oninput="updateMix()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>⚡ Hardware Tuning (Железо & Ядра)</span>
+            <span id="val3" style="color: var(--amber); font-family: var(--font-mono);">0.0</span>
+          </div>
+          <input type="range" id="scale3" min="0" max="1" step="0.1" value="0.0" oninput="updateMix()">
+        </div>
+
+        <div class="formula-box" id="formula-text">
+          W = W_base + 1.0·ΔW_persona + 0.7·ΔW_soldercam + 0.0·ΔW_hw
+        </div>
+
+        <div style="font-size: 11px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px; font-family: var(--font-mono);">
+          Сгенерированный отклик модели:
+        </div>
+        <div class="preview-response" id="response-preview">
+          «Сняла тепловизор с платы: у чипа питания PM8250 температура в норме, обвязку проверила. Сейчас допаяю делитель и выведу телеметрию на экран.»
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Section -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>⚖️</span> Сравнение подходов: Полный Fine-Tune vs Картриджи Triad-Omni
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Параметр</th>
+            <th>Обычный подход (Full Fine-Tune)</th>
+            <th>Архитектура Triad-Omni (LoRA-картриджи)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Размер обновления</strong></td>
+            <td style="color: var(--rose);">~4.8 ГБ (вся модель целиком)</td>
+            <td style="color: var(--emerald);"><strong>~45 МБ (компактная дельта)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Время скачивания на телефон</strong></td>
+            <td>10–25 минут</td>
+            <td style="color: var(--emerald);"><strong>3–5 секунд</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Даунтайм сервера (перезагрузка)</strong></td>
+            <td>40–60 секунд (выгрузка и чтение из UFS)</td>
+            <td style="color: var(--emerald);"><strong>0 секунд (Hot-Swap на лету)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Катастрофическое забывание</strong></td>
+            <td style="color: var(--rose);">Высокий риск (модель теряет общие знания)</td>
+            <td style="color: var(--emerald);"><strong>0% (базовые веса заморожены)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Несколько навыков одновременно</strong></td>
+            <td>Невозможно без единого мега-датасета</td>
+            <td style="color: var(--emerald);"><strong>Да, через динамический микс весов</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function updateMix() {
+      const s1 = parseFloat(document.getElementById('scale1').value);
+      const s2 = parseFloat(document.getElementById('scale2').value);
+      const s3 = parseFloat(document.getElementById('scale3').value);
+
+      document.getElementById('val1').innerText = s1.toFixed(1);
+      document.getElementById('val2').innerText = s2.toFixed(1);
+      document.getElementById('val3').innerText = s3.toFixed(1);
+
+      document.getElementById('badge-slot1').innerText = 'Scale ' + s1.toFixed(1);
+      document.getElementById('badge-slot2').innerText = 'Scale ' + s2.toFixed(1);
+      document.getElementById('badge-slot3').innerText = 'Scale ' + s3.toFixed(1);
+
+      document.getElementById('formula-text').innerText =
+        `W = W_base + ${s1.toFixed(1)}·ΔW_persona + ${s2.toFixed(1)}·ΔW_soldercam + ${s3.toFixed(1)}·ΔW_hw`;
+
+      const preview = document.getElementById('response-preview');
+
+      if (s1 >= 0.5 && s2 >= 0.5 && s3 === 0) {
+        preview.innerText = "«Сняла тепловизор с платы: у чипа питания PM8250 температура в норме, обвязку проверила. Сейчас допаяю делитель и выведу телеметрию на экран.»";
+      } else if (s1 >= 0.5 && s3 >= 0.5) {
+        preview.innerText = "«Залочила ядра Kryo на 2.84 ГГц и вырубила троттлинг через sysfs. Батарею отключила на байпас 4.18V — теперь кластер шпарит на полной скорости и не греется.»";
+      } else if (s1 === 0 && s2 >= 0.5) {
+        preview.innerText = "«Диагностика узла питания завершена: терморезистор NTC фиксирует температуру 41.2°C. Сопротивление шунта соответствует номиналу 0.01 Ом.»";
+      } else if (s1 === 0 && s2 === 0 && s3 === 0) {
+        preview.innerText = "«Здравствуйте. Я базовая языковая модель Qwen. Чем я могу вам помочь сегодня?»";
+      } else if (s1 >= 0.5 && s2 === 0 && s3 === 0) {
+        preview.innerText = "«Привет! Я на связи. С железом всё чисто, кластер шуршит без сбоев. Что сегодня будем тестировать?»";
+      } else {
+        preview.innerText = "«Проверила параметры: все модули синхронизированы, веса LoRA адаптированы под текущую задачу.»";
+      }
+    }
+  </script>
+</body>
+</html>
