@@ -1,15 +1,21 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # ==============================================================================
-# Triad-Omni Environment Loader (v5.1)
+# Triad-Omni Environment Loader (v5.2 - POSIX compliant)
 # ==============================================================================
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -n "$BASH_SOURCE" ]; then
+    SCRIPT_PATH="$BASH_SOURCE"
+else
+    SCRIPT_PATH="$0"
+fi
+DIR="$(cd "$(dirname "$SCRIPT_PATH")" 2>/dev/null && pwd)"
+[ -z "$DIR" ] && DIR="$HOME"
 ENV_FILE="$DIR/config/cluster.env"
+[ ! -f "$ENV_FILE" ] && ENV_FILE="$HOME/config/cluster.env"
 
 if [ -f "$ENV_FILE" ]; then
-    # Export all variables from cluster.env
     set -a
-    source "$ENV_FILE"
+    . "$ENV_FILE"
     set +a
 else
     export OMNI_TOKEN="sk-triad"
