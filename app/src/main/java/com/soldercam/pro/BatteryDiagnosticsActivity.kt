@@ -38,6 +38,7 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
     private var stressSecondsPassed = 0
     private var initialTestTemp = 0.0f
     private val stressWorkers = mutableListOf<Thread>()
+    private var stressRunnable: Runnable? = null
 
     // Persistent CSV Logging
     private lateinit var csvLogFile: File
@@ -133,6 +134,8 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
         super.onPause()
         unregisterReceiver(batteryReceiver)
         handler.removeCallbacks(tickerRunnable)
+        stressRunnable?.let { handler.removeCallbacks(it) }
+        stopNtcStressTest()
     }
 
     override fun onDestroy() {
@@ -323,7 +326,7 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
         }
 
         // Timer handler for 15 seconds
-        val stressRunnable = object : Runnable {
+        stressRunnable = object : Runnable {
             override fun run() {
                 if (!isStressRunning) return
                 stressSecondsPassed++
@@ -338,7 +341,7 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
                 }
             }
         }
-        handler.postDelayed(stressRunnable, 1000)
+        handler.postDelayed(stressRunnable!!, 1000)
     }
 
     private fun stopNtcStressTest() {

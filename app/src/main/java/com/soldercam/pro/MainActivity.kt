@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import com.soldercam.pro.databinding.ActivityMainBinding
 import java.io.File
 import java.io.FileOutputStream
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     private var isRawSensorMode = true
     private var isAeAwbLocked = false
+    private val ioExecutor = Executors.newSingleThreadExecutor()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -174,6 +176,7 @@ class MainActivity : AppCompatActivity() {
 
                     runOnUiThread {
                         val maxFocus = if (minFocusDistance > 0f) minFocusDistance else 10.0f
+                        binding.sliderFocus.value = 0.0f
                         binding.sliderFocus.valueFrom = 0.0f
                         binding.sliderFocus.valueTo = maxFocus
                         binding.sliderFocus.value = (maxFocus * 0.7f).coerceIn(0f, maxFocus)
@@ -219,7 +222,9 @@ class MainActivity : AppCompatActivity() {
             )
             rawImageReader?.setOnImageAvailableListener({ reader ->
                 val image = reader.acquireLatestImage() ?: return@setOnImageAvailableListener
-                saveDng(image)
+                ioExecutor.execute {
+                    saveDng(image)
+                }
             }, backgroundHandler)
         }
     }
@@ -471,5 +476,10 @@ class MainActivity : AppCompatActivity() {
         rawImageReader = null
         stopBackgroundThread()
         super.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ioExecutor.shutdown()
     }
 }

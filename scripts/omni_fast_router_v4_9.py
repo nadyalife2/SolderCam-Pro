@@ -15,6 +15,8 @@ Triad-Omni Master Router v5.0 (Zero-Dependency Edition)
 """
 
 import os
+import sys
+import shutil
 import re
 import time
 import json
@@ -2903,6 +2905,10 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
             self.handle_query(payload)
         elif self.path == "/api/telemetry":
             self.handle_telemetry(payload)
+        elif self.path == "/v1/sync_skill":
+            self.handle_sync_skill(payload)
+        elif self.path == "/v1/escalate":
+            self.handle_escalate(payload)
         elif self.path == "/completion" or self.path == "/v1/chat/completions":
             self.handle_completion(payload)
         elif self.path == "/api/pipeline/run":
@@ -3215,6 +3221,57 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
                     "stop": True,
                     "error": str(e)
                 }, status=502)
+
+    def handle_sync_skill(self, payload: Dict[str, Any]):
+        topic = (payload.get("topic") or "Skill").strip()
+        content = (payload.get("content") or "").strip()
+        domain = payload.get("domain") or "general"
+        source_folder = payload.get("source_folder") or "ide_agent"
+        try:
+            skills_dir = BASE_DIR / "skills_bundle"
+            skills_dir.mkdir(parents=True, exist_ok=True)
+            safe_name = re.sub(r'[^a-zA-Z0-9_\-\u0400-\u04FF]', '_', topic)[:64]
+            skill_path = skills_dir / f"{safe_name}.md"
+            with open(skill_path, "w", encoding="utf-8") as f:
+                f.write(f"# {topic}\n\nDomain: {domain}\nSource: {source_folder}\n\n{content}")
+            db_path = BASE_DIR / "skill_registry.db"
+            if db_path.exists():
+                try:
+                    conn = sqlite3.connect(str(db_path))
+                    c = conn.cursor()
+                    c.execute("""CREATE TABLE IF NOT EXISTS skills (topic TEXT PRIMARY KEY, content TEXT, domain TEXT, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)""")
+                    c.execute("INSERT OR REPLACE INTO skills (topic, content, domain) VALUES (?, ?, ?)", (topic, content, domain))
+                    conn.commit()
+                    conn.close()
+                except Exception:
+                    pass
+            self.send_json({"ok": True, "topic": topic, "saved_path": str(skill_path), "message": f"Навык '{topic}' успешно сохранён на кластере"})
+        except Exception as e:
+            self.send_json({"ok": False, "error": str(e)}, status=500)
+
+    def handle_escalate(self, payload: Dict[str, Any]):
+        domain = payload.get("domain") or "general"
+        prompt = payload.get("prompt") or ""
+        reply = payload.get("reply") or ""
+        error = payload.get("error") or ""
+        system_prompt = "Ты senior-инженер кластера Triad-Omni. Проанализируй ошибку и исправь ответ с максимальной точностью. Верни только исправленный результат."
+        escalate_user = f"Домен: {domain}\nЗадача:\n{prompt}\n\nПредыдущий ошибочный ответ:\n{reply}\n\nТекст ошибки:\n{error[:3000]}"
+        try:
+            target_brain = get_target_brain_url()
+            req_data = json.dumps({
+                "prompt": f"<|im_start|>system\n{system_prompt}<|im_end|>\n<|im_start|>user\n{escalate_user}<|im_end|>\n<|im_start|>assistant\n",
+                "temperature": 0.2,
+                "n_predict": 1024,
+                "stop": ["<|im_end|>", "</s>"]
+            }).encode("utf-8")
+            req = urllib.request.Request(f"{target_brain}/completion", data=req_data, headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                res = json.loads(resp.read().decode("utf-8"))
+                fixed_content = res.get("content", "").strip()
+                self.send_json({"ok": True, "fixed": fixed_content, "source": "triad_brain_9b", "domain": domain})
+        except Exception as e:
+            fallback_msg = f"Эскалация принята (ошибка: {error[:200]}). Проверьте синтаксис и системные пути."
+            self.send_json({"ok": True, "fixed": fallback_msg, "source": "heuristic_fallback", "error": str(e)})
 
     def handle_harness_execute(self, payload: Dict[str, Any]):
         if not isinstance(payload, dict):

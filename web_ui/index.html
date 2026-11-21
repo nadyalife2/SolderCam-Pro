@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Triad-Omni Brain | Master Hub & Edge Cluster</title>
 <style>
   :root {
@@ -1187,11 +1187,15 @@
       const elapsed = (performance.now() - startTime).toFixed(1);
       
       let content = data.response || data.content;
-      if (!content && data.error) content = `⚠️ ${data.error}<br><small style="color:var(--apple-gray-text); display:block; margin-top:4px;">Попробуйте нажать быструю кнопку «💡 Что умеешь?» или «🧰 Скиллы» выше для мгновенного ответа из Tier-0 Fast-Path.</small>`;
+      let errorNote = '';
+      if (!content && data.error) {
+        content = `⚠️ ${data.error}`;
+        errorNote = `<small style="color:var(--apple-gray-text); display:block; margin-top:4px;">Попробуйте нажать быструю кнопку «💡 Что умеешь?» или «🧰 Скиллы» выше для мгновенного ответа из Tier-0 Fast-Path.</small>`;
+      }
       if (!content) content = typeof data === 'string' ? data : JSON.stringify(data);
       
       const tierBadge = data.tier ? `<span style="background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px; font-size:11px; margin-right:6px;">${data.tier}</span>` : '';
-      assistantBubble.innerHTML = `<div>${formatMarkdown(content)}</div><div style="font-size:12px; color:#6b7280; margin-top:6px; text-align:right;">${tierBadge}⚡ ${elapsed} мс</div>`;
+      assistantBubble.innerHTML = `<div>${formatMarkdown(content)}${errorNote}</div><div style="font-size:12px; color:#6b7280; margin-top:6px; text-align:right;">${tierBadge}⚡ ${elapsed} мс</div>`;
     } catch (e) {
       // Fallback to /completion
       try {
@@ -1691,8 +1695,33 @@
     document.getElementById('help-modal').style.display = 'none';
   }
   function copyToClipboard(text) {
-    navigator.clipboard.writeText(text);
-    alert('Скопировано в буфер: ' + text);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        alert('Скопировано в буфер: ' + text);
+      }).catch(function() {
+        fallbackCopyText(text);
+      });
+    } else {
+      fallbackCopyText(text);
+    }
+  }
+
+  function fallbackCopyText(text) {
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      alert('Скопировано в буфер: ' + text);
+    } catch (err) {
+      prompt('Скопируйте вручную:', text);
+    }
+    document.body.removeChild(textArea);
   }
 
   // Initialize
