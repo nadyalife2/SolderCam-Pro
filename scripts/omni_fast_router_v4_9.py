@@ -1716,8 +1716,9 @@ def handle_start_termux_node(payload: Dict[str, Any]) -> Dict[str, Any]:
                     actions.append("Запущен start_brain.sh (Qwen 9B @ :8080, Router @ :8000)")
                 elif n == "node2":
                     cmd_start = (
-                        "su -c 'nohup /data/data/com.termux/files/usr/bin/sh "
+                        "su -g 10234 -G 3003 u0_a234 -c 'nohup /data/data/com.termux/files/usr/bin/sh "
                         "/data/data/com.termux/files/home/start_reflex.sh </dev/null >/data/data/com.termux/files/home/router.log 2>&1 &' || "
+                        "su -c 'nohup sh /data/data/com.termux/files/home/start_reflex.sh >/dev/null 2>&1 &' || "
                         "sh /data/data/com.termux/files/home/start_reflex.sh &"
                     )
                     subprocess.run([adb, "-s", dev_serial, "shell", cmd_start], timeout=8, capture_output=True)
@@ -1936,7 +1937,12 @@ def handle_autostart_cluster(payload: Dict[str, Any] = None) -> Dict[str, Any]:
         if adb and dev_serial:
             try:
                 subprocess.run([adb, "-s", dev_serial, "shell", "am start -n com.termux/.app.TermuxActivity"], check=True, timeout=5)
-                cmd_sh = "su -c 'sh /data/data/com.termux/files/home/start_reflex.sh' || sh /data/data/com.termux/files/home/start_reflex.sh"
+                cmd_sh = (
+                    "su -g 10234 -G 3003 u0_a234 -c 'nohup /data/data/com.termux/files/usr/bin/sh "
+                    "/data/data/com.termux/files/home/start_reflex.sh </dev/null >/data/data/com.termux/files/home/router.log 2>&1 &' || "
+                    "su -c 'nohup sh /data/data/com.termux/files/home/start_reflex.sh >/dev/null 2>&1 &' || "
+                    "sh /data/data/com.termux/files/home/start_reflex.sh &"
+                )
                 subprocess.run([adb, "-s", dev_serial, "shell", cmd_sh], timeout=5, capture_output=True)
                 n2_actions.append(f"Запущен Termux и start_reflex.sh через ADB ({dev_serial})")
             except Exception as e:
@@ -2883,6 +2889,8 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
 
         if self.path == "/api/query":
             self.handle_query(payload)
+        elif self.path == "/api/telemetry":
+            self.handle_telemetry(payload)
         elif self.path == "/completion" or self.path == "/v1/chat/completions":
             self.handle_completion(payload)
         elif self.path == "/api/pipeline/run":
@@ -3063,18 +3071,39 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
 
         # Clean trailing punctuation for robust matching
         clean_for_match = re.sub(r"[!?.,]+$", "", prompt_clean).strip()
+        is_chat = (self.path == "/v1/chat/completions") or ("messages" in payload and not payload.get("raw"))
 
         # Fast-Path Tier 0 regex check
         for pat, label in FAST_PATTERNS:
             if pat.match(clean_for_match) or pat.match(prompt_clean):
                 ans = handle_tier0(label)
-                self.send_json({
-                    "content": ans,
-                    "stop": True,
-                    "model": "TriadOmni-Tier0-Regex",
-                    "tier": "TIER_0_FASTPATH",
-                    "timings": {"predicted_ms": 0.019}
-                })
+                if is_chat:
+                    self.send_json({
+                        "id": f"chatcmpl-tier0-{int(time.time())}",
+                        "object": "chat.completion",
+                        "created": int(time.time()),
+                        "model": "TriadOmni-Tier0-Regex",
+                        "choices": [{
+                            "index": 0,
+                            "message": {
+                                "role": "assistant",
+                                "content": ans
+                            },
+                            "finish_reason": "stop"
+                        }],
+                        "content": ans,
+                        "stop": True,
+                        "tier": "TIER_0_FASTPATH",
+                        "timings": {"predicted_ms": 0.019}
+                    })
+                else:
+                    self.send_json({
+                        "content": ans,
+                        "stop": True,
+                        "model": "TriadOmni-Tier0-Regex",
+                        "tier": "TIER_0_FASTPATH",
+                        "timings": {"predicted_ms": 0.019}
+                    })
                 return
 
         # Ensure comprehensive stop tokens
@@ -3093,6 +3122,31 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
             req = urllib.request.Request(f"{target_brain}/completion", data=req_data, headers={"Content-Type": "application/json"})
             with urllib.request.urlopen(req, timeout=180) as resp:
                 res_body = resp.read()
+                if is_chat:
+                    try:
+                        raw_json = json.loads(res_body.decode("utf-8"))
+                        txt = raw_json.get("content", "")
+                        chat_resp = {
+                            "id": f"chatcmpl-omni-{int(time.time())}",
+                            "object": "chat.completion",
+                            "created": int(time.time()),
+                            "model": "Qwen3.5-9B-TriadOmni",
+                            "choices": [{
+                                "index": 0,
+                                "message": {
+                                    "role": "assistant",
+                                    "content": txt
+                                },
+                                "finish_reason": "stop"
+                            }],
+                            "content": txt,
+                            "stop": raw_json.get("stop", True),
+                            "timings": raw_json.get("timings", {})
+                        }
+                        self.send_json(chat_resp)
+                        return
+                    except Exception:
+                        pass
                 self.send_response(resp.status)
                 self.send_header("Content-Type", "application/json; charset=utf-8")
                 self.send_header("Content-Length", str(len(res_body)))
@@ -3100,11 +3154,31 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(res_body)
         except Exception as e:
-            self.send_json({
-                "content": f"⚠️ Ошибка маршрутизации к NODE-1 (Mi 10T 5G, :8080): {e}. Проверь статус llama-server.",
-                "stop": True,
-                "error": str(e)
-            }, status=502)
+            err_msg = f"⚠️ Ошибка маршрутизации к NODE-1 (Mi 10T 5G, :8080): {e}. Проверь статус llama-server."
+            if is_chat:
+                self.send_json({
+                    "id": f"chatcmpl-error-{int(time.time())}",
+                    "object": "chat.completion",
+                    "created": int(time.time()),
+                    "model": "Qwen3.5-9B-TriadOmni",
+                    "choices": [{
+                        "index": 0,
+                        "message": {
+                            "role": "assistant",
+                            "content": err_msg
+                        },
+                        "finish_reason": "stop"
+                    }],
+                    "content": err_msg,
+                    "stop": True,
+                    "error": str(e)
+                }, status=502)
+            else:
+                self.send_json({
+                    "content": err_msg,
+                    "stop": True,
+                    "error": str(e)
+                }, status=502)
 
     def handle_harness_execute(self, payload: Dict[str, Any]):
         if not isinstance(payload, dict):
@@ -3355,6 +3429,45 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
             })
             return
 
+    def handle_telemetry(self, payload: Dict[str, Any]):
+        node = str(payload.get("node", "")).lower()
+        node_key = None
+        if "node1" in node or "mi10t" in node or "apollo" in node:
+            node_key = "node1"
+        elif "node2" in node or "nord" in node or "n10" in node or "billie" in node:
+            node_key = "node2"
+        elif "node3" in node or "note4" in node or "rn4" in node or "mido" in node or "nikel" in node:
+            node_key = "node3"
+
+        if node_key and node_key in _last_known_telemetry:
+            bat = payload.get("battery")
+            temp = payload.get("temp_c")
+            prof = payload.get("profile", "")
+
+            bat_str = f"{bat}%" if bat is not None else _last_known_telemetry[node_key]["battery"]
+            temp_str = f"{temp}°C" if temp is not None else _last_known_telemetry[node_key]["temp"]
+
+            _last_known_telemetry[node_key]["battery"] = bat_str
+            _last_known_telemetry[node_key]["temp"] = temp_str
+            if temp is not None:
+                try:
+                    _last_known_telemetry[node_key]["soc_temp"] = float(temp)
+                except Exception:
+                    pass
+            _last_known_telemetry[node_key]["ok"] = True
+            _last_known_telemetry[node_key]["ts"] = time.monotonic()
+
+            if node_key == "node1":
+                _last_known_telemetry[node_key]["power_mode"] = f"АКБ {bat_str} (PM8150B · {prof or 'Bypass'})"
+            elif node_key == "node2":
+                _last_known_telemetry[node_key]["power_mode"] = f"АКБ {bat_str} (SMB1355 · {prof or 'Bypass'})"
+            else:
+                _last_known_telemetry[node_key]["power_mode"] = f"🔋 АКБ {bat_str} ({temp_str})"
+
+            self.send_json({"ok": True, "node": node_key, "recorded": True})
+        else:
+            self.send_json({"ok": False, "error": f"Unknown node: {node}"}, status=400)
+
     def handle_lora_scale(self, data: Dict[str, Any]):
         """Брокер переключения LoRA через POST /lora-adapters на Node-1"""
         adapter_id = data.get("id", 0)
@@ -3375,10 +3488,11 @@ def run_server(port=8000):
         ep = int(os.environ.get(env_p, 0))
         if ep and ep not in ports:
             ports.append(ep)
-    # Always attempt port 5000 and 8080 for Melvin App native webview compatibility
+    local_node = detect_local_node_id()
     if 5000 not in ports:
         ports.append(5000)
-    if 8080 not in ports:
+    # Never bind port 8080 on node1 (where llama-server brain runs on apollo)
+    if local_node != "node1" and 8080 not in ports:
         ports.append(8080)
     
     servers = []

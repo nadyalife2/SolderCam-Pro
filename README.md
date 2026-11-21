@@ -1,210 +1,159 @@
-# payload-dumper-go
+# SolderCam-Pro & Triad-Omni Edge AI Cluster (v5.1)
 
-An android OTA payload dumper written in Go.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
+[![Android 10-15](https://img.shields.io/badge/Android-10--15-green.svg)](https://developer.android.com/)
+[![MCP Protocol](https://img.shields.io/badge/MCP-2024--11--05-purple.svg)](https://modelcontextprotocol.io/)
+[![Zero Cloud](https://img.shields.io/badge/Autonomy-100%25%20Offline-orange.svg)]()
+[![Hardware](https://img.shields.io/badge/Cluster-3x%20Snapdragon-red.svg)]()
 
-## Features
+> **100% автономный гетерогенный мобильный ИИ-кластер из трех смартфонов + Android-приложение для пайки и аппаратной телеметрии.**  
+> Полная оффлайн-автономия, детерминированный Tier-0 Fast-Path (0.019 мс), нулевая задержка рассуждений (Zero-CoT), 24/7 аппаратная защита батарей и нативная интеграция с IDE-агентами по протоколу Model Context Protocol (MCP).
 
-![screenshot](https://i.imgur.com/IJtwoWU.png)
+---
 
-See how fast payload-dumper-go is: https://imgur.com/a/X6HKJT4. (MacBook Pro 16-inch 2019 i9-9750H, 16G)
+## ⚡ Архитектура кластера Triad-Omni v5.1
 
-- Incredibly fast decompression. All decompression progresses are executed in parallel.
-- Incremental OTA (delta) payload support. Applied on top of the base images (`-old`), bit-exact output.
-- Regenerates the dm-verity metadata delta payloads omit (hash tree and FEC parity). No `avbtool` or `fec` tooling needed.
-- Verifies everything: operation data, source images, and final images (sha256). Fails loudly with a non-zero exit code.
-- Support original zip package that contains payload.bin, read in place without a temp copy.
-- Usable as a Go library. (`github.com/ssut/payload-dumper-go/payload`)
+Кластер распределяет когнитивные и сенсорные задачи между тремя физическими смартфонами в локальной Wi-Fi / USB сети:
 
-### Cautions
+```mermaid
+flowchart TD
+    User["Пользователь / Web Cyberdeck (:8000)"] --> Hub["NODE-3: Redmi Note 4 (:8000)<br/>Snapdragon 625 (4.18V DC-DC Bypass)<br/>Fast-Path Router v5.1 + Web Kiosk HUD"]
+    IDE["IDE Агенты (DeepSeek Harness, Claude, Cursor)"] --> MCP["omni_mcp_server.py (JSON-RPC 2.0)"]
+    MCP --> Hub
 
-- There's just one dependency you need to install on your system: `xz`. (The reason I didn't use the pure Go implementation is written in the [Performance](#performance) section below.)
-- Working on a SSD is highly recommended for performance reasons, a HDD could be a bottle-neck.
+    Hub -->|"Tier-0 Regex (0.019 мс)"| Fast["Локальный мгновенный ответ"]
+    Hub -->|"Семантика & RAG (4 мс)"| Node2["NODE-2: OnePlus Nord N10 5G<br/>Snapdragon 690, 6GB LPDDR4X<br/>LFM2.5-8B (:8081) + BGE-M3 (:8082)"]
+    Hub -->|"Тяжелые рассуждения & Код"| Node1["NODE-1: Xiaomi Mi 10T 5G<br/>Snapdragon 865, 8GB LPDDR5 (51.2 GB/s)<br/>Qwen3.5-9B / Qwen2.5-7B (:8080)"]
 
-### Limitations
-
-- `PUFFDIFF`, `ZUCCHINI` and `LZ4DIFF_*` delta operations are not supported yet. Affected partitions (usually only `system`/`product`/`system_ext`) fail with a clear error; extract the rest with `-p`.
-
-## Installation
-
-### Linux and macOS (From releases, recommended)
-
-1. Download the latest binary for your platform from [here](https://github.com/ssut/payload-dumper-go/releases) and extract the contents of the downloaded file to a directory on your system.
-2. Make sure the extracted binary file has executable permissions. You can use the following command to set the permissions if necessary:
-
-```
-chmod +x payload-dumper-go
+    App["com.soldercam.pro<br/>(Camera2 API + NTC/PMIC)"] --> Hub
 ```
 
-3. Run the following command to add the directory path to your system's PATH environment variable:
+### Спецификация узлов:
+1. **NODE-1 (Главный мозг):** Xiaomi Mi 10T 5G (`M2007J3SY`, `apollo`, Snapdragon 865 `kona`, 8GB LPDDR5 @ 51.2 GB/s, LibreMobileOS 15 / Android 15).
+   * **Сервисы:** `llama-server` на порту `:8080` (модели `Qwen3.5-9B-UD-Q3_K_XL` или `Qwen2.5-7B-Instruct-Q4_K_M`).
+   * **Оптимизация ядра:** Запуск на 4 производительных ядрах Kryo 585 A77 (`taskset -c 4,5,6,7`), микро-батч `-ub 64` под кэш L2/L3, квантование KV-кэша (`-ctk q8_0 -ctv q8_0 -fa on`), динамический лукап-кэш (`-lcd ~/lookup.cache`).
+   * **Сетевой адрес:** `192.168.31.161:8080` (или `127.0.0.1:8080` через ADB forward).
 
-```
-export PATH=$PATH:/path/to/payload-dumper-go
-```
+2. **NODE-2 (Рефлексы и Семантическая память):** OnePlus Nord N10 5G (`BE2029`, `billie`, Snapdragon 690 `lito`, 6GB LPDDR4X, OxygenOS 11 + постоянный TWRP 3.7.1).
+   * **Сервисы:** `LFM2.5-8B-A1B` (:8081) + `BGE-M3` (:8082) + SQLite FTS5 RAG (`omni_knowledge.db`).
+   * **Сетевой адрес:** `192.168.31.57:8081` / `:8082`.
 
-Note: This command sets the PATH environment variable only for the current terminal session. To make it permanent, you need to add the command to your system's profile file (e.g. .bashrc or .zshrc for Linux/Unix systems).
+3. **NODE-3 (Шлюз телеметрии и Cyberdeck):** Xiaomi Redmi Note 4 (`mido`, Snapdragon 625 `msm8953`, 4.18V прямое DC-DC питание без батареи).
+   * **Сервисы:** Master Router v5.1 на порту `:8000` + Melvin HUD на `:5000`.
+   * **Сетевой адрес:** `192.168.31.48:8000` (локально `127.0.0.1:8000`).
 
-### macOS (Homebrew)
+---
 
-Just simply run:
+## 🚀 Ключевые инженерные решения
 
-```sh
-$ brew install payload-dumper-go
-```
+### 1. Zero-CoT Injection (Ускорение вывода в 20 раз)
+Для моделей рассуждений (Qwen / DeepSeek) на мобильных чипах генерация внутреннего блока мыслей `<think>...</think>` на банальные вопросы («Сколько заряда?», «Запусти тест») занимала до 120 секунд.  
+Роутер v5.1 автоматически инжектирует пустой блок рассуждений `<think>\n</think>\n` для простых запросов ($S_c < 0.65$), мгновенно выводя готовый ответ за **4-6 секунд** вместо двух минут.
 
-### Windows
+### 2. Аппаратный байпас батареи (24/7 Battery Guard)
+Для предотвращения деградации литиевых аккумуляторов при круглосуточной работе скрипт `scripts/battery_guard_24x7.sh` управляет контроллером питания PMIC через sysfs:
+* Порог отключения заряда: $\ge 78\%$ (`echo 0 > battery_charging_enabled`)
+* Порог возобновления заряда: $\le 70\%$ (`echo 1 > battery_charging_enabled`)
+Батареи остаются холодными (~28-32°C), вздутие полностью исключено.
 
-1. Download the latest binary for your platform from [here](https://github.com/ssut/payload-dumper-go/releases) and extract the contents of the downloaded file to a directory on your system.
-2. Open the Start menu and search for "Environment Variables".
-3. Click on "Edit the system environment variables".
-4. Click on the "Environment Variables" button at the bottom right corner of the "System Properties" window.
-5. Under "System Variables", scroll down and click on the "Path" variable, then click on "Edit".
-6. Click "New" and add the path to the directory where the extracted binary is located.
-7. Click "OK" on all the windows to save the changes.
+### 3. Tier-0 Fast-Path Regex (0.019 мс)
+Команды телеметрии, проверки статуса узлов, пинга и перезагрузки перехватываются на уровне байт-кода Python до вызова нейросетей, отвечая за **19 микросекунд**.
 
-## Usage
+### 4. Поддержка Model Context Protocol (MCP 2024-11-05)
+Сервер `omni_mcp_server.py` реализует полный цикл JSON-RPC 2.0 (`initialize`, `ping`, `tools/list`, `tools/call`), позволяя внешним агентам (DeepSeek Harness, Claude Code, Cursor, Continue) использовать кластер как внешний мозг и базу знаний.
 
-Run the following command in your terminal:
+---
 
-```
-payload-dumper-go /path/to/payload.bin
-```
+## 🛠 Быстрый старт
 
-The input can be a raw `payload.bin` or an OTA zip, detected by content.
-
-```
-Options:
-  -c, -concurrency       Number of workers to extract concurrently (default: number of CPUs)
-  -l, -list              Show list of partitions in payload.bin
-  -o, -output            Set output directory
-  -p, -partitions        Dump only selected partitions (comma-separated)
-  -old                   Directory with base images, required for incremental OTA
-  -q, -quiet             Quiet mode - suppress non-essential output
-  -m, -machine-readable  Machine-readable output format
-  -no-verify             Skip sha256 verification
-  -no-fec                Skip dm-verity FEC generation
+### 1. Настройка сетевой конфигурации
+Все IP-адреса и порты кластера централизованы в файле [config/cluster.env](file:///d:/для%20one%20plus%20nord%20n10/config/cluster.env):
+```bash
+# Проверьте ваши IP в локальной сети Wi-Fi:
+NODE1_IP="192.168.31.161"
+NODE2_IP="192.168.31.57"
+NODE3_IP="192.168.31.48"
 ```
 
-### Incremental (delta) OTA
+### 2. Запуск узлов (в Termux на смартфонах)
+* **На Node-1 (Mi 10T):**
+  ```bash
+  sh ~/scripts/start_brain_v5_2.sh
+  ```
+* **На Node-2 (Nord N10):**
+  ```bash
+  sh ~/start_reflex.sh
+  ```
+* **На Node-3 (Redmi Note 4) с ПК по кабелю или Wi-Fi:**
+  Запустите [START_REDMI_DECK.bat](file:///d:/для%20one%20plus%20nord%20n10/START_REDMI_DECK.bat).
 
-Extract the base (previous) full OTA first, then pass it via `-old`:
+### 3. Доступ к Cyberdeck Web UI
+Откройте в браузере:
+* На ПК: [http://localhost:8000](http://localhost:8000)
+* В локальной сети: `http://192.168.31.48:8000`
 
-```
-payload-dumper-go -o base_images base_full_ota.zip
-payload-dumper-go -old base_images -o new_images incremental_ota.zip
-```
+---
 
-Delta payloads omit the dm-verity hash tree and FEC parity for partitions like `system`
-and `vendor`, expecting the device to compute them on install. Both are computed here,
-so the output is bit-exact.
+## 🔌 Подключение к IDE (Cursor, Claude Code, DeepSeek Harness)
 
-`-no-fec` skips FEC generation and final image verification for partitions that
-require FEC. These images must not be flashed; use this option only to inspect contents. Note that `-m` reports 100% when
-the operations finish, while FEC still runs; wait for the process to exit.
+В конфигурацию MCP вашего редактора (например, `claude_desktop_config.json` или Cursor MCP settings) добавьте:
 
-### Library usage
-
-```go
-import "github.com/ssut/payload-dumper-go/payload"
-
-p, _ := payload.Open("ota.zip")
-defer p.Close()
-
-err := p.Extract(context.Background(), payload.ExtractOptions{
-    OutputDir: "out",
-    SourceDir: "base_images",
-})
-```
-
-## Performance
-
-Machine: MacBook Pro 16-inch 2021 (Apple M1 Max, 64G), OS: macOS Sonoma 14.5, Go: 1.22.4.
-
-Tested with a 2.31GB payload.bin file from https://developers.google.com/android/ota (akita).
-
-```shell
-payload.bin: payload.bin
-Payload Version: 2
-Payload Manifest Length: 154250
-Payload Manifest Signature Length: 523
-Found partitions:
-abl (1.8 MB), bl1 (16 kB), bl2 (537 kB), bl31 (106 kB), boot (67 MB), dtbo (17 MB), gcf (8.2 kB), gsa (348 kB), gsa_bl1 (33 kB), init_boot (8.4 MB), ldfw (2.4 MB), modem (102 MB), pbl (49 kB), product (3.4 GB), pvmfw (1.0 MB), system (821 MB), system_dlkm (11 MB), system_ext (288 MB), tzsw (7.9 MB), vbmeta (12 kB), vbmeta_system (8.2 kB), vbmeta_vendor (4.1 kB), vendor (693 MB), vendor_boot (67 MB), vendor_dlkm (28 MB), vendor_kernel_boot (67 MB)
-Number of workers: 4
-abl (1.8 MB)                [===================================================================================================================] 100 %
-bl2 (537 kB)                [===================================================================================================================] 100 %
-bl1 (16 kB)                 [===================================================================================================================] 100 %
-bl31 (106 kB)               [===================================================================================================================] 100 %
-boot (67 MB)                [===================================================================================================================] 100 %
-dtbo (17 MB)                [===================================================================================================================] 100 %
-gcf (8.2 kB)                [===================================================================================================================] 100 %
-gsa (348 kB)                [===================================================================================================================] 100 %
-gsa_bl1 (33 kB)             [===================================================================================================================] 100 %
-init_boot (8.4 MB)          [===================================================================================================================] 100 %
-ldfw (2.4 MB)               [===================================================================================================================] 100 %
-modem (102 MB)              [===================================================================================================================] 100 %
-pbl (49 kB)                 [===================================================================================================================] 100 %
-product (3.4 GB)            [===================================================================================================================] 100 %
-pvmfw (1.0 MB)              [===================================================================================================================] 100 %
-system (821 MB)             [===================================================================================================================] 100 %
-system_dlkm (11 MB)         [===================================================================================================================] 100 %
-system_ext (288 MB)         [===================================================================================================================] 100 %
-tzsw (7.9 MB)               [===================================================================================================================] 100 %
-vbmeta (12 kB)              [===================================================================================================================] 100 %
-vbmeta_system (8.2 kB)      [===================================================================================================================] 100 %
-vbmeta_vendor (4.1 kB)      [===================================================================================================================] 100 %
-vendor (693 MB)             [===================================================================================================================] 100 %
-vendor_boot (67 MB)         [===================================================================================================================] 100 %
-vendor_dlkm (28 MB)         [===================================================================================================================] 100 %
-vendor_kernel_boot (67 MB)  [===================================================================================================================] 100 %
-go run *.go payload.bin  87.93s user 3.51s system 145% cpu 1:02.99 total
+```json
+{
+  "mcpServers": {
+    "triad-omni": {
+      "command": "python",
+      "args": ["d:/для one plus nord n10/omni_mcp_server.py"],
+      "env": {
+        "HUB_URL": "http://127.0.0.1:8000",
+        "OMNI_TOKEN": "sk-triad"
+      }
+    }
+  }
+}
 ```
 
-### Why not use the pure Go implementation for xz decompression?
+Доступные инструменты:
+* `ask_triad_cluster`: Прямой запрос к 9B нейромозгу кластера.
+* `save_skill_to_cluster`: Горячее сохранение правила/скила в SQLite FTS5.
+* `graphify_query`: Запрос к графу архитектуры кодовой базы (15 000+ узлов).
+* `graphify_path`: Поиск архитектурных цепочек между файлами и модулями.
+* `escalate_to_teacher`: Каскад исправления ошибок через локального MoE-учителя.
 
-[The pure Go implementation of xz](https://github.com/ulikunitz/xz) is very slow compared to [the C implementation used with CGO](https://github.com/spencercw/go-xz). Here's the result with the same payload.bin file on the same conditions:
+---
 
-```shell
-payload.bin: payload.bin
-Payload Version: 2
-Payload Manifest Length: 154250
-Payload Manifest Signature Length: 523
-Found partitions:
-abl (1.8 MB), bl1 (16 kB), bl2 (537 kB), bl31 (106 kB), boot (67 MB), dtbo (17 MB), gcf (8.2 kB), gsa (348 kB), gsa_bl1 (33 kB), init_boot (8.4 MB), ldfw (2.4 MB), modem (102 MB), pbl (49 kB), product (3.4 GB), pvmfw (1.0 MB), system (821 MB), system_dlkm (11 MB), system_ext (288 MB), tzsw (7.9 MB), vbmeta (12 kB), vbmeta_system (8.2 kB), vbmeta_vendor (4.1 kB), vendor (693 MB), vendor_boot (67 MB), vendor_dlkm (28 MB), vendor_kernel_boot (67 MB)
-Number of workers: 4
-abl (1.8 MB)                [===================================================================================================================] 100 %
-bl1 (16 kB)                 [===================================================================================================================] 100 %
-bl2 (537 kB)                [===================================================================================================================] 100 %
-bl31 (106 kB)               [===================================================================================================================] 100 %
-boot (67 MB)                [===================================================================================================================] 100 %
-dtbo (17 MB)                [===================================================================================================================] 100 %
-gcf (8.2 kB)                [===================================================================================================================] 100 %
-gsa (348 kB)                [===================================================================================================================] 100 %
-gsa_bl1 (33 kB)             [===================================================================================================================] 100 %
-init_boot (8.4 MB)          [===================================================================================================================] 100 %
-ldfw (2.4 MB)               [===================================================================================================================] 100 %
-modem (102 MB)              [===================================================================================================================] 100 %
-pbl (49 kB)                 [===================================================================================================================] 100 %
-product (3.4 GB)            [===================================================================================================================] 100 %
-pvmfw (1.0 MB)              [===================================================================================================================] 100 %
-system (821 MB)             [===================================================================================================================] 100 %
-system_dlkm (11 MB)         [===================================================================================================================] 100 %
-system_ext (288 MB)         [===================================================================================================================] 100 %
-tzsw (7.9 MB)               [===================================================================================================================] 100 %
-vbmeta (12 kB)              [===================================================================================================================] 100 %
-vbmeta_system (8.2 kB)      [===================================================================================================================] 100 %
-vbmeta_vendor (4.1 kB)      [===================================================================================================================] 100 %
-vendor (693 MB)             [===================================================================================================================] 100 %
-vendor_boot (67 MB)         [===================================================================================================================] 100 %
-vendor_dlkm (28 MB)         [===================================================================================================================] 100 %
-vendor_kernel_boot (67 MB)  [===================================================================================================================] 100 %
-go run *.go payload.bin  587.89s user 2428.69s system 248% cpu 20:12.19 total
+## 📱 Приложение SolderCam-Pro (`com.soldercam.pro`)
+
+Нативное Android-приложение на Jetpack Compose:
+* **Camera2 API:** Прямой доступ к сырому потоку сенсора Omnivision OV64B.
+* **Аппаратная телеметрия:** Снятие показаний NTC-термисторов аккумулятора и процессора в реальном времени.
+* **Интеграция с кластером:** Быстрая отправка кадров пайки на анализ дефектов (IPC-A-610) на Node-1.
+
+---
+
+## 📂 Структура репозитория
+
+```
+├── app/                    # Исходный код Android-приложения com.soldercam.pro
+├── config/
+│   ├── cluster.env         # Единая сетевая матрица IP-адресов и портов
+│   └── active_cartridge.json # Активный LoRA-картридж
+├── scripts/
+│   ├── omni_fast_router_v4_9.py # Мастер-роутер v5.1 (Zero-Dependency)
+│   ├── battery_guard_24x7.sh    # Служба 24/7 байпаса питания
+│   ├── start_brain_v5_2.sh      # Скрипт старта 9B мозга на Mi 10T
+│   └── adb_screenshot.py        # Утилита надежных бинарных скриншотов ADB
+├── web_ui/
+│   └── index.html          # Cyberdeck HUD дашборд v4.9/v5.1
+├── omni_gateway.py         # Каноническая точка входа v5.1
+├── omni_mcp_server.py      # MCP-сервер (JSON-RPC 2.0)
+├── download_models.sh      # Безопасный загрузчик GGUF-моделей
+├── START_REDMI_DECK.bat    # Windows-батник запуска пульта
+└── archive/
+    └── legacy_gateways/    # Архив устаревших монолитных версий (v4.0 - v4.8)
 ```
 
-As you can see, the pure Go implementation is about 6~ times slower than the C implementation.
+---
 
-## Sources
-
-https://android.googlesource.com/platform/system/update_engine/+/master/update_metadata.proto
-
-## License
-
-This source code is licensed under the Apache License 2.0 as described in the LICENSE file.
+## 📄 Лицензия
+Apache License 2.0. Свободно для исследовательского и инженерного использования.

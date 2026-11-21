@@ -1,33 +1,83 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Triad-Omni Unified MCP Server v4.8
-Объединяет:
-  1. Доступ к кластеру смартфонов (Redmi Note 4, Mi 10T, Nord N10).
-  2. Каскад эскалации ошибок (DeepSeek Flash 4.1 + локальный MoE-учитель).
-  3. Персистентный граф знаний Graphify (15 000+ узлов, поиск связей, BFS/DFS, god-ноды).
+Triad-Omni Unified MCP Server v5.1 (Fully Compliant with MCP Protocol 2024-11-05)
+Supports:
+  1. Full JSON-RPC 2.0 Handshake (initialize, ping, notifications/initialized).
+  2. Zero-latency Cluster Gateway Access (Mi 10T 5G, Nord N10 5G, Redmi Note 4).
+  3. Seamless DeepSeek Harness, Claude Code CLI, Continue, and Cursor Integration.
+  4. Graphify Knowledge Graph Tools (15,000+ nodes, BFS/DFS pathfinding, god nodes).
+  5. Multi-Hub Fallback (LAN -> localhost loopback).
 """
 import sys
 import os
 import json
 import subprocess
 import urllib.request
+import urllib.error
 
-HUB = os.environ.get("HUB_URL", "http://192.168.1.203:8000")
-TOKEN = os.environ.get("OMNI_TOKEN", "")
 WORKSPACE_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+def load_cluster_env():
+    env_file = os.path.join(WORKSPACE_ROOT, "config", "cluster.env")
+    if os.path.exists(env_file):
+        try:
+            with open(env_file, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#") and "=" in line:
+                        k, v = line.split("=", 1)
+                        k = k.strip()
+                        v = v.strip().strip('"').strip("'")
+                        if k not in os.environ:
+                            os.environ[k] = v
+        except Exception:
+            pass
+
+load_cluster_env()
+
+HUB = os.environ.get("HUB_URL", "http://127.0.0.1:8000")
+TOKEN = os.environ.get("OMNI_TOKEN", "sk-triad")
+FALLBACK_HUBS = [
+    HUB,
+    "http://127.0.0.1:8000",
+    "http://192.168.31.48:8000",
+    "http://192.168.31.161:8000",
+    "http://192.168.31.161:8080"
+]
 
 def call_hub(path, data):
     headers = {"Content-Type": "application/json"}
     if TOKEN:
         headers["X-Omni-Token"] = TOKEN
-    req = urllib.request.Request(
-        f"{HUB}{path}",
-        data=json.dumps(data).encode("utf-8"),
-        headers=headers
-    )
-    with urllib.request.urlopen(req, timeout=180) as r:
-        return json.loads(r.read().decode("utf-8"))
+        headers["Authorization"] = f"Bearer {TOKEN}"
+
+    payload = json.dumps(data).encode("utf-8")
+    last_err = None
+
+    # Try primary and fallback hubs
+    tried = []
+    for base in FALLBACK_HUBS:
+        if base in tried:
+            continue
+        tried.append(base)
+        target_url = f"{base.rstrip('/')}{path}"
+        try:
+            req = urllib.request.Request(target_url, data=payload, headers=headers)
+            with urllib.request.urlopen(req, timeout=120) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except urllib.error.HTTPError as he:
+            # If server returned HTTP error body, try to parse JSON
+            try:
+                body = he.read().decode("utf-8")
+                return json.loads(body)
+            except Exception:
+                last_err = he
+        except Exception as e:
+            last_err = e
+            continue
+
+    return {"error": f"Все хабы кластера недоступны ({tried}): {last_err}"}
 
 def run_graphify(*args):
     try:
@@ -139,11 +189,42 @@ def main():
         method = req.get("method")
         msg_id = req.get("id")
 
-        if method == "tools/list":
+        # 1. MCP Protocol Handshake: initialize
+        if method == "initialize":
+            resp = {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "result": {
+                    "protocolVersion": "2024-11-05",
+                    "capabilities": {
+                        "tools": {}
+                    },
+                    "serverInfo": {
+                        "name": "triad-omni-mcp",
+                        "version": "5.1"
+                    }
+                }
+            }
+            sys.stdout.write(json.dumps(resp) + "\n")
+            sys.stdout.flush()
+
+        # 2. MCP Protocol Handshake: ping
+        elif method == "ping":
+            resp = {"jsonrpc": "2.0", "id": msg_id, "result": {}}
+            sys.stdout.write(json.dumps(resp) + "\n")
+            sys.stdout.flush()
+
+        # 3. MCP Protocol Handshake: notifications/initialized (notification, no id)
+        elif method == "notifications/initialized":
+            pass
+
+        # 4. MCP Tools List
+        elif method == "tools/list":
             resp = {"jsonrpc": "2.0", "id": msg_id, "result": {"tools": TOOLS}}
             sys.stdout.write(json.dumps(resp) + "\n")
             sys.stdout.flush()
 
+        # 5. MCP Tool Call
         elif method == "tools/call":
             params = req.get("params", {})
             tname = params.get("name")
@@ -156,14 +237,35 @@ def main():
                     m = args.get("model", "omni-auto")
                     out = call_hub("/v1/chat/completions", {
                         "model": m,
-                        "messages": [{"role": "user", "content": prompt}]
+                        "messages": [{"role": "user", "content": prompt}],
+                        "prompt": prompt
                     })
-                    ans = out.get("choices", [{}])[0].get("message", {}).get("content", "")
-                    txt = ans
+                    if isinstance(out, dict):
+                        choices = out.get("choices")
+                        if choices and isinstance(choices, list) and len(choices) > 0:
+                            first_choice = choices[0]
+                            if isinstance(first_choice, dict):
+                                msg = first_choice.get("message")
+                                if isinstance(msg, dict) and "content" in msg:
+                                    txt = msg.get("content", "")
+                                elif "text" in first_choice:
+                                    txt = first_choice.get("text", "")
+                                else:
+                                    txt = str(first_choice)
+                            else:
+                                txt = str(first_choice)
+                        elif "content" in out:
+                            txt = out.get("content", "")
+                        elif "error" in out:
+                            txt = f"⚠️ Ошибка от кластера: {out.get('error')}"
+                        else:
+                            txt = json.dumps(out, ensure_ascii=False)
+                    else:
+                        txt = str(out)
 
                 elif tname == "save_skill_to_cluster":
                     out = call_hub("/v1/sync_skill", args)
-                    txt = f"Сохранено: {out.get('topic')}"
+                    txt = f"Сохранено: {out.get('topic') or out.get('message') or out}"
 
                 elif tname == "escalate_to_teacher":
                     out = call_hub("/v1/escalate", args)
@@ -210,6 +312,16 @@ def main():
                 "result": {"content": [{"type": "text", "text": txt}]}
             }
             sys.stdout.write(json.dumps(resp, ensure_ascii=False) + "\n")
+            sys.stdout.flush()
+
+        # Any other method with an ID: return method not found or empty result
+        elif msg_id is not None:
+            resp = {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "error": {"code": -32601, "message": f"Method not found: {method}"}
+            }
+            sys.stdout.write(json.dumps(resp) + "\n")
             sys.stdout.flush()
 
 if __name__ == "__main__":

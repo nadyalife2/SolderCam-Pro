@@ -36,6 +36,7 @@ system_enabled_packages.txt
 *.cpio
 *.iso
 *.exe
+*.dex
 
 # Personal downloads & heavy backups (gigabytes of firmware, ROMs, videos)
 DOWNLOADS_ARCHIVE/
