@@ -138,6 +138,22 @@ class MainActivity : AppCompatActivity() {
         override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {}
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 100) {
+            val cameraGranted = grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            if (cameraGranted) {
+                if (binding.textureView.isAvailable) {
+                    openCamera()
+                } else {
+                    binding.textureView.surfaceTextureListener = surfaceTextureListener
+                }
+            } else {
+                Toast.makeText(this, "Требуется разрешение камеры для работы", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
     @SuppressLint("MissingPermission")
     private fun openCamera() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -183,7 +199,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }, backgroundHandler)
 
-        } catch (e: CameraAccessException) {
+        } catch (e: Exception) {
             Log.e("SolderCam", "Ошибка открытия камеры: ${e.message}")
         }
     }
@@ -192,12 +208,14 @@ class MainActivity : AppCompatActivity() {
         val map = chars.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
         val rawSizes = map?.getOutputSizes(ImageFormat.RAW_SENSOR)
         if (!rawSizes.isNullOrEmpty()) {
-            val largestSize = rawSizes.maxByOrNull { it.width * it.height } ?: rawSizes[0]
+            val safeRawSize = rawSizes.filter { it.width * it.height <= 16_000_000 }.maxByOrNull { it.width * it.height }
+                ?: rawSizes.minByOrNull { it.width * it.height }
+                ?: rawSizes[0]
             rawImageReader = ImageReader.newInstance(
-                largestSize.width,
-                largestSize.height,
+                safeRawSize.width,
+                safeRawSize.height,
                 ImageFormat.RAW_SENSOR,
-                2
+                1
             )
             rawImageReader?.setOnImageAvailableListener({ reader ->
                 val image = reader.acquireLatestImage() ?: return@setOnImageAvailableListener
@@ -321,12 +339,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         try {
-            val dngFile = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "SOLDER_${System.currentTimeMillis()}.dng")
-            FileOutputStream(dngFile).use { outStream ->
-                val dngCreator = DngCreator(chars, result)
-                dngCreator.writeImage(outStream, image)
+            val targetDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES) ?: filesDir
+            val dngFile = File(targetDir, "SOLDER_${System.currentTimeMillis()}.dng")
+            val dngCreator = DngCreator(chars, result)
+            dngCreator.use { creator ->
+                FileOutputStream(dngFile).use { outStream ->
+                    creator.writeImage(outStream, image)
+                }
             }
             Log.d("SolderCam", "DNG сохранен: ${dngFile.absolutePath}")
+            runOnUiThread {
+                Toast.makeText(this, "RAW сохранен: ${dngFile.name}", Toast.LENGTH_SHORT).show()
+            }
         } catch (e: Exception) {
             Log.e("SolderCam", "Ошибка записи DNG", e)
         } finally {
@@ -335,44 +359,94 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startRecording() {
-        val videoFile = File(getExternalFilesDir(Environment.DIRECTORY_MOVIES), "SOLDER_${System.currentTimeMillis()}.mp4")
-        mediaRecorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            MediaRecorder(this)
-        } else {
-            @Suppress("DEPRECATION")
-            MediaRecorder()
-        }.apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            setVideoSource(MediaRecorder.VideoSource.SURFACE)
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setOutputFile(videoFile.absolutePath)
-            setVideoEncodingBitRate(60_000_000) // 60 Mbps - максимальная детализация дорожек
-            setVideoFrameRate(30)
-            setVideoSize(1920, 1080)
-            setVideoEncoder(MediaRecorder.VideoEncoder.H264)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-            prepare()
-        }
+        try {
+            val moviesDir = getExternalFilesDir(Environment.DIRECTORY_MOVIES) ?: filesDir
+            val videoFile = File(moviesDir, "SOLDER_${System.currentTimeMillis()}.mp4")
+            mediaRecorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                MediaRecorder(this)
+            } else {
+                @Suppress("DEPRECATION")
+                MediaRecorder()
+            }.apply {
+                setAudioSource(MediaRecorder.AudioSource.MIC)
+                setVideoSource(MediaRecorder.VideoSource.SURFACE)
+                setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+                setOutputFile(videoFile.absolutePath)
+                setVideoEncodingBitRate(30_000_000) // 30 Mbps
+                setVideoFrameRate(30)
+                setVideoSize(1920, 1080)
+                setVideoEncoder(MediaRecorder.VideoEncoder.H264)
+                setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+                prepare()
+            }
 
-        isRecording = true
-        binding.tvStatus.text = "REC\n60 Mbps"
-        binding.fabRecord.setImageResource(android.R.drawable.ic_media_pause)
-        Toast.makeText(this, "Запись 60 Mbps запущена", Toast.LENGTH_SHORT).show()
+            val recorderSurface = mediaRecorder?.surface
+            val texture = binding.textureView.surfaceTexture
+            if (recorderSurface != null && texture != null && cameraDevice != null) {
+                val previewSurface = Surface(texture)
+                val surfaces = listOf(previewSurface, recorderSurface)
+
+                cameraDevice?.createCaptureSession(surfaces, object : CameraCaptureSession.StateCallback() {
+                    override fun onConfigured(session: CameraCaptureSession) {
+                        captureSession = session
+                        try {
+                            val recordRequest = cameraDevice?.createCaptureRequest(CameraDevice.TEMPLATE_RECORD)?.apply {
+                                addTarget(previewSurface)
+                                addTarget(recorderSurface)
+                                set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO)
+                            }
+                            recordRequest?.let { session.setRepeatingRequest(it.build(), null, backgroundHandler) }
+                            mediaRecorder?.start()
+                            isRecording = true
+                            runOnUiThread {
+                                binding.tvStatus.text = "REC\n30 Mbps"
+                                binding.fabRecord.setImageResource(android.R.drawable.ic_media_pause)
+                                Toast.makeText(this@MainActivity, "Запись запущена", Toast.LENGTH_SHORT).show()
+                            }
+                        } catch (e: Exception) {
+                            Log.e("SolderCam", "Ошибка запуска записи", e)
+                            stopRecording()
+                        }
+                    }
+
+                    override fun onConfigureFailed(session: CameraCaptureSession) {
+                        runOnUiThread {
+                            Toast.makeText(this@MainActivity, "Ошибка конфигурации видеопотока", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }, backgroundHandler)
+            }
+        } catch (e: Exception) {
+            Log.e("SolderCam", "Ошибка MediaRecorder", e)
+            Toast.makeText(this, "Сбой записи: ${e.message}", Toast.LENGTH_SHORT).show()
+            isRecording = false
+        }
     }
 
     private fun stopRecording() {
+        if (!isRecording && mediaRecorder == null) return
         try {
-            mediaRecorder?.stop()
-            mediaRecorder?.reset()
-            mediaRecorder?.release()
+            mediaRecorder?.apply {
+                try {
+                    stop()
+                } catch (e: Exception) {
+                    Log.w("SolderCam", "Исключение при остановке MediaRecorder: ${e.message}")
+                }
+                reset()
+                release()
+            }
             mediaRecorder = null
+            startPreviewSession()
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("SolderCam", "Сбой освобождения рекордера", e)
+        } finally {
+            isRecording = false
+            runOnUiThread {
+                binding.tvStatus.text = "СТОП\nГотов"
+                binding.fabRecord.setImageResource(android.R.drawable.ic_media_play)
+                Toast.makeText(this, "Видео сохранено в папку Movies", Toast.LENGTH_SHORT).show()
+            }
         }
-        isRecording = false
-        binding.tvStatus.text = "СТОП\n60 Mbps"
-        binding.fabRecord.setImageResource(android.R.drawable.ic_media_play)
-        Toast.makeText(this, "Видео сохранено в папку Movies", Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {
@@ -386,8 +460,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPause() {
+        if (isRecording) {
+            stopRecording()
+        }
         captureSession?.close()
+        captureSession = null
         cameraDevice?.close()
+        cameraDevice = null
+        rawImageReader?.close()
+        rawImageReader = null
         stopBackgroundThread()
         super.onPause()
     }

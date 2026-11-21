@@ -20,7 +20,7 @@ pkill -f llama-server 2>/dev/null
 sleep 1
 
 nohup taskset -c 4,5,6,7 "$LLAMA" -m "$MODEL_FILE" \
-  -c 4096 -b 512 -ub 512 --cache-reuse 256 \
+  -c 16384 -ctk q8_0 -ctv q8_0 -b 512 -ub 128 --cache-reuse 256 \
   -t 4 -np 1 --host 0.0.0.0 --port 8080 > "$HOME/brain.log" 2>&1 &
 
 echo "OPTIMIZED Main Brain launched on port 8080 with KV cache-reuse 256!"

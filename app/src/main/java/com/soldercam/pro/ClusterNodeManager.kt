@@ -195,25 +195,28 @@ object ClusterNodeManager {
      * Локальное завершение процессов Termux и очистка системных буферов через Shell/Root
      */
     fun cleanLocalDevice(context: Context, mode: String, callback: (Boolean, String) -> Unit) {
-        val cmds = mutableListOf(
-            "termux-wake-unlock 2>/dev/null || true",
-            "pkill -9 -f llama-server 2>/dev/null || true",
-            "pkill -9 -f 'python.*omni_fast_router' 2>/dev/null || true",
-            "pkill -9 -f 'python.*bge' 2>/dev/null || true",
-            "pkill -9 -f 'python.*lfm' 2>/dev/null || true",
-            "rm -rf /data/data/com.termux/files/usr/tmp/* 2>/dev/null || true",
-            "rm -rf /data/data/com.termux/files/home/.cache/* 2>/dev/null || true",
-            "rm -f /data/data/com.termux/files/home/*.log /data/data/com.termux/files/home/*.cache /data/data/com.termux/files/home/lookup.cache 2>/dev/null || true",
-            "echo 1 > /sys/class/power_supply/battery/charging_enabled 2>/dev/null || true",
-            "echo 1 > /sys/class/power_supply/battery/battery_charging_enabled 2>/dev/null || true",
-            "echo 0 > /sys/class/power_supply/battery/input_suspend 2>/dev/null || true",
-            "sync && echo 3 > /proc/sys/vm/drop_caches 2>/dev/null || true"
-        )
+        val cmds = mutableListOf<String>()
 
-        if (mode == "clean_stop") {
-            cmds.add("am force-stop com.termux 2>/dev/null || true")
-            cmds.add("pkill -9 -f com.termux 2>/dev/null || true")
-            cmds.add("am force-stop com.soldercam.pro 2>/dev/null || true")
+        if (mode == "restore_battery") {
+            // Режим только батареи: восстанавливаем штатную зарядку без убийства процессов и логов
+            cmds.add("echo 1 > /sys/class/power_supply/battery/charging_enabled 2>/dev/null || true")
+            cmds.add("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled 2>/dev/null || true")
+            cmds.add("echo 0 > /sys/class/power_supply/battery/input_suspend 2>/dev/null || true")
+        } else {
+            cmds.add("termux-wake-unlock 2>/dev/null || true")
+            cmds.add("pkill -9 -f llama-server 2>/dev/null || true")
+            cmds.add("pkill -9 -f 'python.*omni_fast_router' 2>/dev/null || true")
+            cmds.add("pkill -9 -f 'python.*bge' 2>/dev/null || true")
+            cmds.add("pkill -9 -f 'python.*lfm' 2>/dev/null || true")
+            cmds.add("echo 1 > /sys/class/power_supply/battery/charging_enabled 2>/dev/null || true")
+            cmds.add("echo 1 > /sys/class/power_supply/battery/battery_charging_enabled 2>/dev/null || true")
+            cmds.add("echo 0 > /sys/class/power_supply/battery/input_suspend 2>/dev/null || true")
+            cmds.add("sync && echo 3 > /proc/sys/vm/drop_caches 2>/dev/null || true")
+
+            if (mode == "clean_stop") {
+                cmds.add("am force-stop com.termux 2>/dev/null || true")
+                cmds.add("pkill -9 -f com.termux 2>/dev/null || true")
+            }
         }
 
         val fullCmd = cmds.joinToString("; ")
@@ -230,12 +233,18 @@ object ClusterNodeManager {
             } catch (err: Exception) { }
         }
 
-        val resultMsg = "Локальное устройство успешно переведено в чистый режим!\n\n" +
-                "• ИИ-сервисы выгружены из LPDDR памяти\n" +
-                "• Файлы /tmp и кэши удалены\n" +
-                "• WakeLock процессора снят (ядра спят)\n" +
-                "• Контроллер зарядки переведен в штатный режим\n" +
-                "• Root-доступ: ${if (hasRoot) "активен (полная очистка drop_caches)" else "стандартный"}"
+        val resultMsg = if (mode == "restore_battery") {
+            "Контроллер питания успешно переведен в штатный режим зарядки!\n\n" +
+                    "• Байпас отключен, батарея заряжается\n" +
+                    "• ИИ-сервисы и логи не затронуты\n" +
+                    "• Root: ${if (hasRoot) "активен" else "стандартный доступ"}"
+        } else {
+            "Локальное устройство успешно переведено в чистый режим!\n\n" +
+                    "• ИИ-сервисы выгружены из LPDDR памяти\n" +
+                    "• WakeLock процессора снят (ядра спят)\n" +
+                    "• Контроллер зарядки переведен в штатный режим\n" +
+                    "• Root-доступ: ${if (hasRoot) "активен (drop_caches выполнен)" else "стандартный"}"
+        }
 
         callback(true, resultMsg)
     }
@@ -245,9 +254,9 @@ object ClusterNodeManager {
      */
     private fun sendRemoteRequest(endpoint: String, nodeKey: String, mode: String, callback: (Boolean, String) -> Unit) {
         val targets = listOf(
+            "http://192.168.31.48:8000",
             "http://192.168.31.161:8000",
             "http://192.168.31.57:8080",
-            "http://192.168.31.48:8000",
             "http://127.0.0.1:8000"
         )
 

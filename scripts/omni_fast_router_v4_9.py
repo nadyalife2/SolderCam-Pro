@@ -180,44 +180,59 @@ def select_dynamic_skill(query: str, threshold: float = -1.5) -> Tuple[str, str,
 # --- 2. Tier 0: Детерминированные команды (0.019 мс) ---
 
 FAST_PATTERNS = [
-    (re.compile(r"(статус|status|health|состояни|кластер|узлы|узл)", re.I), "status"),
-    (re.compile(r"(температур|нагрев|термо|градус|охлажд|отдых)", re.I), "temp"),
-    (re.compile(r"(батаре|заряд|battery|питани|акб|вольт|мah|процент)", re.I), "battery"),
-    (re.compile(r"(аптайм|uptime|время работы)", re.I), "uptime"),
-    (re.compile(r"(память|ram|свободно|озу|lpddr)", re.I), "memory"),
-    (re.compile(r"(привет|хай|hi|hello|здравствуй|добрый день|салют)", re.I), "greeting"),
-    (re.compile(r"(ты тут|ты здесь|на связи|работаеш|живой|ты жив|ау|ку|слышиш|ответь|говори)", re.I), "online_check"),
-    (re.compile(r"(пинг|ping|тест|test|проверк)", re.I), "ping"),
-    (re.compile(r"(что.*умееш|что.*можеш|навык|способност|функци|помощь|help|команд|инструкци|возможност|ты кто|кто ты|о себе)", re.I), "help"),
-    (re.compile(r"(graphify|rea|reverse|awesome|boost|learn|artifacts|find[-_]?skill|скилы|скиллы|skills)", re.I), "skills_overview"),
-    (re.compile(r"(картридж|cartridge|лора|lora|vault|веса)", re.I), "cartridges"),
-    (re.compile(r"(редми|rn4|redmi|ноут 4|mido)", re.I), "rn4_info"),
-    (re.compile(r"(ми 10|mi10t|apollo|квен|qwen|мозг)", re.I), "mi10t_info"),
-    (re.compile(r"(норд|nord|n10|billie|ванплас)", re.I), "nord_info"),
+    (re.compile(r"^(статус|status|health|кластер|узлы|инфо)$", re.I), "status"),
+    (re.compile(r"^(температура|темп|нагрев|термо|градус)$", re.I), "temp"),
+    (re.compile(r"^(батарея|заряд|battery|питание|акб|вольтаж)$", re.I), "battery"),
+    (re.compile(r"^(аптайм|uptime)$", re.I), "uptime"),
+    (re.compile(r"^(память|ram|озу|lpddr)$", re.I), "memory"),
+    (re.compile(r"^(привет|хай|hi|hello|здравствуй|салют)$", re.I), "greeting"),
+    (re.compile(r"^(ты тут|ты здесь|на связи|работаешь|живой|ты жив|ping|пинг)$", re.I), "online_check"),
+    (re.compile(r"^(что умеешь|что можешь|помощь|help|команды|инструкция|ты кто|кто ты)$", re.I), "help"),
+    (re.compile(r"^(graphify|rea|скилы|скиллы|skills)$", re.I), "skills_overview"),
+    (re.compile(r"^(картриджи|картридж|cartridge|лора|lora)$", re.I), "cartridges"),
 ]
 
 def handle_tier0(label: str) -> str:
+    n1 = _last_known_telemetry.get("node1", {})
+    n2 = _last_known_telemetry.get("node2", {})
+    n3 = _last_known_telemetry.get("node3", {})
+
     if label == "status":
-        return "🟢 Кластер Triad-Omni в строю: Node-1 (Mi 10T :8080 ONLINE), Node-2 (Nord N10 :8081 ONLINE), Node-3 (Note 4 Hub ONLINE)."
+        s1 = "🟢 ONLINE" if n1.get("ok") else "🔴 OFFLINE"
+        s2 = "🟢 ONLINE" if n2.get("ok") else "🔴 OFFLINE"
+        s3 = "🟢 ONLINE" if n3.get("ok") else "🔴 OFFLINE"
+        return f"Кластер Triad-Omni: Node-1 Mi 10T {s1}, Node-2 Nord N10 {s2}, Node-3 Note 4 {s3}."
     elif label == "temp":
-        return "🌡️ Температура кремния: Mi 10T (Snapdragon 865) ~36.4°C, Nord N10 ~34.0°C, RN4 ~27.0°C. Все узлы в зеленой зоне (Норма)."
+        t1 = n1.get("temp", "Н/Д")
+        t2 = n2.get("temp", "Н/Д")
+        t3 = n3.get("temp", "Н/Д")
+        return f"🌡️ Температура кремния: Mi 10T ({t1}), Nord N10 ({t2}), RN4 ({t3})."
     elif label == "battery":
-        return "🔋 Батареи узлов: Mi 10T 85% (Байпас активен, 0 мА), Nord N10 67% (Battery Guard), Redmi Note 4 47% (Li-poly, 27°C)."
+        b1 = n1.get("battery", "Н/Д")
+        b2 = n2.get("battery", "Н/Д")
+        b3 = n3.get("battery", "Н/Д")
+        p1 = n1.get("power_mode", "")
+        p2 = n2.get("power_mode", "")
+        p3 = n3.get("power_mode", "")
+        return f"🔋 Батареи узлов: Mi 10T {b1} ({p1}), Nord N10 {b2} ({p2}), RN4 {b3} ({p3})."
     elif label == "uptime":
-        return "⏱️ Аптайм кластера: 24x7 Continuous Guard активен. Сбоев не зафиксировано."
+        return "⏱️ Аптайм кластера: 24x7 Continuous Guard активен."
     elif label == "memory":
-        return "💾 ОЗУ: Mi 10T 8GB LPDDR5 (свободно ~5.2 ГБ), Nord N10 6GB LPDDR4X (свободно 1.8 ГБ)."
+        return "💾 ОЗУ кластера: Node-1 Mi 10T (8GB LPDDR5), Node-2 Nord N10 (6GB LPDDR4X), Node-3 Note 4 (3GB LPDDR3)."
     elif label == "greeting":
-        return "Привет! Я координирующий шлюз Triad-Omni v5.0. Задавай вопрос по кластеру, коду или системной архитектуре."
+        return "Привет! Я координирующий шлюз Triad-Omni v5.1. Задавай вопрос по кластеру, коду или системной архитектуре."
     elif label == "online_check":
-        return "Да, я на связи! 🚀 Бортовой координатор кластера Triad-Omni слушает. Все 3 смартфона (Mi 10T, Nord N10, Redmi Note 4) подключены и активны. Задержка шлюза 0.019 мс!"
+        s1 = "🟢 ONLINE" if n1.get("ok") else "🔴 OFFLINE"
+        s2 = "🟢 ONLINE" if n2.get("ok") else "🔴 OFFLINE"
+        s3 = "🟢 ONLINE" if n3.get("ok") else "🔴 OFFLINE"
+        return f"🚀 Шлюз Triad-Omni на связи! Статус узлов: Mi 10T {s1}, Nord N10 {s2}, Note 4 {s3}."
     elif label == "help":
         return (
-            "🛠️ **Я — бортовой координатор гетерогенного кластера Triad-Omni!**\n\n"
+            "🛠️ **Я — бортовой координатор гетерогенного кластера Triad-Omni v5.1!**\n\n"
             "**Что я умею и чем управляю:**\n"
-            "1. 🧠 **Нейромозг (Xiaomi Mi 10T 5G):** Выполняю рассуждения Qwen 9B, запуск алгоритмов, генерацию кода и анализ схемотехники на Snapdragon 865.\n"
-            "2. ⚡ **Рефлексы и Семантика (OnePlus Nord N10 5G):** Мгновенно ищу факты в оффлайн-базе SQLite FTS5 (за ~4 мс) и держу диалог на LFM2.5.\n"
-            "3. 🛰️ **Аппаратный Шлюз (Redmi Note 4):** Фильтрую быстрые команды за 0.019 мс и держу телеметрию питания (штатная АКБ 47%).\n"
+            "1. 🧠 **Нейромозг (Xiaomi Mi 10T 5G):** Выполняю рассуждения Qwen 9B, запуск алгоритмов, генерацию кода и анализ схемотехники на Snapdragon 865 (:8080).\n"
+            "2. ⚡ **Рефлексы и Семантика (OnePlus Nord N10 5G):** Мгновенно ищу факты в оффлайн-базе SQLite FTS5 (за ~4 мс) и держу диалог на LFM2.5 (:8081).\n"
+            "3. 🛰️ **Аппаратный Шлюз (Redmi Note 4):** Фильтрую быстрые команды за 0.019 мс и держу телеметрию питания (:8000).\n"
             "4. 📦 **Vault LoRA-картриджей:** На лету переключаю адаптеры (авторский голос, fast-tools, Soldercam, REA).\n"
             "5. 🌡️ **Thermal Guard:** Контролирую нагрев кремния всех плат и даю паузы отдыха при перегреве.\n\n"
             "👉 Напиши `скиллы` — покажу структуру всех встроенных инструментов реверса, графов знаний и оптимизации!"
@@ -297,23 +312,15 @@ def check_node_sync(url: str, timeout_sec: float = 0.8) -> bool:
     try:
         req = urllib.request.Request(check_url, headers={"User-Agent": "TriadRouter"})
         with urllib.request.urlopen(req, timeout=timeout_sec) as resp:
-            return resp.status in (200, 404, 400)
+            return 200 <= resp.status < 300
     except Exception:
         # Fallback to direct url
         try:
             req_direct = urllib.request.Request(base, headers={"User-Agent": "TriadRouter"})
             with urllib.request.urlopen(req_direct, timeout=timeout_sec) as resp:
-                return resp.status in (200, 404, 400)
+                return 200 <= resp.status < 300
         except Exception:
-            pass
-        if ":8080" in base:
-            try:
-                req2 = urllib.request.Request("http://127.0.0.1:8080/props", headers={"User-Agent": "TriadRouter"})
-                with urllib.request.urlopen(req2, timeout=0.5) as resp2:
-                    return resp2.status in (200, 404, 400)
-            except Exception:
-                pass
-        return False
+            return False
 
 def check_node3_active() -> bool:
     if os.name == "nt":
@@ -364,11 +371,11 @@ _thermal_rest_state = {
     "node3": {"resting": False, "until": 0, "target": 32.0}
 }
 
-# Кэш последней реальной телеметрии, чтобы исключить показ фейковых дефолтов при единичных задержках Wi-Fi
+# Кэш последней реальной телеметрии (инициализируется в состоянии ожидания опроса)
 _last_known_telemetry = {
-    "node1": {"battery": "84%", "temp": "30.0°C", "power_mode": "Байпас PM8150B (0 мА)", "bypass": True, "soc_temp": 30.0, "ok": True, "ts": 0},
-    "node2": {"battery": "85%", "temp": "24.0°C", "power_mode": "АКБ 85% (SMB1355 Guard)", "bypass": False, "soc_temp": 24.0, "ok": True, "ts": 0},
-    "node3": {"battery": "87%", "temp": "27.0°C", "power_mode": "🔋 АКБ 87% (27.0°C, Li-poly)", "bypass": False, "soc_temp": 27.0, "ok": True, "ts": 0},
+    "node1": {"battery": "Н/Д", "temp": "Н/Д", "power_mode": "Ожидание телеметрии", "bypass": False, "soc_temp": 0.0, "ok": False, "ts": 0},
+    "node2": {"battery": "Н/Д", "temp": "Н/Д", "power_mode": "Ожидание телеметрии", "bypass": False, "soc_temp": 0.0, "ok": False, "ts": 0},
+    "node3": {"battery": "Н/Д", "temp": "Н/Д", "power_mode": "Ожидание телеметрии", "bypass": False, "soc_temp": 0.0, "ok": False, "ts": 0},
 }
 
 def read_real_device_battery() -> Tuple[str, str, bool, float]:
@@ -461,11 +468,8 @@ def read_real_device_battery() -> Tuple[str, str, bool, float]:
         except Exception:
             pass
 
-    if temp_val is not None:
-        soc_temp = temp_val
-
-    cap_str = f"{cap_val}%" if cap_val is not None else "85%"
-    temp_str = f"{temp_val:.1f}°C" if temp_val is not None else f"{soc_temp:.1f}°C"
+    cap_str = f"{cap_val}%" if cap_val is not None else "Н/Д"
+    temp_str = f"{temp_val:.1f}°C" if temp_val is not None else (f"{soc_temp:.1f}°C" if soc_temp > 0 else "Н/Д")
 
     return cap_str, temp_str, bypass, soc_temp
 
@@ -2646,6 +2650,14 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
 
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, X-Cluster-Local")
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+
     def do_GET(self):
         if self.path in ("/", "/index.html", "/cartridges", "/chat", "/cluster", "/vault", "/deck", "/training", "/telemetry"):
             web_ui_file = BASE_DIR / "web_ui" / "index.html"
@@ -3048,22 +3060,45 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
             self.send_json({"ok": False, "error": f"Ошибка скачивания: {e}"}, status=500)
 
     def handle_completion(self, payload: Dict[str, Any]):
+        messages = payload.get("messages", [])
         prompt = payload.get("prompt", "")
-        # Automatic Zero-CoT injection for instant responses (< 4s instead of 120s)
-        if isinstance(prompt, str) and "<think>" not in prompt and "<|im_start|>" not in prompt:
-            payload["prompt"] = f"<|im_start|>system\nТы ИИ-ассистент кластера Triad-Omni. Отвечай кратко, технически точно и по существу.<|im_end|>\n<|im_start|>user\n{prompt}<|im_end|>\n<|im_start|>assistant\n<think>\n</think>\n"
-            payload["stop"] = ["<|im_end|>", "<|endoftext|>", "</s>"]
-        if isinstance(prompt, list):
-            prompt = "\n".join(str(p) for p in prompt)
-        elif not isinstance(prompt, str):
-            messages = payload.get("messages", [])
-            if messages and isinstance(messages, list):
-                prompt = messages[-1].get("content", "")
-            else:
-                prompt = str(prompt or "")
+        is_chat = (self.path == "/v1/chat/completions") or ("messages" in payload and not payload.get("raw"))
+        user_prompt_text = ""
 
-        prompt_clean = prompt.strip()
-        # Strip <think>...</think> block if injected for zero-cot
+        # 1. Parse OpenAI messages format
+        if messages and isinstance(messages, list):
+            sys_msg = "Ты ИИ-ассистент кластера Triad-Omni. Отвечай кратко, технически точно и по существу."
+            dialog_turns = []
+            for m in messages:
+                if isinstance(m, dict):
+                    role = m.get("role", "")
+                    content = m.get("content", "")
+                    if role == "system" and content:
+                        sys_msg = str(content)
+                    elif role in ("user", "assistant") and content:
+                        dialog_turns.append(f"<|im_start|>{role}\n{content}<|im_end|>")
+                        if role == "user":
+                            user_prompt_text = str(content)
+
+            chatml_turns = "\n".join(dialog_turns)
+            payload["prompt"] = f"<|im_start|>system\n{sys_msg}<|im_end|>\n{chatml_turns}\n<|im_start|>assistant\n<think>\n</think>\n"
+            payload["stop"] = ["<|im_end|>", "<|endoftext|>", "</s>"]
+
+        elif isinstance(prompt, list):
+            user_prompt_text = "\n".join(str(p) for p in prompt)
+            payload["prompt"] = f"<|im_start|>system\nТы ИИ-ассистент кластера Triad-Omni. Отвечай кратко, технически точно и по существу.<|im_end|>\n<|im_start|>user\n{user_prompt_text}<|im_end|>\n<|im_start|>assistant\n<think>\n</think>\n"
+            payload["stop"] = ["<|im_end|>", "<|endoftext|>", "</s>"]
+
+        elif isinstance(prompt, str) and prompt.strip():
+            user_prompt_text = prompt.strip()
+            if "<think>" not in user_prompt_text and "<|im_start|>" not in user_prompt_text:
+                payload["prompt"] = f"<|im_start|>system\nТы ИИ-ассистент кластера Triad-Omni. Отвечай кратко, технически точно и по существу.<|im_end|>\n<|im_start|>user\n{user_prompt_text}<|im_end|>\n<|im_start|>assistant\n<think>\n</think>\n"
+                payload["stop"] = ["<|im_end|>", "<|endoftext|>", "</s>"]
+        else:
+            user_prompt_text = str(prompt or "")
+
+        prompt_clean = user_prompt_text.strip()
+        # Strip <think>...</think> block if present
         if prompt_clean.startswith("<think>"):
             parts = prompt_clean.split("</think>", 1)
             if len(parts) > 1:
@@ -3071,40 +3106,41 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
 
         # Clean trailing punctuation for robust matching
         clean_for_match = re.sub(r"[!?.,]+$", "", prompt_clean).strip()
-        is_chat = (self.path == "/v1/chat/completions") or ("messages" in payload and not payload.get("raw"))
+        word_count = len(clean_for_match.split())
 
-        # Fast-Path Tier 0 regex check
-        for pat, label in FAST_PATTERNS:
-            if pat.match(clean_for_match) or pat.match(prompt_clean):
-                ans = handle_tier0(label)
-                if is_chat:
-                    self.send_json({
-                        "id": f"chatcmpl-tier0-{int(time.time())}",
-                        "object": "chat.completion",
-                        "created": int(time.time()),
-                        "model": "TriadOmni-Tier0-Regex",
-                        "choices": [{
-                            "index": 0,
-                            "message": {
-                                "role": "assistant",
-                                "content": ans
-                            },
-                            "finish_reason": "stop"
-                        }],
-                        "content": ans,
-                        "stop": True,
-                        "tier": "TIER_0_FASTPATH",
-                        "timings": {"predicted_ms": 0.019}
-                    })
-                else:
-                    self.send_json({
-                        "content": ans,
-                        "stop": True,
-                        "model": "TriadOmni-Tier0-Regex",
-                        "tier": "TIER_0_FASTPATH",
-                        "timings": {"predicted_ms": 0.019}
-                    })
-                return
+        # Fast-Path Tier 0 regex check: ONLY for concise short queries (<= 4 words)
+        if 0 < word_count <= 4:
+            for pat, label in FAST_PATTERNS:
+                if pat.search(clean_for_match):
+                    ans = handle_tier0(label)
+                    if is_chat:
+                        self.send_json({
+                            "id": f"chatcmpl-tier0-{int(time.time())}",
+                            "object": "chat.completion",
+                            "created": int(time.time()),
+                            "model": "TriadOmni-Tier0-Regex",
+                            "choices": [{
+                                "index": 0,
+                                "message": {
+                                    "role": "assistant",
+                                    "content": ans
+                                },
+                                "finish_reason": "stop"
+                            }],
+                            "content": ans,
+                            "stop": True,
+                            "tier": "TIER_0_FASTPATH",
+                            "timings": {"predicted_ms": 0.019}
+                        })
+                    else:
+                        self.send_json({
+                            "content": ans,
+                            "stop": True,
+                            "model": "TriadOmni-Tier0-Regex",
+                            "tier": "TIER_0_FASTPATH",
+                            "timings": {"predicted_ms": 0.019}
+                        })
+                    return
 
         # Ensure comprehensive stop tokens
         stops = payload.get("stop", [])

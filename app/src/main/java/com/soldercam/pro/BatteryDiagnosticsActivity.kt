@@ -31,7 +31,10 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
     private var lastAlertBeep = 0L
 
     // In-App NTC Stress Test
+    @Volatile
     private var isStressRunning = false
+    @Volatile
+    private var computationSink = 0.0
     private var stressSecondsPassed = 0
     private var initialTestTemp = 0.0f
     private val stressWorkers = mutableListOf<Thread>()
@@ -40,6 +43,7 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
     private lateinit var csvLogFile: File
     private var lastCsvWriteTime = 0L
     private var currentLevel = 0
+    private var currentVoltageMv = 4000
     private var currentTempC = 24.0f
     private var currentStatusStr = "Unknown"
     private var currentSourceStr = "Unknown"
@@ -182,11 +186,12 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
         currentSourceStr = sourceText
         currentStatusStr = statusText
         binding.tvSource.text = "$sourceText | $statusText"
+        currentVoltageMv = voltageMv
 
-        readRealtimeProperties(voltageMv)
+        readRealtimeProperties(currentVoltageMv)
     }
 
-    private fun readRealtimeProperties(currentVoltageMv: Int = 4200) {
+    private fun readRealtimeProperties(voltageMv: Int = currentVoltageMv) {
         val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
 
         // Current in uA or mA
@@ -209,11 +214,11 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
         }
 
         // Power calculation in Watts
-        val powerWatts = (abs(currentVoltageMv) * abs(currentMa)) / 1_000_000.0f
+        val powerWatts = (abs(voltageMv) * abs(currentMa)) / 1_000_000.0f
         binding.tvPower.text = String.format(Locale.US, "Мощность: %.2f W", powerWatts)
 
         // Persistent CSV row logging
-        writeCsvRow(currentLevel, currentVoltageMv, currentMa, powerWatts, currentTempC, currentStatusStr, currentSourceStr)
+        writeCsvRow(currentLevel, voltageMv, currentMa, powerWatts, currentTempC, currentStatusStr, currentSourceStr)
     }
 
     private fun trackNtcHealth(temp: Float, isCharging: Boolean) {
@@ -307,10 +312,11 @@ class BatteryDiagnosticsActivity : AppCompatActivity() {
         stressWorkers.clear()
         for (i in 0 until cores) {
             val t = Thread {
-                var x = 0.0
+                var localVal = 1.0 + i
                 while (isStressRunning) {
-                    x += Math.sin(x) * Math.cos(x)
+                    localVal = Math.sin(localVal) * Math.cos(localVal) + Math.sqrt(localVal.coerceAtLeast(0.1))
                 }
+                computationSink += localVal
             }
             stressWorkers.add(t)
             t.start()

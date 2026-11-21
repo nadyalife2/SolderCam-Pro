@@ -1488,13 +1488,22 @@
   }
 
   // 4. Cartridge Vault Operations
+  const API_BASE = (location.port === '8080') ? (location.protocol + '//' + location.hostname + ':8000') : '';
+
   async function loadCartridgeVault() {
     const container = document.getElementById('cartridge-list-container');
     if (!container) return;
     try {
-      const res = await fetch('/api/cartridge/list_local');
-      if (!res.ok) return;
-      const data = await res.json();
+      let res = await fetch(API_BASE + '/api/cartridge/list_local').catch(() => null);
+      let data = null;
+      if (res && res.ok) {
+        data = await res.json();
+      } else {
+        // Fallback на статический манифест (работает прямо с llama-server :8080)
+        const mRes = await fetch('/cartridges/manifest.json').catch(() => null);
+        if (mRes && mRes.ok) data = await mRes.json();
+      }
+      if (!data) throw new Error('Сервер роутера (:8000) недоступен');
       const items = Array.isArray(data) ? data : (data.cartridges || []);
       
       if (items.length === 0) {
@@ -1505,10 +1514,11 @@
       let html = '';
       items.forEach(c => {
         const isActive = Boolean(c.is_active);
-        const tag = (c.card && c.card.build_tag) || c.build_tag || 'v5.2';
-        const desc = (c.card && c.card.description) || 'LoRA-адаптер для кластера Triad-Omni';
+        const tag = (c.card && c.card.build_tag) || c.build_tag || c.tag || 'v5.2';
+        const desc = (c.card && c.card.description) || c.description || 'LoRA-адаптер для кластера Triad-Omni';
         const sz = c.size_mb || 0;
-        const slug = c.slug || c.filename;
+        const slug = c.slug || c.tag || c.filename;
+        const filename = c.filename || c.tag || slug;
 
         html += `
           <div style="background:#ffffff; border:1.5px solid ${isActive ? 'var(--apple-green)' : 'var(--ios-border)'}; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:6px;">
@@ -1525,7 +1535,7 @@
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px; font-size:12px; color:var(--text-muted);">
               <span>📦 Размер: <b>${sz} MB</b></span>
               <div style="display:flex; gap:6px;">
-                ${!isActive ? `<button onclick="activateCartridge('${slug}', '${c.filename}', '${tag}')" class="ios-btn ios-btn-green" style="min-height:30px; font-size:12px; padding:3px 10px;">⚡ Активировать</button>` : '<span style="font-size:12px; font-weight:700; color:var(--apple-green-text);">Подключен в LPDDR5</span>'}
+                ${!isActive ? `<button onclick="activateCartridge('${slug}', '${filename}', '${tag}')" class="ios-btn ios-btn-green" style="min-height:30px; font-size:12px; padding:3px 10px;">⚡ Активировать</button>` : '<span style="font-size:12px; font-weight:700; color:var(--apple-green-text);">Подключен в LPDDR5</span>'}
               </div>
             </div>
           </div>
@@ -1540,7 +1550,7 @@
   async function activateCartridge(slug, filename, tag) {
     if (!confirm(`Активировать картридж [${slug}] в памяти LPDDR5?`)) return;
     try {
-      const res = await fetch('/api/cartridge/activate', {
+      const res = await fetch(API_BASE + '/api/cartridge/activate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slug: slug, filename: filename, build_tag: tag })
@@ -1574,7 +1584,7 @@
     }
 
     try {
-      const res = await fetch('/api/cartridge/upload?filename=' + encodeURIComponent(filename), {
+      const res = await fetch(API_BASE + '/api/cartridge/upload?filename=' + encodeURIComponent(filename), {
         method: 'POST',
         headers: {
           'X-Filename': encodeURIComponent(filename),
@@ -1619,7 +1629,7 @@
     }
     alert('⏳ Скачивание картриджа с облака в хранилище Termux...');
     try {
-      const res = await fetch('/api/cartridge/download_url', {
+      const res = await fetch(API_BASE + '/api/cartridge/download_url', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: url })
@@ -1687,6 +1697,7 @@
 
   // Initialize
   pollClusterNodes();
+  loadCartridgeVault();
   setInterval(pollClusterNodes, 5000);
 </script>
 </body>

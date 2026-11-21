@@ -35,9 +35,9 @@ nohup taskset -c 4,5,6,7 "$LLAMA" \
   --path "$HOME/web_ui" \
   -np 1 \
   -t 4 -tb 4 \
-  -c 4096 \
-  -b 256 -ub 64 \
-  -ctk f16 -ctv f16 \
+  -c 16384 \
+  -b 512 -ub 64 \
+  -ctk q8_0 -ctv q8_0 \
   --swa-full \
   -lcd "$HOME/lookup.cache" \
   --cache-reuse 256 > "$HOME/brain.log" 2>&1 &

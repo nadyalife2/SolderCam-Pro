@@ -6,9 +6,9 @@
     "semantic_hash": ""
   },
   "app/src/main/java/com/soldercam/pro/BatteryDiagnosticsActivity.kt": {
-    "mtime": 1795280723.0055935,
-    "seen": 1795282964.4903982,
-    "ast_hash": "14ad5d37d8e7a2b26fa961882a857c87",
+    "mtime": 1795289824.6541796,
+    "seen": 1795289927.6593776,
+    "ast_hash": "a5ab9d31f094cae6796426009df8d1e2",
     "semantic_hash": ""
   },
   "app/src/main/java/com/soldercam/pro/BugRecord.kt": {
@@ -30,9 +30,9 @@
     "semantic_hash": ""
   },
   "app/src/main/java/com/soldercam/pro/MainActivity.kt": {
-    "mtime": 1795280723.0086439,
-    "seen": 1795282964.4923978,
-    "ast_hash": "1ef728e719fc1552a1bee34fd3f2c5c9",
+    "mtime": 1795289730.4196198,
+    "seen": 1795289927.6613762,
+    "ast_hash": "4c34e296a6141ff63b39d90e847d555f",
     "semantic_hash": ""
   },
   "app/src/main/java/com/soldercam/pro/SolderCamApp.kt": {
@@ -312,9 +312,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1795280722.9583354,
-    "seen": 1795282964.542237,
-    "ast_hash": "3b8faa34ade60e0b64f34a08b9ece413",
+    "mtime": 1795287184.9907508,
+    "seen": 1795287361.953371,
+    "ast_hash": "9aa0f2524ea46adbb8d3b8359d21860e",
     "semantic_hash": ""
   },
   "REDMI_NOTE_4_NIKEL_UNBRICK_GUIDE.md": {
@@ -936,9 +936,9 @@
     "semantic_hash": ""
   },
   "omni_gateway.py": {
-    "mtime": 1795280725.6729946,
-    "seen": 1795282964.514385,
-    "ast_hash": "5e811bd64d8e1dd803ab6231b99adf47",
+    "mtime": 1795287185.0403135,
+    "seen": 1795287361.8074608,
+    "ast_hash": "0b6f548d8f274dfaf9023b9c045b2156",
     "semantic_hash": ""
   },
   "ARTICLES/12_TRIAD_OMNI_HARDWARE_DECK_KIOSK_LIVE.md": {
@@ -2579,12 +2579,6 @@
     "ast_hash": "f9b9ee1e42f741512746daab6bf62b0c",
     "semantic_hash": ""
   },
-  "cluster_docs/05_OPTIMIZED_OMNI_GATEWAY_V4_6.py": {
-    "mtime": 1795280723.0293834,
-    "seen": 1795282964.4943955,
-    "ast_hash": "afdb6f3ec952983ca206bb3a1ed0d18e",
-    "semantic_hash": ""
-  },
   "ARTICLES/20_TRIAD_OMNI_V4_5_CLUSTER_EVOLUTION_AND_IDIOT_PROOF_GUIDE.md": {
     "mtime": 1795280720.186953,
     "seen": 1795282964.541368,
@@ -2631,18 +2625,6 @@
     "mtime": 1795280723.739069,
     "seen": 1795282964.542756,
     "ast_hash": "85a28b7ce284aa776d5bb7b502cd6761",
-    "semantic_hash": ""
-  },
-  "cluster_docs/async_omni_gateway.py": {
-    "mtime": 1795280723.3910203,
-    "seen": 1795282964.4943955,
-    "ast_hash": "515824ee8171b9f7860e1e2d91f0d3c7",
-    "semantic_hash": ""
-  },
-  "cluster_docs/omni_gateway.py": {
-    "mtime": 1795280723.3940172,
-    "seen": 1795282964.4943955,
-    "ast_hash": "b5abb4bc766768f1f778574f2cdf10d8",
     "semantic_hash": ""
   },
   "patch_mixer.py": {
@@ -2772,9 +2754,9 @@
     "semantic_hash": ""
   },
   "omni_mcp_server.py": {
-    "mtime": 1795280725.6740665,
-    "seen": 1795282964.514385,
-    "ast_hash": "9b87e81606073810298cabfb70566b49",
+    "mtime": 1795287185.0413117,
+    "seen": 1795287361.8074608,
+    "ast_hash": "5881a50ed88e203871874b109f00d16d",
     "semantic_hash": ""
   },
   "pack_dtbo_v2.py": {
@@ -2946,9 +2928,9 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1795280722.944834,
-    "seen": 1795282964.542237,
-    "ast_hash": "4bd3824b73b52fabdd828c0810df7465",
+    "mtime": 1795287184.9897509,
+    "seen": 1795287361.9513729,
+    "ast_hash": "59c445505d39677030ac58b2b4b9b453",
     "semantic_hash": ""
   },
   "dump_billie_partitions.py": {
@@ -3396,9 +3378,9 @@
     "semantic_hash": ""
   },
   "download_models.sh": {
-    "mtime": 1795280723.7420247,
-    "seen": 1795282964.4943955,
-    "ast_hash": "853c025f73cfd0dbe98d7bf2eec98b25",
+    "mtime": 1795287184.999743,
+    "seen": 1795287361.7854743,
+    "ast_hash": "2e995fb71a8ec4b8c3db5548d3e9ef68",
     "semantic_hash": ""
   },
   "hf_query.sh": {
@@ -3438,9 +3420,9 @@
     "semantic_hash": ""
   },
   "start_reflex.sh": {
-    "mtime": 1795280729.981797,
-    "seen": 1795282964.52238,
-    "ast_hash": "2e3be6cf43dfbf1bcdfa58acda422e8d",
+    "mtime": 1795289613.594199,
+    "seen": 1795289927.7753024,
+    "ast_hash": "97d1906287b2abfd33a4ea91a3348178",
     "semantic_hash": ""
   },
   "test_urls.sh": {
@@ -3474,9 +3456,9 @@
     "semantic_hash": ""
   },
   "test_chat.sh": {
-    "mtime": 1795280729.985793,
-    "seen": 1795282964.5233788,
-    "ast_hash": "2c25ade46637dcd6be29d038b523b484",
+    "mtime": 1795289845.9219286,
+    "seen": 1795289927.7763016,
+    "ast_hash": "ea8f07ab4e1b89f16964c2eb5377c6ab",
     "semantic_hash": ""
   },
   "test_embed.sh": {
@@ -3516,9 +3498,9 @@
     "semantic_hash": ""
   },
   "start_brain_mi10t.sh": {
-    "mtime": 1795280729.9798636,
-    "seen": 1795282964.52238,
-    "ast_hash": "6a7533005feda08a86579e2f014dd2a0",
+    "mtime": 1795289598.8057537,
+    "seen": 1795289927.7743027,
+    "ast_hash": "40a80f47b78fa2918ac3690a5ba14830",
     "semantic_hash": ""
   },
   "ARTICLES/36_LATENCY_TAMING_DATASET_AND_TRAINING_SKETCH.md": {
@@ -3552,9 +3534,9 @@
     "semantic_hash": ""
   },
   "scripts/omni_fast_router_v4_9.py": {
-    "mtime": 1795280729.8475358,
-    "seen": 1795282964.516383,
-    "ast_hash": "662b8d7895e2f231b2d3222a96b28b18",
+    "mtime": 1795289561.9661007,
+    "seen": 1795289927.751322,
+    "ast_hash": "789aaa41a18776c45948bb1a78d2fc91",
     "semantic_hash": ""
   },
   "scripts/test_fast_router.py": {
@@ -3942,9 +3924,9 @@
     "semantic_hash": ""
   },
   "scripts/adb_screenshot.py": {
-    "mtime": 1795280729.0798378,
-    "seen": 1795282964.5153832,
-    "ast_hash": "90bcacdc3b14ac946a8704148abd93f6",
+    "mtime": 1795287185.1382499,
+    "seen": 1795287361.81646,
+    "ast_hash": "cc07e164d0e9f9e2fb03d366f87cbd75",
     "semantic_hash": ""
   },
   "ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md": {
@@ -4062,9 +4044,9 @@
     "semantic_hash": ""
   },
   "web_ui/index.html": {
-    "mtime": 1795280730.1806178,
-    "seen": 1795282964.5437503,
-    "ast_hash": "b895c9341bc44d44ab9ecebd67cee984",
+    "mtime": 1795288171.3419123,
+    "seen": 1795289927.8742442,
+    "ast_hash": "21d72336507b4dc546c1c1ff2e59ca2e",
     "semantic_hash": ""
   },
   "TriadOmni_App_Icon.png": {
@@ -4422,9 +4404,9 @@
     "semantic_hash": ""
   },
   "start_router.sh": {
-    "mtime": 1795280729.9837952,
-    "seen": 1795282964.5233788,
-    "ast_hash": "1bb38e8741bbc96e5ddd38ac4c7e69cc",
+    "mtime": 1795289861.5144825,
+    "seen": 1795289927.7753024,
+    "ast_hash": "035ed47634c839e521ae9513e0e12ab8",
     "semantic_hash": ""
   },
   "ARTICLES/46_PROJECT_ARGUS_ANATOMY_VS_TRIAD_OMNI_WIFI_SPLIT_FALLACY.md": {
@@ -4584,9 +4566,9 @@
     "semantic_hash": ""
   },
   "app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt": {
-    "mtime": 1795280723.0073903,
-    "seen": 1795282964.4923978,
-    "ast_hash": "29c0d24ee9bf1852e59645df2ba24146",
+    "mtime": 1795289758.367532,
+    "seen": 1795289927.6613762,
+    "ast_hash": "9edb82de3ee8e933624ba322f3e7fa98",
     "semantic_hash": ""
   },
   "scripts/clean_termux_pristine.sh": {
@@ -4680,9 +4662,9 @@
     "semantic_hash": ""
   },
   "scripts/start_brain_v5_2.sh": {
-    "mtime": 1795280729.9368057,
-    "seen": 1795282964.516383,
-    "ast_hash": "886539197fd8d0f44e39b685ffed0a83",
+    "mtime": 1795289584.9364507,
+    "seen": 1795289927.7653115,
+    "ast_hash": "ae73facac4363d8502c16cd57f791e70",
     "semantic_hash": ""
   },
   "scripts/test_llama_lora_run.py": {
@@ -4788,9 +4770,9 @@
     "semantic_hash": ""
   },
   "omni_env.sh": {
-    "mtime": 1795280725.6713848,
-    "seen": 1795282964.514385,
-    "ast_hash": "f266897af98c8996f72f49d654249ec2",
+    "mtime": 1795287185.0393164,
+    "seen": 1795287361.8074608,
+    "ast_hash": "43985a9b93a96bf97f16398534193129",
     "semantic_hash": ""
   },
   "screenshots/mi10t_cluster_all_online.png": {
@@ -4830,38 +4812,38 @@
     "semantic_hash": ""
   },
   "screenshots/github_push_completed_mi10t.png": {
-    "mtime": 1795280773.2222426,
-    "seen": 1795282964.6666873,
+    "mtime": 1795287185.0433087,
+    "seen": 1795287362.2144907,
     "ast_hash": "8804ef07808a646ad1ad3565e1362846",
     "semantic_hash": ""
   },
   "screenshots/investigation_final_xiaomi_active.png": {
-    "mtime": 1795279541.021351,
-    "seen": 1795282964.6666873,
+    "mtime": 1795287185.0483038,
+    "seen": 1795287362.2144907,
     "ast_hash": "fe33e1018077cf3bb1d4e0a73fc584f0",
     "semantic_hash": ""
   },
   "screenshots/investigation_melvin_app_launched.png": {
-    "mtime": 1795280985.780381,
-    "seen": 1795282964.6666873,
+    "mtime": 1795287185.055302,
+    "seen": 1795287362.2144907,
     "ast_hash": "85b3be459e70f9e6df000f7c1e218b43",
     "semantic_hash": ""
   },
   "screenshots/investigation_mi10t_screen.png": {
-    "mtime": 1795280966.6535687,
-    "seen": 1795282964.6666873,
+    "mtime": 1795287185.0583,
+    "seen": 1795287362.2144907,
     "ast_hash": "b39acaf225376e800c8d5fe7c79a4125",
     "semantic_hash": ""
   },
   "screenshots/investigation_verified_mi10t_screen.png": {
-    "mtime": 1795281724.8960464,
-    "seen": 1795282964.6666873,
+    "mtime": 1795287185.0662935,
+    "seen": 1795287362.2144907,
     "ast_hash": "9ae691e02d03413812d2e26d5f1717c2",
     "semantic_hash": ""
   },
   "screenshots/melvin_with_llama_running.png": {
-    "mtime": 1795279459.655648,
-    "seen": 1795282964.6765072,
+    "mtime": 1795287185.073289,
+    "seen": 1795287362.220486,
     "ast_hash": "f4ccb98b982e037133455c91c846f9f0",
     "semantic_hash": ""
   },
@@ -4878,32 +4860,32 @@
     "semantic_hash": ""
   },
   "screenshots/n10_cluster_cyberdeck_live.png": {
-    "mtime": 1795282862.6218078,
-    "seen": 1795282964.6770468,
+    "mtime": 1795287185.0922773,
+    "seen": 1795287362.232084,
     "ast_hash": "e4b0f919c1b9196be14fca966c26a4ac",
     "semantic_hash": ""
   },
   "screenshots/n10_initial_state.png": {
-    "mtime": 1795282037.2813313,
-    "seen": 1795282964.6770468,
+    "mtime": 1795287185.1012752,
+    "seen": 1795287362.232084,
     "ast_hash": "e89caf07bea893b911906c5a30aa476a",
     "semantic_hash": ""
   },
   "screenshots/n10_melvin_live.png": {
-    "mtime": 1795282803.056511,
-    "seen": 1795282964.6770468,
+    "mtime": 1795287185.1072667,
+    "seen": 1795287362.232084,
     "ast_hash": "c9eb08cd642a02cb331ace63d087a7c4",
     "semantic_hash": ""
   },
   "screenshots/n10_melvin_screen_live.png": {
-    "mtime": 1795282833.6054993,
-    "seen": 1795282964.6770468,
+    "mtime": 1795287185.1122687,
+    "seen": 1795287362.232084,
     "ast_hash": "5f19fcd4b43c43936f52a18962a3ea57",
     "semantic_hash": ""
   },
   "screenshots/n10_termux_launched.png": {
-    "mtime": 1795282495.348425,
-    "seen": 1795282964.6770468,
+    "mtime": 1795287185.1152666,
+    "seen": 1795287362.232084,
     "ast_hash": "33b87f7ae637fb5f5c0816387584aab5",
     "semantic_hash": ""
   },
@@ -4962,20 +4944,20 @@
     "semantic_hash": ""
   },
   "screenshots/peer_review_check_xiaomi.png": {
-    "mtime": 1795279633.8336914,
-    "seen": 1795282964.6786013,
+    "mtime": 1795287185.1282587,
+    "seen": 1795287362.3065898,
     "ast_hash": "2979ec7011e79a6013b132b7f234aa7a",
     "semantic_hash": ""
   },
   "screenshots/peer_review_melvin_live.png": {
-    "mtime": 1795280256.6960638,
-    "seen": 1795282964.6786013,
+    "mtime": 1795287185.1302574,
+    "seen": 1795287362.3065898,
     "ast_hash": "1580c12f20fdec3967d9501800f46716",
     "semantic_hash": ""
   },
   "screenshots/peer_review_screen_current.png": {
-    "mtime": 1795280240.4044273,
-    "seen": 1795282964.6786013,
+    "mtime": 1795287185.1322563,
+    "seen": 1795287362.3065898,
     "ast_hash": "ed1d9a2f5719adea0bee1246cb7dfc80",
     "semantic_hash": ""
   },
@@ -5067,6 +5049,138 @@
     "mtime": 1795280729.078784,
     "seen": 1795282964.679136,
     "ast_hash": "37f796da3a332368616d88ca9355a752",
+    "semantic_hash": ""
+  },
+  "archive/legacy_gateways/async_omni_gateway_v4_8.py": {
+    "mtime": 1795287184.9927485,
+    "seen": 1795287361.771488,
+    "ast_hash": "515824ee8171b9f7860e1e2d91f0d3c7",
+    "semantic_hash": ""
+  },
+  "archive/legacy_gateways/omni_gateway_v4_0.py": {
+    "mtime": 1795287184.9947457,
+    "seen": 1795287361.771488,
+    "ast_hash": "5e811bd64d8e1dd803ab6231b99adf47",
+    "semantic_hash": ""
+  },
+  "archive/legacy_gateways/omni_gateway_v4_6.py": {
+    "mtime": 1795287184.995747,
+    "seen": 1795287361.771488,
+    "ast_hash": "afdb6f3ec952983ca206bb3a1ed0d18e",
+    "semantic_hash": ""
+  },
+  "archive/legacy_gateways/omni_gateway_v4_7.py": {
+    "mtime": 1795287184.9967446,
+    "seen": 1795287361.771488,
+    "ast_hash": "b5abb4bc766768f1f778574f2cdf10d8",
+    "semantic_hash": ""
+  },
+  "battery_guard_24x7.sh": {
+    "mtime": 1795287184.997744,
+    "seen": 1795287361.771488,
+    "ast_hash": "f9c4f6e526fdcc9f6eeadb09a05cfe86",
+    "semantic_hash": ""
+  },
+  "scripts/battery_guard_24x7.sh": {
+    "mtime": 1795287185.139248,
+    "seen": 1795287361.818454,
+    "ast_hash": "4175a8dbd55ab221ada86db546e9a574",
+    "semantic_hash": ""
+  },
+  "start_deck.sh": {
+    "mtime": 1795287185.142251,
+    "seen": 1795287361.8694227,
+    "ast_hash": "8843bb3dc07cd874c5eb92bfec4ec794",
+    "semantic_hash": ""
+  },
+  "cluster_docs/README_GATEWAYS.md": {
+    "mtime": 1795287184.9987452,
+    "seen": 1795287361.9613695,
+    "ast_hash": "83e980387e7007130bd060eacd6c4a1f",
+    "semantic_hash": ""
+  },
+  "screenshots/mi10t_browser_screen.png": {
+    "mtime": 1795287175.1478417,
+    "seen": 1795287362.2234852,
+    "ast_hash": "98f5a950abf9e61594a0921e41a279dd",
+    "semantic_hash": ""
+  },
+  "screenshots/mi10t_cartridges_tab_screen.png": {
+    "mtime": 1795287246.5866656,
+    "seen": 1795287362.226076,
+    "ast_hash": "04383b0334419bea14e85b9da7f59364",
+    "semantic_hash": ""
+  },
+  "screenshots/mi10t_cartridges_verified.png": {
+    "mtime": 1795287914.4313385,
+    "seen": 1795287937.0240068,
+    "ast_hash": "79810536ed163c08020761d9fe2a84e4",
+    "semantic_hash": ""
+  },
+  "screenshots/mi10t_current_screen.png": {
+    "mtime": 1795287185.0812821,
+    "seen": 1795287362.226076,
+    "ast_hash": "1e9456fdbc3eae41ab9993bea71aa2ea",
+    "semantic_hash": ""
+  },
+  "screenshots/mi10t_node1_status.png": {
+    "mtime": 1795287185.0872815,
+    "seen": 1795287362.227079,
+    "ast_hash": "3e420f6df57523897e8b25e34d237d1e",
+    "semantic_hash": ""
+  },
+  "screenshots/mi10t_port8000_opened.png": {
+    "mtime": 1795287194.683927,
+    "seen": 1795287362.227079,
+    "ast_hash": "17d759e82f88a8fa5494d5b6695c2bad",
+    "semantic_hash": ""
+  },
+  "screenshots/mi10t_port8080_cartridges_tab.png": {
+    "mtime": 1795287281.7779117,
+    "seen": 1795287362.227079,
+    "ast_hash": "0e4485e78eecd50bef219100ffd9f5a4",
+    "semantic_hash": ""
+  },
+  "screenshots/mi10t_port8080_opened.png": {
+    "mtime": 1795287267.0262272,
+    "seen": 1795287362.227079,
+    "ast_hash": "48b0097192cb7f9882da0f8fef603818",
+    "semantic_hash": ""
+  },
+  "screenshots/n10_current_verification.png": {
+    "mtime": 1795287185.0972753,
+    "seen": 1795287362.232084,
+    "ast_hash": "1307c3c72fad79ed43229da69ec8d780",
+    "semantic_hash": ""
+  },
+  "screenshots/n10_final_verified.png": {
+    "mtime": 1795287185.0992727,
+    "seen": 1795287362.232084,
+    "ast_hash": "11c279d0a183ca6b31266f11529b1d01",
+    "semantic_hash": ""
+  },
+  "screenshots/oneplus_gguf_investigation.png": {
+    "mtime": 1795287185.1212604,
+    "seen": 1795287362.3065898,
+    "ast_hash": "a3b0c04a90d7f6ec36114e18e56748bf",
+    "semantic_hash": ""
+  },
+  "screenshots/oneplus_investigation_models.png": {
+    "mtime": 1795287185.1252558,
+    "seen": 1795287362.3065898,
+    "ast_hash": "267b29f7e118777909d71a6d33361d01",
+    "semantic_hash": ""
+  },
+  "screenshots/v5_1_architecture_upgrade_mi10t.png": {
+    "mtime": 1795287185.136251,
+    "seen": 1795287362.3425655,
+    "ast_hash": "baf12a88be749b7e25b31872ccfa3292",
+    "semantic_hash": ""
+  },
+  "screenshots/v5_1_deepseek_harness_debugged.png": {
+    "mtime": 1795289873.5630157,
+    "seen": 1795289928.2571847,
+    "ast_hash": "35f31d12ca57217ee4e60b1b60a63a3c",
     "semantic_hash": ""
   }
 }

@@ -10,7 +10,8 @@ pkill -f llama-server 2>/dev/null; sleep 1
 
 # :8081 - LFM2.5-8B-A1B (Reflex, 2 cores Kryo 560 Gold Cortex-A77: cores 6,7)
 if [ -f "$HOME/models/lfm25-8b-a1b-iq3xxs.gguf" ]; then
-  nohup taskset -c 6,7 "$LLAMA" -m "$HOME/models/lfm25-8b-a1b-iq3xxs.gguf"     -c 4096 -t 2 -np 1 --host 0.0.0.0 --port 8081 > "$HOME/reflex.log" 2>&1 &
+  nohup taskset -c 6,7 "$LLAMA" -m "$HOME/models/lfm25-8b-a1b-iq3xxs.gguf" \
+    -c 8192 -ctk q8_0 -ctv q8_0 -t 2 -np 1 --host 0.0.0.0 --port 8081 > "$HOME/reflex.log" 2>&1 &
   echo "[OK] LFM2.5-8B reflex daemon launched on :8081"
 fi
 
