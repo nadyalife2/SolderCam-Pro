@@ -56,9 +56,9 @@ def detect_local_node_id() -> str:
     termux_home = Path("/data/data/com.termux/files/home")
     if (termux_home / "models" / "brain.gguf").exists() or (BASE_DIR / "models" / "brain.gguf").exists():
         return "node1"
-    if (termux_home / "models" / "lfm25-8b-a1b-iq3xxs.gguf").exists() or (termux_home / "models" / "bge-m3.gguf").exists():
+    if (termux_home / "models" / "qwen2.5-3b-instruct-q4_k_m.gguf").exists() or (termux_home / "models" / "lfm25-8b-a1b-iq3xxs.gguf").exists() or (termux_home / "models" / "bge-m3.gguf").exists():
         return "node2"
-    if (BASE_DIR / "models" / "lfm25-8b-a1b-iq3xxs.gguf").exists() or (BASE_DIR / "models" / "bge-m3.gguf").exists():
+    if (BASE_DIR / "models" / "qwen2.5-3b-instruct-q4_k_m.gguf").exists() or (BASE_DIR / "models" / "lfm25-8b-a1b-iq3xxs.gguf").exists() or (BASE_DIR / "models" / "bge-m3.gguf").exists():
         return "node2"
 
     # 2. Проверка Android getprop
@@ -97,27 +97,44 @@ def get_target_brain_url() -> str:
     return NODE1_URL  # http://192.168.31.161:8080
 
 DB_CANDIDATES = [
+    str(BASE_DIR / "datasets" / "omni_knowledge.db"),
+    str(BASE_DIR / "omni_knowledge.db"),
     "datasets/omni_knowledge.db",
     os.path.expanduser("~/omni_knowledge.db"),
     "/data/data/com.termux/files/home/omni_knowledge.db",
+    "/data/data/com.termux/files/home/datasets/omni_knowledge.db",
+    "/sdcard/omni_knowledge.db",
 ]
-KB_PATH = next((p for p in DB_CANDIDATES if os.path.exists(p)), None)
+def get_kb_path() -> Optional[str]:
+    for p in DB_CANDIDATES:
+        if os.path.exists(p):
+            return p
+    return None
+KB_PATH = get_kb_path()
 
 SKILL_DB_CANDIDATES = [
+    str(BASE_DIR / "skill_registry.db"),
     "skill_registry.db",
     os.path.expanduser("~/skill_registry.db"),
     "/data/data/com.termux/files/home/skill_registry.db",
+    "/sdcard/skill_registry.db",
 ]
-SKILL_DB_PATH = next((p for p in SKILL_DB_CANDIDATES if os.path.exists(p)), None)
+def get_skill_db_path() -> Optional[str]:
+    for p in SKILL_DB_CANDIDATES:
+        if os.path.exists(p):
+            return p
+    return None
+SKILL_DB_PATH = get_skill_db_path()
 
 # --- 1. RAG и Динамический Роутер Скилов (< 3 мс) ---
 
 def search_local_rag(query: str, limit: int = 1) -> Tuple[str, float]:
-    if not KB_PATH:
+    kb = get_kb_path() or KB_PATH
+    if not kb:
         return "", 0.0
     t0 = time.perf_counter()
     try:
-        conn = sqlite3.connect(KB_PATH)
+        conn = sqlite3.connect(kb)
         c = conn.cursor()
         clean = re.sub(r'[^\w\s]', ' ', query)
         words = [w for w in clean.split() if len(w) > 3]
@@ -142,11 +159,12 @@ def search_local_rag(query: str, limit: int = 1) -> Tuple[str, float]:
         return "", 0.0
 
 def select_dynamic_skill(query: str, threshold: float = -1.5) -> Tuple[str, str, float]:
-    if not SKILL_DB_PATH:
+    s_db = get_skill_db_path() or SKILL_DB_PATH
+    if not s_db:
         return "", "", 0.0
     t0 = time.perf_counter()
     try:
-        conn = sqlite3.connect(SKILL_DB_PATH)
+        conn = sqlite3.connect(s_db)
         c = conn.cursor()
         clean = re.sub(r'[^\w\s]', ' ', query)
         words = [w for w in clean.split() if len(w) > 2]
@@ -233,7 +251,7 @@ def handle_tier0(label: str) -> str:
             "🛠️ **Я — бортовой координатор гетерогенного кластера Triad-Omni v5.1!**\n\n"
             "**Что я умею и чем управляю:**\n"
             "1. 🧠 **Нейромозг (Xiaomi Mi 10T 5G):** Выполняю рассуждения Qwen 9B, запуск алгоритмов, генерацию кода и анализ схемотехники на Snapdragon 865 (:8080).\n"
-            "2. ⚡ **Рефлексы и Семантика (OnePlus Nord N10 5G):** Мгновенно ищу факты в оффлайн-базе SQLite FTS5 (за ~4 мс) и держу диалог на LFM2.5 (:8081).\n"
+            "2. ⚡ **Рефлексы и Семантика (OnePlus Nord N10 5G):** Мгновенно ищу факты в оффлайн-базе SQLite FTS5 (за ~4 мс) и держу диалог на Qwen2.5-3B (:8081).\n"
             "3. 🛰️ **Аппаратный Шлюз (Redmi Note 4):** Фильтрую быстрые команды за 0.019 мс и держу телеметрию питания (:8000).\n"
             "4. 📦 **Vault LoRA-картриджей:** На лету переключаю адаптеры (авторский голос, fast-tools, Soldercam, REA).\n"
             "5. 🌡️ **Thermal Guard:** Контролирую нагрев кремния всех плат и даю паузы отдыха при перегреве.\n\n"
@@ -257,7 +275,7 @@ def handle_tier0(label: str) -> str:
     elif label == "mi10t_info":
         return "🧠 NODE-1 (Xiaomi Mi 10T 5G): Snapdragon 865, 8GB LPDDR5, нейромозг Qwen 3.5 9B на порту :8080. Аппаратный байпас батареи active."
     elif label == "nord_info":
-        return "⚡ NODE-2 (OnePlus Nord N10 5G): Snapdragon 690, 6GB LPDDR4X, семантический поиск SQLite FTS5 + BGE-M3 (:8082) и быстрый диалог LFM2.5 (:8081)."
+        return "⚡ NODE-2 (OnePlus Nord N10 5G): Snapdragon 690, 6GB LPDDR4X, семантический поиск SQLite FTS5 + BGE-M3 (:8082) и быстрый диалог Qwen2.5-3B (:8081)."
     elif label == "ping":
         return "⚡ Понг! Задержка Fast-Path шлюза < 0.05 мс. Все каналы кластера активны."
     return "OK"
@@ -918,7 +936,7 @@ HTML_HUD = """<!DOCTYPE html>
     <div class="node-card" id="cardNode2">
       <div class="node-info">
         <h3>OnePlus Nord N10 5G (Node-2 Reflex)</h3>
-        <p>LFM2.5-8B @ :8081 | BGE-M3 @ :8082 | SD690</p>
+        <p>Qwen2.5-3B @ :8081 | BGE-M3 @ :8082 | SD690</p>
       </div>
       <div class="status-pill pill-red" id="pillNode2">🔴 OFFLINE</div>
     </div>
@@ -1141,26 +1159,48 @@ def get_device_identity(user_agent: str, client_ip: str) -> Dict[str, Any]:
             "role": "Рефлексы & Семантика (BGE-M3 @ :8082, LFM2.5 @ :8081)",
             "battery": "SMB1355 / NTC Guard"
         }
-    elif "mido" in ua or "redmi note 4" in ua:
+    elif "mido" in ua or "redmi note 4" in ua or "nikel" in ua:
         return {
             "node": "Node-3",
             "device": "Xiaomi Redmi Note 4",
-            "code": "mido",
-            "soc": "Snapdragon 625",
+            "code": "nikel/mido",
+            "soc": "MediaTek Helio X20 MT6797M / SD625",
             "ram": "3/4 GB LPDDR3",
             "role": "Шлюз Телеметрии и Master HUD (:8000)",
             "battery": "Штатная АКБ Li-poly (мониторинг)"
         }
     else:
-        return {
-            "node": "Node-1",
-            "device": "Xiaomi Mi 10T 5G",
-            "code": "apollo",
-            "soc": "Snapdragon 865 (8GB LPDDR5)",
-            "ram": "8 GB",
-            "role": "Главный Мозг & Центр Управления",
-            "battery": "Байпас питания 24x7 (0 мА)"
-        }
+        loc = detect_local_node_id()
+        if loc == "node2":
+            return {
+                "node": "Node-2",
+                "device": "OnePlus Nord N10 5G",
+                "code": "billie",
+                "soc": "Snapdragon 690",
+                "ram": "6 GB LPDDR4X",
+                "role": "Рефлексы & Семантика (BGE-M3 @ :8082, LFM2.5 @ :8081)",
+                "battery": "SMB1355 / NTC Guard"
+            }
+        elif loc == "node3":
+            return {
+                "node": "Node-3",
+                "device": "Xiaomi Redmi Note 4",
+                "code": "nikel/mido",
+                "soc": "MediaTek Helio X20 MT6797M",
+                "ram": "3 GB LPDDR3",
+                "role": "Шлюз Телеметрии и Master HUD (:8000)",
+                "battery": "Штатная АКБ Li-poly (мониторинг)"
+            }
+        else:
+            return {
+                "node": "Node-1",
+                "device": "Xiaomi Mi 10T 5G",
+                "code": "apollo",
+                "soc": "Snapdragon 865 (8GB LPDDR5)",
+                "ram": "8 GB",
+                "role": "Главный Мозг & Центр Управления",
+                "battery": "Байпас питания 24x7 (0 мА)"
+            }
 
 ADB_CANDIDATES = [
     r"C:\Users\MSI\AppData\Local\Android\Sdk\platform-tools\adb.exe",
@@ -1791,18 +1831,20 @@ def handle_start_termux_node(payload: Dict[str, Any]) -> Dict[str, Any]:
             if not http_done and not adb_done:
                 actions.append(f"Узел {n.upper()} оффлайн по ADB и HTTP. Для старта откройте Termux на смартфоне.")
 
+        is_success = adb_done or http_done or (local_id == n and local_id != "pc")
         results[n] = {
             "node": n,
-            "status": "started",
+            "status": "started" if is_success else "failed",
             "actions": actions,
-            "summary": f"Команда запуска для {n.upper()} отправлена!"
+            "summary": f"Команда запуска для {n.upper()} успешно отправлена!" if is_success else f"Узел {n.upper()} недоступен по ADB и HTTP."
         }
         
+    all_failed = all(r.get("status") == "failed" for r in results.values()) if results else False
     return {
-        "ok": True,
+        "ok": not all_failed,
         "target_node": target_node,
         "results": results,
-        "message": f"Службы Termux для [{target_node.upper()}] запущены!"
+        "message": f"Службы Termux для [{target_node.upper()}]: узел(лы) оффлайн!" if all_failed else f"Службы Termux для [{target_node.upper()}] успешно запущены!"
     }
 
 
@@ -2167,16 +2209,52 @@ def execute_cluster_tool(name: str, arguments: Dict[str, Any] = None) -> Dict[st
 
     elif name_clean == "termux_bash":
         node = str(arguments.get("node", "node1"))
-        cmd = str(arguments.get("command", "uptime"))
+        cmd = str(arguments.get("command", "uptime")).strip()
         as_root = bool(arguments.get("as_root", True))
-        stdout_txt = f"[{'root' if as_root else 'u0_a124'}@{node}]$ {cmd}\nOK (executed deterministically)"
+        
+        real_stdout = ""
+        real_stderr = ""
+        exit_code = 0
+        adb = find_adb_executable()
+        adb_status = get_adb_devices_status() if adb else {"devices": []}
+        
+        dev_serial = None
+        if node == "node1":
+            dev_serial = adb_status.get("mi10t_serial")
+        elif node == "node2":
+            dev_serial = adb_status.get("nord_serial")
+        elif node == "node3":
+            dev_serial = adb_status.get("rn4_serial")
+            
+        try:
+            if dev_serial and adb:
+                full_cmd = f"su -c '{cmd}'" if as_root else cmd
+                p = subprocess.run([adb, "-s", dev_serial, "shell", full_cmd], timeout=15, capture_output=True, text=True)
+                exit_code = p.returncode
+                real_stdout = p.stdout.strip()
+                real_stderr = p.stderr.strip()
+            elif os.name != "nt":
+                shell_cmd = f"su -c '{cmd}'" if as_root else cmd
+                p = subprocess.run(shell_cmd, shell=True, timeout=15, capture_output=True, text=True)
+                exit_code = p.returncode
+                real_stdout = p.stdout.strip()
+                real_stderr = p.stderr.strip()
+            else:
+                p = subprocess.run(["powershell", "-NoProfile", "-Command", cmd], timeout=15, capture_output=True, text=True)
+                exit_code = p.returncode
+                real_stdout = p.stdout.strip()
+                real_stderr = p.stderr.strip()
+        except Exception as e:
+            exit_code = 1
+            real_stderr = f"Execution error on {node}: {e}"
+
         res = {
-            "exit_code": 0,
+            "exit_code": exit_code,
             "node": node,
             "command": cmd,
             "as_root": as_root,
-            "stdout": stdout_txt,
-            "stderr": ""
+            "stdout": real_stdout or f"[{'root' if as_root else 'user'}@{node}]$ {cmd}\n(no output)",
+            "stderr": real_stderr
         }
 
     elif name_clean == "camera_telemetry":
@@ -2661,7 +2739,9 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        if self.path in ("/", "/index.html", "/cartridges", "/chat", "/cluster", "/vault", "/deck", "/training", "/telemetry"):
+        parsed_url = urllib.parse.urlparse(self.path)
+        clean_path = parsed_url.path
+        if clean_path in ("/", "/index.html", "/cartridges", "/chat", "/cluster", "/vault", "/deck", "/training", "/telemetry"):
             web_ui_file = BASE_DIR / "web_ui" / "index.html"
             termux_web_ui = Path("/data/data/com.termux/files/home/web_ui/index.html")
             if web_ui_file.exists():
@@ -2678,13 +2758,13 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
             self.send_header("Expires", "0")
             self.end_headers()
             self.wfile.write(body)
-        elif self.path == "/health" or self.path == "/health/":
+        elif clean_path == "/health" or clean_path == "/health/":
             self.send_json({"status": "ok", "app": "TriadOmni", "cluster": "online"})
-        elif self.path.startswith("/api/cluster/status"):
+        elif clean_path.startswith("/api/cluster/status"):
             is_local = ("local=1" in self.path) or (self.headers.get("X-Cluster-Local") == "1")
             status = get_cluster_status_sync(local_only=is_local)
             self.send_json(status)
-        elif self.path == "/api/training/status":
+        elif clean_path == "/api/training/status":
             try:
                 import sys
                 sys.path.insert(0, str(BASE_DIR / "scripts"))
@@ -2692,34 +2772,34 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
                 self.send_json(load_training_state())
             except Exception as e:
                 self.send_json({"needs_training": False, "status_text": f"Статус: {e}", "last_trained_human": "н/д"})
-        elif self.path == "/api/device/identify":
+        elif clean_path == "/api/device/identify":
             ua = self.headers.get("User-Agent", "")
             self.send_json(get_device_identity(ua, self.client_address[0]))
-        elif self.path == "/api/device/adb_status":
+        elif clean_path == "/api/device/adb_status":
             self.send_json(get_adb_devices_status())
-        elif self.path.startswith("/api/system/drivers_check"):
+        elif clean_path.startswith("/api/system/drivers_check"):
             self.send_json(handle_check_drivers({}))
-        elif self.path.startswith("/api/cluster/autostart") or self.path.startswith("/api/cluster/wake"):
+        elif clean_path.startswith("/api/cluster/autostart") or clean_path.startswith("/api/cluster/wake"):
             self.send_json(handle_autostart_cluster({}))
-        elif self.path.startswith("/api/node/start_termux") or self.path.startswith("/api/node/start") or self.path.startswith("/api/system/start"):
+        elif clean_path.startswith("/api/node/start_termux") or clean_path.startswith("/api/node/start") or clean_path.startswith("/api/system/start"):
             parsed = urllib.parse.urlparse(self.path)
             query_params = urllib.parse.parse_qs(parsed.query)
             node_param = query_params.get("node", ["all"])[0]
             self.send_json(handle_start_termux_node({"node": node_param}))
-        elif self.path.startswith("/api/node/restart_termux") or self.path.startswith("/api/system/restart"):
+        elif clean_path.startswith("/api/node/restart_termux") or clean_path.startswith("/api/system/restart"):
             parsed = urllib.parse.urlparse(self.path)
             query_params = urllib.parse.parse_qs(parsed.query)
             node_param = query_params.get("node", ["all"])[0]
             self.send_json(handle_restart_termux_node({"node": node_param}))
-        elif self.path == "/api/cartridge/list_local":
+        elif clean_path == "/api/cartridge/list_local":
             self.send_json(get_local_cartridges_list())
-        elif self.path.startswith("/api/node/stop_termux") or self.path.startswith("/api/node/shutdown"):
+        elif clean_path.startswith("/api/node/stop_termux") or clean_path.startswith("/api/node/shutdown"):
             parsed = urllib.parse.urlparse(self.path)
             query_params = urllib.parse.parse_qs(parsed.query)
             node_param = query_params.get("node", ["all"])[0]
             mode_param = query_params.get("mode", ["clean_stop"])[0]
             self.send_json(handle_stop_termux_node({"node": node_param, "mode": mode_param}))
-        elif self.path.startswith("/api/backup/download"):
+        elif clean_path.startswith("/api/backup/download"):
             parsed = urllib.parse.urlparse(self.path)
             query_params = urllib.parse.parse_qs(parsed.query)
             fname = query_params.get("file", [""])[0]
@@ -2819,6 +2899,20 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
                     "paper": "ARMv8 assembly micro-kernel for quantized matrix multiplication with taskset core pinning and dynamic lookup cache on mobile Linux."
                 }
             ])
+        elif self.path == "/props" or self.path == "/slots":
+            # Проксирование служебных эндпоинтов llama-server с Node-1
+            target_brain = get_target_brain_url()
+            try:
+                req = urllib.request.Request(f"{target_brain}{self.path}", headers={"User-Agent": "TriadRouter"})
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    data = resp.read()
+                    self.send_response(resp.status)
+                    self.send_header("Content-Type", "application/json; charset=utf-8")
+                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self.end_headers()
+                    self.wfile.write(data)
+            except Exception as e:
+                self.send_json({"error": f"Node-1 ({target_brain}) offline: {e}"}, status=502)
         else:
             self.send_json({"error": "Not Found"}, status=404)
 
@@ -2828,7 +2922,11 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
         Принимает бинарный поток .omni.zip архива из веб-интерфейса,
         сохраняет в папку cartridges/ проекта, распаковывает и валидирует.
         """
+        MAX_UPLOAD_SIZE = 150 * 1024 * 1024  # 150 МБ
         length = int(self.headers.get("Content-Length", 0))
+        if length > MAX_UPLOAD_SIZE:
+            self.send_json({"ok": False, "error": f"Превышен лимит размера: {length} > {MAX_UPLOAD_SIZE} байт (макс. 150 МБ)"}, status=413)
+            return
         filename = self.headers.get("X-Filename", "")
         if not filename:
             parsed = urllib.parse.urlparse(self.path)
@@ -2863,6 +2961,11 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
         has_adapter = False
         try:
             with zipfile.ZipFile(dest_path, "r") as z:
+                resolved_unpack = unpack_dir.resolve()
+                for member in z.infolist():
+                    target_member_path = (unpack_dir / member.filename).resolve()
+                    if not str(target_member_path).startswith(str(resolved_unpack)):
+                        raise ValueError(f"Zip Slip attack detected in member: {member.filename}")
                 z.extractall(unpack_dir)
             if (unpack_dir / "adapter.gguf").exists():
                 has_adapter = True
@@ -2992,6 +3095,21 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
             self.send_json({"ok": False, "error": "URL не указан"}, status=400)
             return
 
+        # SSRF Protection: фильтрация приватных адресов
+        import ipaddress
+        parsed_url = urllib.parse.urlparse(url)
+        host = (parsed_url.hostname or "").lower()
+        if not host or host in ["localhost", "127.0.0.1", "0.0.0.0"] or host.endswith(".local") or host.endswith(".internal"):
+            self.send_json({"ok": False, "error": f"SSRF Protection: доступ к локальному хосту {host} запрещен"}, status=403)
+            return
+        try:
+            ip = ipaddress.ip_address(host)
+            if ip.is_private or ip.is_loopback or ip.is_link_local:
+                self.send_json({"ok": False, "error": f"SSRF Protection: доступ к приватной сети {ip} запрещен"}, status=403)
+                return
+        except ValueError:
+            pass
+
         import re, urllib.request, http.cookiejar, zipfile, shutil
         gdrive_match = re.search(r'(?:drive\.google\.com/(?:file/d/|open\?id=)|docs\.google\.com/uc\?id=)([a-zA-Z0-9_-]{20,})', url)
         if gdrive_match:
@@ -3071,46 +3189,35 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
         is_chat = (self.path == "/v1/chat/completions") or ("messages" in payload and not payload.get("raw"))
         user_prompt_text = ""
 
-        # 1. Parse OpenAI messages format
-        if messages and isinstance(messages, list):
-            sys_msg = "Ты ИИ-ассистент кластера Triad-Omni. Отвечай кратко, технически точно и по существу."
-            dialog_turns = []
-            for m in messages:
-                if isinstance(m, dict):
-                    role = m.get("role", "")
-                    content = m.get("content", "")
-                    if role == "system" and content:
-                        sys_msg = str(content)
-                    elif role in ("user", "assistant") and content:
-                        dialog_turns.append(f"<|im_start|>{role}\n{content}<|im_end|>")
-                        if role == "user":
-                            user_prompt_text = str(content)
+        # 1. Parse user prompt text and handle chat template kwargs
+        if is_chat:
+            if "chat_template_kwargs" not in payload:
+                payload["chat_template_kwargs"] = {"enable_thinking": False}
+            elif isinstance(payload.get("chat_template_kwargs"), dict) and "enable_thinking" not in payload["chat_template_kwargs"]:
+                payload["chat_template_kwargs"]["enable_thinking"] = False
 
-            chatml_turns = "\n".join(dialog_turns)
-            payload["prompt"] = f"<|im_start|>system\n{sys_msg}<|im_end|>\n{chatml_turns}\n<|im_start|>assistant\n<think>\n</think>\n"
-            payload["stop"] = ["<|im_end|>", "<|endoftext|>", "</s>"]
-
-        elif isinstance(prompt, list):
-            user_prompt_text = "\n".join(str(p) for p in prompt)
-            payload["prompt"] = f"<|im_start|>system\nТы ИИ-ассистент кластера Triad-Omni. Отвечай кратко, технически точно и по существу.<|im_end|>\n<|im_start|>user\n{user_prompt_text}<|im_end|>\n<|im_start|>assistant\n<think>\n</think>\n"
-            payload["stop"] = ["<|im_end|>", "<|endoftext|>", "</s>"]
-
-        elif isinstance(prompt, str) and prompt.strip():
-            user_prompt_text = prompt.strip()
-            if "<think>" not in user_prompt_text and "<|im_start|>" not in user_prompt_text:
-                payload["prompt"] = f"<|im_start|>system\nТы ИИ-ассистент кластера Triad-Omni. Отвечай кратко, технически точно и по существу.<|im_end|>\n<|im_start|>user\n{user_prompt_text}<|im_end|>\n<|im_start|>assistant\n<think>\n</think>\n"
-                payload["stop"] = ["<|im_end|>", "<|endoftext|>", "</s>"]
+            if messages and isinstance(messages, list):
+                for m in reversed(messages):
+                    if isinstance(m, dict) and m.get("role") == "user":
+                        user_prompt_text = str(m.get("content", ""))
+                        break
+            elif isinstance(prompt, str):
+                user_prompt_text = prompt
+            elif isinstance(prompt, list):
+                user_prompt_text = "\n".join(str(p) for p in prompt)
         else:
-            user_prompt_text = str(prompt or "")
+            if isinstance(prompt, list):
+                user_prompt_text = "\n".join(str(p) for p in prompt)
+                payload["prompt"] = user_prompt_text
+            elif isinstance(prompt, str):
+                user_prompt_text = prompt
 
         prompt_clean = user_prompt_text.strip()
-        # Strip <think>...</think> block if present
         if prompt_clean.startswith("<think>"):
             parts = prompt_clean.split("</think>", 1)
             if len(parts) > 1:
                 prompt_clean = parts[1].strip()
 
-        # Clean trailing punctuation for robust matching
         clean_for_match = re.sub(r"[!?.,]+$", "", prompt_clean).strip()
         word_count = len(clean_for_match.split())
 
@@ -3120,24 +3227,50 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
                 if pat.search(clean_for_match):
                     ans = handle_tier0(label)
                     if is_chat:
-                        self.send_json({
-                            "id": f"chatcmpl-tier0-{int(time.time())}",
-                            "object": "chat.completion",
-                            "created": int(time.time()),
-                            "model": "TriadOmni-Tier0-Regex",
-                            "choices": [{
-                                "index": 0,
-                                "message": {
-                                    "role": "assistant",
-                                    "content": ans
-                                },
-                                "finish_reason": "stop"
-                            }],
-                            "content": ans,
-                            "stop": True,
-                            "tier": "TIER_0_FASTPATH",
-                            "timings": {"predicted_ms": 0.019}
-                        })
+                        if payload.get("stream"):
+                            self.send_response(200)
+                            self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+                            self.send_header("Cache-Control", "no-cache")
+                            self.send_header("Connection", "close")
+                            self.send_header("Access-Control-Allow-Origin", "*")
+                            self.end_headers()
+                            cid = f"chatcmpl-tier0-{int(time.time())}"
+                            chunk1 = {
+                                "id": cid,
+                                "object": "chat.completion.chunk",
+                                "created": int(time.time()),
+                                "model": "TriadOmni-Tier0-Regex",
+                                "choices": [{"index": 0, "delta": {"role": "assistant", "content": ans}, "finish_reason": None}]
+                            }
+                            self.wfile.write(f"data: {json.dumps(chunk1, ensure_ascii=False)}\n\n".encode("utf-8"))
+                            chunk2 = {
+                                "id": cid,
+                                "object": "chat.completion.chunk",
+                                "created": int(time.time()),
+                                "model": "TriadOmni-Tier0-Regex",
+                                "choices": [{"index": 0, "delta": {}, "finish_reason": "stop"}]
+                            }
+                            self.wfile.write(f"data: {json.dumps(chunk2, ensure_ascii=False)}\n\ndata: [DONE]\n\n".encode("utf-8"))
+                            self.wfile.flush()
+                            self.close_connection = True
+                            return
+                        else:
+                            self.send_json({
+                                "id": f"chatcmpl-tier0-{int(time.time())}",
+                                "object": "chat.completion",
+                                "created": int(time.time()),
+                                "model": "TriadOmni-Tier0-Regex",
+                                "choices": [{
+                                    "index": 0,
+                                    "message": {"role": "assistant", "content": ans},
+                                    "finish_reason": "stop"
+                                }],
+                                "content": ans,
+                                "stop": True,
+                                "tier": "TIER_0_FASTPATH",
+                                "timings": {"predicted_ms": 0.019}
+                            })
+                            return
                     else:
                         self.send_json({
                             "content": ans,
@@ -3146,7 +3279,7 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
                             "tier": "TIER_0_FASTPATH",
                             "timings": {"predicted_ms": 0.019}
                         })
-                    return
+                        return
 
         # Ensure comprehensive stop tokens
         stops = payload.get("stop", [])
@@ -3158,43 +3291,58 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
         # Determine target: local loopback if running on Node-1, else remote NODE1_URL
         target_brain = get_target_brain_url()
 
-        # Forward to target_brain/completion
+        # Forward to target_brain
         try:
-            req_data = json.dumps(payload).encode("utf-8")
-            req = urllib.request.Request(f"{target_brain}/completion", data=req_data, headers={"Content-Type": "application/json"})
-            with urllib.request.urlopen(req, timeout=180) as resp:
-                res_body = resp.read()
-                if is_chat:
-                    try:
-                        raw_json = json.loads(res_body.decode("utf-8"))
-                        txt = raw_json.get("content", "")
-                        chat_resp = {
-                            "id": f"chatcmpl-omni-{int(time.time())}",
-                            "object": "chat.completion",
-                            "created": int(time.time()),
-                            "model": "Qwen3.5-9B-TriadOmni",
-                            "choices": [{
-                                "index": 0,
-                                "message": {
-                                    "role": "assistant",
-                                    "content": txt
-                                },
-                                "finish_reason": "stop"
-                            }],
-                            "content": txt,
-                            "stop": raw_json.get("stop", True),
-                            "timings": raw_json.get("timings", {})
-                        }
-                        self.send_json(chat_resp)
+            if is_chat:
+                req_data = json.dumps(payload).encode("utf-8")
+                req = urllib.request.Request(f"{target_brain}/v1/chat/completions", data=req_data, headers={"Content-Type": "application/json"})
+                with urllib.request.urlopen(req, timeout=900) as resp:
+                    if payload.get("stream"):
+                        self.send_response(resp.status)
+                        self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+                        self.send_header("Cache-Control", "no-cache")
+                        self.send_header("Connection", "close")
+                        self.send_header("Access-Control-Allow-Origin", "*")
+                        self.end_headers()
+                        for chunk in resp:
+                            self.wfile.write(chunk)
+                            self.wfile.flush()
+                        self.close_connection = True
                         return
-                    except Exception:
-                        pass
-                self.send_response(resp.status)
-                self.send_header("Content-Type", "application/json; charset=utf-8")
-                self.send_header("Content-Length", str(len(res_body)))
-                self.send_header("Access-Control-Allow-Origin", "*")
-                self.end_headers()
-                self.wfile.write(res_body)
+                    else:
+                        res_body = resp.read()
+                        self.send_response(resp.status)
+                        self.send_header("Content-Type", "application/json; charset=utf-8")
+                        self.send_header("Content-Length", str(len(res_body)))
+                        self.send_header("Access-Control-Allow-Origin", "*")
+                        self.end_headers()
+                        self.wfile.write(res_body)
+                        return
+            else:
+                req_data = json.dumps(payload).encode("utf-8")
+                req = urllib.request.Request(f"{target_brain}/completion", data=req_data, headers={"Content-Type": "application/json"})
+                with urllib.request.urlopen(req, timeout=900) as resp:
+                    if payload.get("stream"):
+                        self.send_response(resp.status)
+                        self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+                        self.send_header("Cache-Control", "no-cache")
+                        self.send_header("Connection", "close")
+                        self.send_header("Access-Control-Allow-Origin", "*")
+                        self.end_headers()
+                        for chunk in resp:
+                            self.wfile.write(chunk)
+                            self.wfile.flush()
+                        self.close_connection = True
+                        return
+                    else:
+                        res_body = resp.read()
+                        self.send_response(resp.status)
+                        self.send_header("Content-Type", "application/json; charset=utf-8")
+                        self.send_header("Content-Length", str(len(res_body)))
+                        self.send_header("Access-Control-Allow-Origin", "*")
+                        self.end_headers()
+                        self.wfile.write(res_body)
+                        return
         except Exception as e:
             err_msg = f"⚠️ Ошибка маршрутизации к NODE-1 (Mi 10T 5G, :8080): {e}. Проверь статус llama-server."
             if is_chat:
@@ -3211,16 +3359,10 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
                         },
                         "finish_reason": "stop"
                     }],
-                    "content": err_msg,
-                    "stop": True,
                     "error": str(e)
                 }, status=502)
             else:
-                self.send_json({
-                    "content": err_msg,
-                    "stop": True,
-                    "error": str(e)
-                }, status=502)
+                self.send_json({"error": err_msg}, status=502)
 
     def handle_sync_skill(self, payload: Dict[str, Any]):
         topic = (payload.get("topic") or "Skill").strip()
@@ -3345,17 +3487,20 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
 
         # 1. Tier 0: Regex (< 0.05 мс)
         clean_p = prompt.strip().lstrip("/!#").rstrip("?!. ").lower()
-        for pat, label in FAST_PATTERNS:
-            if pat.search(prompt) or pat.search(clean_p):
-                dt = (time.monotonic() - t_start) * 1000
-                ans = handle_tier0(label)
-                self.send_json({
-                    "response": ans,
-                    "tier": "TIER_0_FASTPATH",
-                    "latency_ms": round(dt, 3),
-                    "thinking": False
-                })
-                return
+        word_count = len(clean_p.split())
+        # Fast-Path срабатывает ТОЛЬКО для коротких прямых команд (<= 4 слов)
+        if 0 < word_count <= 4:
+            for pat, label in FAST_PATTERNS:
+                if pat.search(prompt) or pat.search(clean_p):
+                    dt = (time.monotonic() - t_start) * 1000
+                    ans = handle_tier0(label)
+                    self.send_json({
+                        "response": ans,
+                        "tier": "TIER_0_FASTPATH",
+                        "latency_ms": round(dt, 3),
+                        "thinking": False
+                    })
+                    return
 
         # 1.5. Tier 1: REA Binary & Tool Signature Fast Route (< 4 мс на Nord N10)
         p_lower = prompt.lower()
@@ -3493,10 +3638,35 @@ class TriadRouterHandler(BaseHTTPRequestHandler):
                     "latency_ms": round(dt, 2),
                     "tool_execution": tool_execution
                 })
-        except Exception as e:
+        except Exception as err_node1:
+            # FAILOVER НА NODE-2 (OnePlus Nord N10 @ :8081)
+            node2_url, node2_alive = find_live_node2_url()
+            if node2_alive:
+                try:
+                    req_node2 = urllib.request.Request(
+                        f"{node2_url}/completion",
+                        data=req_data,
+                        headers={"Content-Type": "application/json"}
+                    )
+                    with urllib.request.urlopen(req_node2, timeout=12) as resp_n2:
+                        res_n2 = json.loads(resp_n2.read().decode("utf-8"))
+                        content = res_n2.get("content", "").strip()
+                        dt = (time.monotonic() - t_start) * 1000
+                        self.send_json({
+                            "response": content,
+                            "tier": "TIER_2_NODE2_FAILOVER_REFLEX",
+                            "failover_from": "node1",
+                            "node1_error": str(err_node1),
+                            "latency_ms": round(dt, 2),
+                            "thinking": False
+                        })
+                        return
+                except Exception as err_node2:
+                    pass
+
             dt_fallback = (time.monotonic() - t_start) * 1000
             if rag_context or skill_body:
-                ans_text = f"📚 [Локальная база знаний FTS5 (Node-1)]: \n\n{rag_context or skill_body}"
+                ans_text = f"📚 [Локальная база знаний FTS5]: \n\n{rag_context or skill_body}"
                 assigned_tier = "TIER_1_LOCAL_FTS5_FALLBACK"
             else:
                 ans_text = (

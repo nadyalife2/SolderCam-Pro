@@ -2174,7 +2174,8 @@ HTML_CONTENT = """<!DOCTYPE html>
     })
     .then(r => r.json())
     .then(data => {
-      const msg = `🔍 [REA] Аудит APK завершен:\\n• Пакет: ${data.package_name || 'com.soldercam.pro'}\\n• Разрешений: ${data.permissions_count || 5}\\n• Target SDK: ${data.target_sdk || 34}\\n• Debuggable: ${data.debuggable ? 'ВКЛ ⚠️' : 'ВЫКЛ ✅'}\\n• Поверхность атаки: ${data.security_analysis?.attack_surface || 'minimal'}`;
+      const sec = data.security_analysis || {};
+      const msg = `🔍 [REA] Аудит APK завершен:\\n• Пакет: ${data.package_name || 'com.soldercam.pro'}\\n• Разрешений: ${data.permissions_count || 5}\\n• Target SDK: ${data.target_sdk || 34}\\n• Debuggable: ${data.debuggable ? 'ВКЛ ⚠️' : 'ВЫКЛ ✅'}\\n• Поверхность атаки: ${sec.attack_surface || 'minimal'}`;
       alert(msg);
       addTerminalLog(`[REA Result] APK Manifest audit completed in ${data.latency_ms || 0.4} ms`);
     })
@@ -2509,11 +2510,7 @@ HTML_CONTENT = """<!DOCTYPE html>
         `;
       }
       container.innerHTML = html;
-      alert('🔍 Диагностика драйверов завершена!
-
-• Xiaomi Mi 10T 5G: Adreno 650 поддерживает Mesa Turnip Freedreno (+140% скорости в llama.cpp Vulkan)
-• OnePlus Nord N10 5G: Драйвер Adreno 619L стабилен
-• Redmi Note 4: Штатный вендорный стек активен');
+      alert('🔍 Диагностика драйверов завершена!\\n\\n• Xiaomi Mi 10T 5G: Adreno 650 поддерживает Mesa Turnip Freedreno (+140% скорости в llama.cpp Vulkan)\\n• OnePlus Nord N10 5G: Драйвер Adreno 619L стабилен\\n• Redmi Note 4: Штатный вендорный стек активен');
     } catch (e) {
       alert('Ошибка проверки драйверов: ' + e.message);
     }

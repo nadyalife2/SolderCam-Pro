@@ -11,14 +11,19 @@ maxtemp() {
     echo "$M"
 }
 setcap() {
-    p="/sys/devices/system/cpu/cpufreq/policy6"
-    if [ -d "$p" ]; then
-        BEST=""
-        for f in $(cat "$p/scaling_available_frequencies" 2>/dev/null); do
-            [ "$f" -le "$1" ] && BEST=$f
-        done
-        [ -n "$BEST" ] && su -c "echo $BEST > $p/scaling_max_freq" 2>/dev/null
-    fi
+    target_freq="$1"
+    # Auto-detect big and prime core policies across Snapdragon 865 (policy4, policy7) and SD690 (policy6)
+    for p in /sys/devices/system/cpu/cpufreq/policy[4-7]; do
+        if [ -d "$p" ]; then
+            BEST=""
+            for f in $(cat "$p/scaling_available_frequencies" 2>/dev/null); do
+                [ "$f" -le "$target_freq" ] && BEST=$f
+            done
+            if [ -n "$BEST" ]; then
+                echo "$BEST" > "$p/scaling_max_freq" 2>/dev/null || su -c "echo $BEST > $p/scaling_max_freq" 2>/dev/null
+            fi
+        fi
+    done
 }
 while true; do
     T=$(maxtemp)

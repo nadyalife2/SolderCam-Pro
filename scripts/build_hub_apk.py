@@ -43,16 +43,14 @@ def patch_dex_bytes(dex: bytearray) -> bytearray:
     new_port = b": 127.0.0.1:8080 "
     dex = bytearray(bytes(dex).replace(old_port, new_port))
 
-    # 3. Заменяем статус ONLINE (19 байт) строго с сохранением лексикографического порядка DEX:
-    # \x13MELVIN AI // ONLINE -> \x13MELVIN: 192.168.1.4
+    # 3. Заменяем статус ONLINE (19 байт) строго с сохранением лексикографического порядка DEX и длины (19 байт):
     old_online = b"\x13MELVIN AI // ONLINE"
-    new_online = b"\x13MELVIN: 192.168.1.4"
+    new_online = b"\x13MELVIN CLUSTER: OK "
     dex = bytearray(bytes(dex).replace(old_online, new_online))
 
-    # 4. Заменяем статус OFFLINE (20 байт) строго с сохранением лексикографического порядка DEX:
-    # \x14MELVIN AI // OFFLINE -> \x14MELVIN / 192.168.1.4
+    # 4. Заменяем статус OFFLINE (20 байт) строго с сохранением лексикографического порядка DEX и длины (20 байт):
     old_offline = b"\x14MELVIN AI // OFFLINE"
-    new_offline = b"\x14MELVIN / 192.168.1.4"
+    new_offline = b"\x14MELVIN CLUSTER: OFF "
     dex = bytearray(bytes(dex).replace(old_offline, new_offline))
 
     # 5. Пересчитываем SHA1 signature (bytes 12..31) от содержимого с 32 байта до конца
@@ -86,9 +84,9 @@ def patch_activity_main_layout(layout: bytearray) -> bytearray:
     new_soc = b"PORT:8080"
     layout = bytearray(bytes(layout).replace(old_soc, new_soc))
 
-    # "MELVIN AI // CORE" (17 байт) -> "192.168.1.4 :8080" (17 байт)
+    # "MELVIN AI // CORE" (17 байт) -> "TRIAD-OMNI // HUB" (17 байт)
     old_title = b"MELVIN AI // CORE"
-    new_title = b"192.168.1.4 :8080"
+    new_title = b"TRIAD-OMNI // HUB"
     layout = bytearray(bytes(layout).replace(old_title, new_title))
 
     return layout

@@ -84,3 +84,22 @@ temp_*.py
 # Graphify massive raw graph and cache
 graphify-out/cache/
 graphify-out/graph.json
+
+# Scratch and temporary baks
+scratch/
+*.bak
+*.bak-*
+
+
+# Temporary screenshot crops
+screenshots/*_slice*
+screenshots/crop_*
+screenshots/slice*
+screenshots/tab_btn_*
+screenshots/view_*
+screenshots/card*
+screenshots/banner*
+screenshots/blue_area.png
+screenshots/debug_banner.png
+screenshots/tabbar_*
+

@@ -44,6 +44,8 @@ Only the following skills are authorized for this project:
 - `melvin-edge-ai` (On-device LLM, PRoot Alpine, hybrid Bionic stack, fast tools & voice assistant)
 - `budget-tablet-unmasking-tuning` (Hardware unmasking, anti-spoofing, fastboot driver fixes, debloating, AOT compilation & DPI bypass)
 - `tochka-plavleniya-pipeline` (Full-cycle autonomous content & engineering SaaS pipeline for Tochka-Plavleniya: 2 voices, schema v1.1, OTK, delivery_cli, Rich Snippets)
+- `gsd-execution-protocol` (Spec-driven context-conserving task orchestration, BMAD method & milestone gates for edge AI & Android)
+- `karpathy-code-principles` (Andrej Karpathy-inspired minimalist, zero-abstraction, stdlib-first engineering for ARMv8/Snapdragon)
 - `graphify` (Codebase & architecture persistent knowledge graph, god nodes, community detection, traversal)
 - Built-in Antigravity utilities (`agy-customizations`, `automation`, `generative_ui`)
 

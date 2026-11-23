@@ -2,6 +2,7 @@
 # ==============================================================================
 # Triad-Omni Master Router Launcher (v5.1)
 # ==============================================================================
+export HOME="/data/data/com.termux/files/home"
 export PREFIX="/data/data/com.termux/files/usr"
 export PATH="$PREFIX/bin:$PATH"
 export LD_LIBRARY_PATH="$PREFIX/lib"
