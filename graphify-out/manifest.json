@@ -6167,186 +6167,6 @@
     "ast_hash": "58775e73355bb740f0dcda6eb046c91e",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/apk_vault/install_all_apks.ps1": {
-    "mtime": 1795607706.2276063,
-    "seen": 1795607849.48536,
-    "ast_hash": "d8064d4bf572c2cea280217dfd642a1c",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/cartridge/card.json": {
-    "mtime": 1795280723.0217226,
-    "seen": 1795606465.6903658,
-    "ast_hash": "7d32b4e31d2472913f6668757ff76de9",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/manifest.json": {
-    "mtime": 1795280723.0217226,
-    "seen": 1795606465.6903658,
-    "ast_hash": "67ac8305fe2022987790d8512d566de9",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/triad_omni_fast_tool/card.json": {
-    "mtime": 1795022818.0701842,
-    "seen": 1795606465.6903658,
-    "ast_hash": "10c95dcf27d0b955bf45c4828d2158d4",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/unpacked_mi10t/card.json": {
-    "mtime": 1795163390.4246926,
-    "seen": 1795606465.6903658,
-    "ast_hash": "1695d930381c42ec99c92dd121d4903c",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/v3_tochka_rea/card.json": {
-    "mtime": 1795022423.0376334,
-    "seen": 1795606465.6903658,
-    "ast_hash": "9ada80dac2af6800b7540b13aef03d08",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/knowledge_manifest.json": {
-    "mtime": 1795607754.261704,
-    "seen": 1795607849.4913568,
-    "ast_hash": "05ac4c7a4dbf072d145ba314739270a1",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/package_knowledge.py": {
-    "mtime": 1795606180.8221772,
-    "seen": 1795606465.6903658,
-    "ast_hash": "d2aa34377b8263c384f2fca9cf44f4fa",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/scripts/fastboot_emergency_flash.ps1": {
-    "mtime": 1795607746.9509883,
-    "seen": 1795607849.499353,
-    "ast_hash": "5812cb68209e008d64b4232fd64aaead",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/scripts/universal_backup.ps1": {
-    "mtime": 1795606277.8270447,
-    "seen": 1795606465.6903658,
-    "ast_hash": "1a43cc7233fbc26521391df2f11b26f9",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/scripts/universal_restore.ps1": {
-    "mtime": 1795606258.1373117,
-    "seen": 1795606465.6903658,
-    "ast_hash": "b760290bb630a1b475bbb09ac03b1f7a",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/bootstrap_fresh_termux.sh": {
-    "mtime": 1795606222.6241512,
-    "seen": 1795606465.6903658,
-    "ast_hash": "dfc2a5166f9ed12af4d38ac32a34569e",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/battery_guard_24x7.sh": {
-    "mtime": 1795340944.9484444,
-    "seen": 1795606465.6903658,
-    "ast_hash": "e8fa9a1e2a349c76fafb4fa6c0a56757",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/cartridge_manager.py": {
-    "mtime": 1795340824.763296,
-    "seen": 1795606465.6903658,
-    "ast_hash": "2f5e9cfe722fc2d0c1e51f834409707c",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/knowledge_manager.py": {
-    "mtime": 1795340824.7974033,
-    "seen": 1795606465.6903658,
-    "ast_hash": "7da5171c64bb7cff87681c06bbab405b",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/node_telemetry.sh": {
-    "mtime": 1795340820.6032035,
-    "seen": 1795606465.6903658,
-    "ast_hash": "e2632cddbf5759311a73b60bddff1fae",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py": {
-    "mtime": 1795430097.15725,
-    "seen": 1795606465.6903658,
-    "ast_hash": "81defe7af7b8b0efab8044c4616993d8",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/standards_rag_search.py": {
-    "mtime": 1795340824.8293903,
-    "seen": 1795606465.6903658,
-    "ast_hash": "6dadca417315f423fe43358d72200851",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_brain.sh": {
-    "mtime": 1795332607.6825428,
-    "seen": 1795606465.6903658,
-    "ast_hash": "9764670f9ba5c53cc56cdf798d0d4445",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_reflex.sh": {
-    "mtime": 1795341011.4384868,
-    "seen": 1795606465.6903658,
-    "ast_hash": "8d610dead7d2a6e6c355cab418c1cbcb",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh": {
-    "mtime": 1795340516.044178,
-    "seen": 1795606465.6903658,
-    "ast_hash": "03f0a07c940e1f3f592d7440c32938eb",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/thermal_guard.sh": {
-    "mtime": 1795340820.670164,
-    "seen": 1795606465.6903658,
-    "ast_hash": "aa8794f51ad47002c098998ca4556202",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/web_ui/cartridges/manifest.json": {
-    "mtime": 1795280730.0929368,
-    "seen": 1795606465.6903658,
-    "ast_hash": "67ac8305fe2022987790d8512d566de9",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_CRASH_RECOVERY.md": {
-    "mtime": 1795606351.4316392,
-    "seen": 1795606466.1790497,
-    "ast_hash": "172309a3253b485db43f3d506a349693",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md": {
-    "mtime": 1795606387.1794164,
-    "seen": 1795606466.1790497,
-    "ast_hash": "55c7a3424dc98be150742865ddc8876b",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_KNOWLEDGE_BACKUP.md": {
-    "mtime": 1795606404.7343812,
-    "seen": 1795606466.1790497,
-    "ast_hash": "6d58f2b9f30b22bcc81b1f3e5593704b",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_REFLASH_RESTORE.md": {
-    "mtime": 1795606369.960305,
-    "seen": 1795606466.1790497,
-    "ast_hash": "0dab4701e3955e5713b1752d1ad9b932",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/README.md": {
-    "mtime": 1795607370.9585547,
-    "seen": 1795607408.7254388,
-    "ast_hash": "564cfd31a905311fed2ab2a6b93fef72",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/web_ui/index.html": {
-    "mtime": 1795387080.419618,
-    "seen": 1795606466.1790497,
-    "ast_hash": "cae2de865321a758ee7598292633b228",
-    "semantic_hash": ""
-  },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/web_ui/multi_lora_cartridge_architecture.html": {
-    "mtime": 1795280730.1932251,
-    "seen": 1795606466.1790497,
-    "ast_hash": "d1e81068231d623517a97be8c18cb394",
-    "semantic_hash": ""
-  },
   "screenshots/status_mi10t_pre_backup.png": {
     "mtime": 1795605961.6193378,
     "seen": 1795606467.3311398,
@@ -6383,52 +6203,64 @@
     "ast_hash": "9ff23253014526a2f2f7a7048a35bdeb",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/scripts/master_control.ps1": {
-    "mtime": 1795607729.406877,
-    "seen": 1795607849.499353,
-    "ast_hash": "50332a993af8cb690ddf3a7abd8fdf00",
+  "screenshots/kanban_list_view.png": {
+    "mtime": 1795609615.5670762,
+    "seen": 1795609668.3197427,
+    "ast_hash": "377ef45d66d17ca9258b6b5b07569d6f",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md": {
-    "mtime": 1794657526.5490637,
-    "seen": 1795607408.7254388,
-    "ast_hash": "c8202748b944de664de9eff23d8a71c4",
+  "screenshots/kanban_optimized.png": {
+    "mtime": 1795609597.6782165,
+    "seen": 1795609668.3197427,
+    "ast_hash": "25f5adef6f5f0957f1bdd9f96bc7b937",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/nord_n10_billie/fastboot_getvar_all.txt": {
-    "mtime": 1794669360.9726706,
-    "seen": 1795607408.7254388,
-    "ast_hash": "e37fb747dec8a1afac0d651445cb2635",
+  "screenshots/dashboard_agents_pipeline.png": {
+    "mtime": 1795610651.8400655,
+    "seen": 1795610928.195911,
+    "ast_hash": "57bd277470fa74918f6d99abdf0fe85e",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/nord_n10_billie/getprop.txt": {
-    "mtime": 1794668696.7991807,
-    "seen": 1795607408.7254388,
-    "ast_hash": "3c0a5be4c1954cf2e52c27defd22b349",
+  "screenshots/dashboard_export.png": {
+    "mtime": 1795610722.5746572,
+    "seen": 1795610928.195911,
+    "ast_hash": "c75c49f475d2463a5026ce9dc2c59045",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/nord_n10_billie/partition_map.txt": {
-    "mtime": 1794668696.886959,
-    "seen": 1795607408.7254388,
-    "ast_hash": "10f26a21578c3aecff7ef5de3fa1e144",
+  "screenshots/dashboard_humanizer.png": {
+    "mtime": 1795610705.754744,
+    "seen": 1795610928.195911,
+    "ast_hash": "011320027e938ce3617e65fa56ec9c50",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/nord_n10_billie/proc_partitions.txt": {
-    "mtime": 1794668696.8889604,
-    "seen": 1795607408.7254388,
-    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+  "screenshots/dashboard_kanban_premium.png": {
+    "mtime": 1795610661.7199893,
+    "seen": 1795610928.195911,
+    "ast_hash": "aea9c19fdfaa8603fc90d3295c16e5da",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/redmi_note4_nikel/MT6797_Android_scatter.txt": {
-    "mtime": 1548216490.0,
-    "seen": 1795607850.3502893,
-    "ast_hash": "2ed67dbed548b0b03642e97d441b4f6e",
+  "screenshots/dashboard_modal_inspector.png": {
+    "mtime": 1795610686.6487358,
+    "seen": 1795610928.195911,
+    "ast_hash": "1743e20e1d7a95979a9db71ac194e1d1",
     "semantic_hash": ""
   },
-  "UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/redmi_note4_nikel/REDMI_NOTE_4_NIKEL_UNBRICK_GUIDE.md": {
-    "mtime": 1793621183.2225602,
-    "seen": 1795607850.3502893,
-    "ast_hash": "2fea27a93e3b69db764288d0cc9ba820",
+  "screenshots/dashboard_models.png": {
+    "mtime": 1795610733.3639436,
+    "seen": 1795610928.195911,
+    "ast_hash": "a8bf1d2a97c27eb73be3119b7f8d53a0",
+    "semantic_hash": ""
+  },
+  "screenshots/dashboard_overview.png": {
+    "mtime": 1795610635.2271974,
+    "seen": 1795610928.195911,
+    "ast_hash": "c645ad69d99d4e2562bc27c6d25a8d2b",
+    "semantic_hash": ""
+  },
+  "screenshots/dashboard_radar.png": {
+    "mtime": 1795610713.5544257,
+    "seen": 1795610928.195911,
+    "ast_hash": "d96d5c3a41678985bbb9d9746740f4cc",
     "semantic_hash": ""
   }
 }
