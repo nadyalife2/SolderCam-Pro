@@ -1,12 +1,12 @@
-# Graph Report - для one plus nord n10  (2026-11-23)
+# Graph Report - для one plus nord n10  (2026-11-25)
 
 ## Corpus Check
-- 407 files · ~748,870 words
+- 320 files · ~740,378 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 62 file(s) not represented in the graph (top: .jsonl 22, .xml 9, .backup 7)
+- Unclassified: 56 file(s) not represented in the graph (top: .jsonl 22, .xml 9, .backup 7)
 
 ## Summary
-- 2469 nodes · 3606 edges · 261 communities (159 shown, 102 thin omitted)
+- 2498 nodes · 3636 edges · 261 communities (161 shown, 100 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 27 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
@@ -21,9 +21,9 @@
 - Как я оживила кирпич Xiaomi Redmi Note 4 (MTK Nikel): Пошаговый гайд от первого лица без воды и магии
 - Any
 - Gadget, Camera & Hardware Telemetry Engineering
-- build_node1_payload
-- execute_cluster_tool
-- scripts/prune_vocab_head.py
+- test_harness_adapter.py
+- Статья 45. Fast-Path Harness Adapter: Убийство 30-секундного CoT-рассуждения и мгновенный вызов инструментов на Snapdragon 865
+- colab_package/prune_vocab_head.py
 - Разборка с FOTA-трояном, драйверы Fastboot и тотальная зачистка мусора без рута
 - Заметка №10. Оживляем древний Redmi Note 4 под роль аппаратного пульта Triad-Omni: зачистка MIUI, обход Bionic-ловушки и запуск Python 3.12 c FTS5 на Android 6.0
 - Экстремальный твикинг Android Go: укрощение kswapd0, трим eMMC, разгон SurfaceFlinger и аппаратный YouTube в браузере
@@ -47,20 +47,19 @@
 - start_melvin.sh
 - SolderCam-Pro & Triad-Omni Edge AI Cluster (v5.1)
 - Android Mobile Design
-- BugRecord
+- CameraCaptureSession
 - pil
 - Новостной дайджест здорового человека: Учим колонку парсить VC.ru, Хабр и 4PDA и читать статьи по номерам
 - xiaomi_edge_node.py
 - math
 - Боевой пульт Triad-Omni: укрощение Chrome 56, синтезатор WebAudio без файлов, мульти-протокольный шлюз и победа над цикличными ошибками MIUI
 - fix_mi10t.sh
-- colab_package/prune_vocab_head.py
 - ingest_docs.py
-- time
+- build_hub_apk.py
 - Triad-Omni Gateway Architecture
 - walk
 - scripts/battery_guard_24x7.sh
-- typing
+- 🛰️ Triad-Omni & Melvin: Гетерогенный Edge AI Кластер, Интеграция в Веб-Сайты и Непрерывное Обучение
 - build_sft_dataset.py
 - boot_node2.sh
 - TagChecker
@@ -69,21 +68,24 @@
 - smart_calc.py
 - battery_guard_24x7.sh
 - start_deck.sh
-- colab_package/build_harness_adapter_sft.py
+- json
 - 1. The Core Commandments
 - temp_start_brain.sh
 - omni_gateway_v4_7.py
 - start_omni_node1.sh
-- train_lora_unsloth.py
+- typing
 - restore_nord10_system.py
 - File Schemas
+- 30. Как я победила скрытый Chimera-бутлуп на Redmi Note 4: дизассемблирование adbd, RW-разметка и вечный рут в ядре
 - standards_rag_search.py
 - omni_mcp_server.py
+- omni_gateway_v4_0.py
+- 14. Превращение Redmi Note 4 в Apple-терминал и оффлайн-каталог Awesome-REA
 - nord_tool.py
-- fast_rescue_nord10.py
 - test_local_rag_mi10t.py
-- heavy_debloat_nord10.py
-- update_and_start_reflex.py
+- struct
+- scripts/build_harness_adapter_sft.py
+- MasterGatewayHandler
 - colab_package/cartridge_manager.py
 - Native, managed, and packaged artifacts
 - omni_forge_ui.py
@@ -93,18 +95,16 @@
 - sqlite3
 - web_tools.py
 - scripts/cartridge_manager.py
-- BugTrackerActivity.kt
 - Статья 20: «Triad-Omni v4.5» — Как я собрала мобильный ИИ-кластер из доноров с Авито и почему он рвет видеокарты за 50 тысяч
 - phone_tools.py
 - 3. Финальный чеклист и пошаговый план работ
 - REA analysis optimization
-- hashlib
 - REA CI and tests audit
 - Desktop app environments from a request
 - ClusterNodeManager.kt
 - omni_fast_router_v4_9.py
 - 05. Питание и физика 24/7 (Triad-Omni v4.7)
-- omni_gateway_v4_0.py
+- omni_gateway_v4_6.py
 - Часть 10: Китайский проектор на Rockchip RK3128: разоблачение фейковых 8 ГБ RAM, вычищение троянов, TorrServer на порту 3191, Miracast со смартфона и разгон Кинопоиска в AOT Speed Mode
 - 🔬 Инженерное руководство по Reverse Engineering Anything (REA) и декомпиляции
 - Connection and task recovery
@@ -135,7 +135,6 @@
 - cartridge_vault.sh
 - Заметка 35: Запуск Qwen3.5-9B-MTP на Xiaomi Mi 10T: 3.5 токена/сек на Snapdragon 865 и аппаратный байпас питания
 - alpine_python.sh
-- .onCreate
 - stube_watchdog.sh
 - Блок камер на шлейфе или материнка? Железный вердикт для Xiaomi Mi 10T: Архитектура шин CCI против QUP16, тест отключения и карта прозвонки
 - launch_deck.sh
@@ -231,12 +230,12 @@
 10. `addTerminalLog()` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Реализованные патчи:` --references--> `handle_start_termux_node()`  [INFERRED]
-  cluster_docs/11_LOCAL_AGENT_DIAGNOSTICS_AND_FIXES.md → scripts/omni_fast_router_v4_9.py
-- `Акт 1: Вскрытие трупа — почему регулярка подавилась цифрой 3` --references--> `route_web_fact()`  [INFERRED]
-  ARTICLES/03_NEWS_DIGEST_VC_HABR_4PDA.md → melvin_src/web_tools.py
 - `5. Интеграция в шлюз и версионирование картриджей` --references--> `execute_cluster_tool()`  [INFERRED]
   ARTICLES/45_FAST_PATH_TOOL_HARNESS_ADAPTER_AND_ZERO_COT_LATENCY.md → scripts/omni_fast_router_v4_9.py
+- `Акт 1: Вскрытие трупа — почему регулярка подавилась цифрой 3` --references--> `route_web_fact()`  [INFERRED]
+  ARTICLES/03_NEWS_DIGEST_VC_HABR_4PDA.md → melvin_src/web_tools.py
+- `Реализованные патчи:` --references--> `handle_start_termux_node()`  [INFERRED]
+  cluster_docs/11_LOCAL_AGENT_DIAGNOSTICS_AND_FIXES.md → scripts/omni_fast_router_v4_9.py
 - `1. Парсер чисел от 1 до 10 (`extract_news_count`)` --references--> `extract_news_count()`  [INFERRED]
   ARTICLES/03_NEWS_DIGEST_VC_HABR_4PDA.md → melvin_src/web_tools.py
 - `3. Фильтрация по темам` --references--> `extract_news_topic()`  [INFERRED]
@@ -245,19 +244,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (261 total, 102 thin omitted)
-
-### Community 0 - "MainActivity"
-Cohesion: 0.06
-Nodes (5): MainActivity, CaptureCallback, StateCallback, StateCallback, StateCallback
+## Communities (261 total, 100 thin omitted)
 
 ### Community 2 - "shutil"
-Cohesion: 0.22
+Cohesion: 0.23
 Nodes (3): copy_tree_filtered(), main(), parse_args()
 
 ### Community 3 - "organizer_engine.py"
 Cohesion: 0.07
 Nodes (39): 11. Диагностика, аудит уязвимостей и план модернизации локального агента Triad-Omni и Melvin, 1. Резюме ревизии (Answer First), 2. Диагностическая карта выявленных дефектов, 3. Архитектурные точки роста (План Карпатого), 4. Разбор стресс-тест отчета (`triad-omni-stress-test-report.md`) и патчи шлюза, Аппаратная фиксация экранов (ADB Screencap):, Дефект №1: Уязвимость псевдо-AST калькулятора (`melvin_src/smart_calc.py`), Дефект №2: Отсутствие санитарной проверки времени (`melvin_src/organizer_engine.py`) (+31 more)
+
+### Community 4 - "BugTracker"
+Cohesion: 0.10
+Nodes (4): BugRecord, BugTracker, BugTrackerActivity, SolderCamApp
 
 ### Community 5 - "Budget Android & Tablet Engineering: Unmasking, Debloating, AOT Tuning & DPI Bypass"
 Cohesion: 0.05
@@ -276,24 +275,24 @@ Cohesion: 0.10
 Nodes (20): Акт 1: Главная ловушка — Nikel или Mido?, Акт 2: Ад с драйверами Windows («Хэш отсутствует» и ловушка Zadig), Акт 3: Единственное правильное решение — Драйверный пак MiFlash, Акт 4: Скачивание правильной прошивки (Война с китайскими серверами), Акт 5: Прошивка через XiaoMiFlash (Смертельная галочка `lock`), Акт 6: Первый запуск и траблшутинг с Wi-Fi, «Ассистент, караул! В MiFlash ошибка: not catch checkpoint lock!», В чем была засада? (Технический секрет Google Fastboot): (+12 more)
 
 ### Community 9 - "Any"
-Cohesion: 0.22
-Nodes (3): create_local_backup(), get_target_brain_url(), TriadRouterHandler
+Cohesion: 0.18
+Nodes (6): create_local_backup(), get_skill_db_path(), get_target_brain_url(), run_paper2code_pipeline(), select_dynamic_skill(), TriadRouterHandler
 
 ### Community 10 - "Gadget, Camera & Hardware Telemetry Engineering"
 Cohesion: 0.11
 Nodes (17): 1. Архитектура Camera2 API и сенсорный контроль, 2. Диагностика питания, PMIC и термодатчиков NTC, 3. Настройка и адаптация портов Google Camera (GCam), 4. Низкоуровневая диагностика, раскирпичивание (Unbrick) и Fastboot Protocol, Gadget, Camera & Hardware Telemetry Engineering, Multi-frame RAW Stacking (Многокадровое накопление), Аппаратная идентификация SoC по шине USB (PnP & VID/PID), Архитектура DeviceInterfaceGUID в Google Fastboot (+9 more)
 
-### Community 11 - "build_node1_payload"
-Cohesion: 0.24
-Nodes (3): build_node1_payload(), evaluate_complexity(), handle_tier0()
+### Community 11 - "test_harness_adapter.py"
+Cohesion: 0.12
+Nodes (6): verify_cartridge_passport(), build_node1_payload(), evaluate_complexity(), execute_cluster_tool(), handle_tier0(), TestHarnessAdapter
 
-### Community 12 - "execute_cluster_tool"
-Cohesion: 0.14
-Nodes (9): 1. Входная проблема: Куда утекают секунды в агентном цикле?, 2. Анатомия тактики Harness-Adapter: Отключение CoT ради скорости, 3. Архитектура картриджа: Почему r=32 и alpha=64?, 4. Датасет и инструменты кластера Triad-Omni, 5. Интеграция в шлюз и версионирование картриджей, 6. Практическая рекомендация для развертывания, Статья 45. Fast-Path Harness Adapter: Убийство 30-секундного CoT-рассуждения и мгновенный вызов инструментов на Snapdragon 865, execute_cluster_tool() (+1 more)
+### Community 12 - "Статья 45. Fast-Path Harness Adapter: Убийство 30-секундного CoT-рассуждения и мгновенный вызов инструментов на Snapdragon 865"
+Cohesion: 0.25
+Nodes (7): 1. Входная проблема: Куда утекают секунды в агентном цикле?, 2. Анатомия тактики Harness-Adapter: Отключение CoT ради скорости, 3. Архитектура картриджа: Почему r=32 и alpha=64?, 4. Датасет и инструменты кластера Triad-Omni, 5. Интеграция в шлюз и версионирование картриджей, 6. Практическая рекомендация для развертывания, Статья 45. Fast-Path Harness Adapter: Убийство 30-секундного CoT-рассуждения и мгновенный вызов инструментов на Snapdragon 865
 
-### Community 13 - "scripts/prune_vocab_head.py"
-Cohesion: 0.18
-Nodes (7): analyze_token_frequencies(), build_pruning_indices(), calculate_ram_savings(), generate_vocab_pruning_plan(), main(), prune_model_weights_torch(), simulate_pruned_head_tensors()
+### Community 13 - "colab_package/prune_vocab_head.py"
+Cohesion: 0.07
+Nodes (17): analyze_token_frequencies(), build_pruning_indices(), calculate_ram_savings(), generate_vocab_pruning_plan(), main(), prune_model_weights_torch(), simulate_pruned_head_tensors(), analyze_token_frequencies() (+9 more)
 
 ### Community 14 - "Разборка с FOTA-трояном, драйверы Fastboot и тотальная зачистка мусора без рута"
 Cohesion: 0.15
@@ -312,20 +311,20 @@ Cohesion: 0.18
 Nodes (9): api_tts(), get_burp_audio(), get_persona(), get_sound_clip(), health(), index(), set_persona(), transcribe_audio() (+1 more)
 
 ### Community 18 - "ARTICLES/README.md"
-Cohesion: 0.13
-Nodes (12): 14. Превращение Redmi Note 4 в Apple-терминал и оффлайн-каталог Awesome-REA, 1. Зачем я переписала UI под Apple Design System, 2. Интеграция базы Awesome-REA прямо в пульт, 3. Генеральная уборка: минус 41 мусорный пакет MIUI, 4. Архитектурный статус кластера, Оглавление серии:, Оглавление серии:, Оглавление серии: (+4 more)
+Cohesion: 0.22
+Nodes (7): Оглавление серии:, Оглавление серии:, Оглавление серии:, Связанные исходники и скилы:, Цикл статей 2: Анатомия китайского обмана — оживление и взлом планшета Pad 7 Ultra (MT6737M, 2GB RAM), Цикл статей 3: Распределенный локальный ИИ «Triad-Omni v4.0 (Hardware Deck Edition)», Цикл статей: Как я превратила старый Redmi Note 4 в автономную умную колонку на локальной LLM
 
 ### Community 19 - "Заметка №11. Воскрешение из ребут-лупа, AST-граф кода с Graphify и превращение древнего Redmi Note 4 в краевой сенсор для Большого ИИ"
 Cohesion: 0.20
 Nodes (9): 1. Входная боль: пациент в коме, ребут каждые 20 секунд, 2. Грабли и фейлы: почему «простые» решения не сработали, 3. Картографируем кодовую базу с помощью Graphify, 4. Превращаем Redmi Note 4 в краевой узел (Edge Node) для Большого ИИ, 5. Итоговая шпаргалка узла и чеклист, Возможности краевого демона:, Заметка №11. Воскрешение из ребут-лупа, AST-граф кода с Graphify и превращение древнего Redmi Note 4 в краевой сенсор для Большого ИИ, Почему телефон завис на логотипе MI? (Инженерный инсайт) (+1 more)
 
 ### Community 20 - "xiaomi_speaker_skills.py"
-Cohesion: 0.19
-Nodes (5): get_currency_dict(), adjust_system_volume(), handle_morning_briefing(), parse_sleep_timer(), parse_xiaomi_speaker_commands()
+Cohesion: 0.32
+Nodes (3): adjust_system_volume(), parse_sleep_timer(), parse_xiaomi_speaker_commands()
 
 ### Community 21 - "os"
-Cohesion: 0.13
-Nodes (3): download_loop(), main(), run()
+Cohesion: 0.12
+Nodes (7): download_loop(), main(), dump_partition(), get_device_sha256_and_size(), get_file_sha256(), main(), run_cmd()
 
 ### Community 22 - "Проектные правила: OnePlus Nord N10 5G (SolderCam Pro & Battery Guard)"
 Cohesion: 0.22
@@ -336,8 +335,8 @@ Cohesion: 0.29
 Nodes (6): 1. «Чудо за 5 тысяч»: когда маркетологи потеряли всякий стыд, 2. Атака через ADB: снимаем лапшу с ушей ядра, 3. Где мой терабайт? Считаем физические сектора eMMC, 4. Контрольный выстрел: китайское Factory Mode с иероглифами, 5. Чеклист разоблачения: как проверить китайца за 2 минуты, Анатомия китайского обмана: как я вывела на чистую воду «Pad 7 Ultra» с фейковыми 16 ГБ ОЗУ и 1 ТБ памяти
 
 ### Community 24 - "subprocess"
-Cohesion: 0.10
-Nodes (9): run_adb(), push_file(), sh(), sh(), check_device(), run_adb(), run_adb(), sh() (+1 more)
+Cohesion: 0.08
+Nodes (18): run_adb(), push_file(), sh(), run(), main(), run(), get_meminfo(), run_adb() (+10 more)
 
 ### Community 25 - "triad_armv8_bench.py"
 Cohesion: 0.52
@@ -379,6 +378,10 @@ Nodes (16): 1. Zero-CoT Injection (Ускорение вывода в 20 раз)
 Cohesion: 0.40
 Nodes (4): Android Mobile Design, Best Practices, Common Issues & Solutions, When to Use This Skill
 
+### Community 37 - "CameraCaptureSession"
+Cohesion: 0.15
+Nodes (4): CaptureCallback, StateCallback, StateCallback, StateCallback
+
 ### Community 39 - "pil"
 Cohesion: 0.07
 Nodes (3): draw_squircle(), generate_master_icon(), main()
@@ -399,17 +402,13 @@ Nodes (3): build_vector_index(), main(), tokenize()
 Cohesion: 0.17
 Nodes (11): 1. Зачем локальному ИИ физический пульт?, 2. Архитектура комбайна `omni_gateway.py`, 3. Грабли №1: Древний Chrome 56 и проклятие CSS Flexbox Gap, 4. Грабли №2: Автономный WebAudio-синтезатор без MP3-файлов, 5. Грабли №3: Где живет температура батареи на MediaTek Helio X20?, 6. Грабли №4: Бесконечный краш-луп MIUI «В приложении Поиск устройства произошла ошибка», 7. Верификация в железе: API, FTS5 и пульт в строю, 8. Итоговая таблица готовности узла NODE-3 (+3 more)
 
-### Community 52 - "colab_package/prune_vocab_head.py"
-Cohesion: 0.20
-Nodes (7): analyze_token_frequencies(), build_pruning_indices(), calculate_ram_savings(), generate_vocab_pruning_plan(), main(), prune_model_weights_torch(), simulate_pruned_head_tensors()
-
 ### Community 53 - "ingest_docs.py"
 Cohesion: 0.33
 Nodes (4): clean_html(), extract_text_from_pdf(), main(), process_file()
 
-### Community 54 - "time"
+### Community 54 - "build_hub_apk.py"
 Cohesion: 0.15
-Nodes (7): deploy(), run_adb(), get_kb_path(), get_skill_db_path(), run_paper2code_pipeline(), search_local_rag(), select_dynamic_skill()
+Nodes (5): build_signed_apk(), generate_signing_credentials(), patch_activity_main_layout(), patch_dex_bytes(), patch_resources_arsc()
 
 ### Community 55 - "Triad-Omni Gateway Architecture"
 Cohesion: 0.50
@@ -419,12 +418,12 @@ Nodes (3): Active Implementation (v5.1), Archived Prototypes, Triad-Omni Gateway
 Cohesion: 0.67
 Nodes (3): HOME, set_charging(), battery_guard_24x7.sh script
 
-### Community 58 - "typing"
-Cohesion: 0.22
-Nodes (4): generate_harness_dataset(), main(), calculate_rice(), main()
+### Community 58 - "🛰️ Triad-Omni & Melvin: Гетерогенный Edge AI Кластер, Интеграция в Веб-Сайты и Непрерывное Обучение"
+Cohesion: 0.12
+Nodes (15): 1. Концепция и Философия Проекта (Answer First), 2.1. Концепция двух голосов (Dual-Voice Architecture), 2.2. Генерация семантической микроразметки (Schema.org & GEO), 2. Архитектура внедрения агента в веб-проекты («Точка Плавления»), 3.1. Структура собираемых данных, 3.2. Автоматический ОТК-скоринг датасета, 3. Непрерывное обучение: Что нейросети должны собирать в продакшене, 4.1. Пайка, сплавы и химия монтажа (+7 more)
 
 ### Community 60 - "build_sft_dataset.py"
-Cohesion: 0.29
+Cohesion: 0.27
 Nodes (5): build_datasets(), clean_markdown_text(), detect_hardware_domain(), extract_qa_from_markdown(), generate_cot_reasoning()
 
 ### Community 64 - "📜 Сводный реестр стандартов, ГОСТов и спецификаций «Точка Плавления»"
@@ -432,12 +431,12 @@ Cohesion: 0.08
 Nodes (25): 1. Структура стандартов в экосистеме «Точка Плавления», 2.1. ГОСТ 21930-76 — Припои оловянно-свинцовые в чушках. Технические условия, 2.2. ГОСТ 21931-76 — Припои оловянно-свинцовые в изделиях. Технические условия, 2.3. ГОСТ Р ИСО 9453-2014 (ISO 9453:2014) — Припои мягкие. Химический состав и формы, 2.4. IPC J-STD-006C (с изменением Amendment 1) — Requirements for Electronic Grade Solder Alloys, 2. Группа 1: Припои и паяльные сплавы (Alloys & Solid Solders), 3.1. ГОСТ 19250-73 и ГОСТ 26115-84 — Флюсы паяльные, 3.2. IPC J-STD-004D (Актуальная ревизия 2023/2024 гг.) — Requirements for Soldering Fluxes (+17 more)
 
 ### Community 66 - "smart_calc.py"
-Cohesion: 0.18
+Cohesion: 0.20
 Nodes (4): parse_currency_conversion(), parse_timer_command(), parse_unit_conversion(), safe_math_eval()
 
-### Community 71 - "colab_package/build_harness_adapter_sft.py"
-Cohesion: 0.13
-Nodes (9): generate_harness_dataset(), main(), main(), main(), generate_article_schema(), generate_faq_schema(), generate_software_schema(), get_notebook_dict() (+1 more)
+### Community 71 - "json"
+Cohesion: 0.18
+Nodes (7): main(), main(), generate_article_schema(), generate_faq_schema(), generate_software_schema(), get_notebook_dict(), main()
 
 ### Community 72 - "1. The Core Commandments"
 Cohesion: 0.15
@@ -451,9 +450,9 @@ Nodes (5): HOME, LD_LIBRARY_PATH, PATH, PREFIX, temp_start_brain.sh script
 Cohesion: 0.10
 Nodes (21): add_log(), anthropic_to_oai(), cosine_sim(), db_exec(), db_query(), dynamic_detect_domain(), escalate(), fetch_active_skills() (+13 more)
 
-### Community 76 - "train_lora_unsloth.py"
-Cohesion: 0.28
-Nodes (3): main(), parse_args(), run_canary_tests()
+### Community 76 - "typing"
+Cohesion: 0.22
+Nodes (4): generate_harness_dataset(), main(), calculate_rice(), main()
 
 ### Community 78 - "restore_nord10_system.py"
 Cohesion: 0.60
@@ -463,6 +462,10 @@ Nodes (4): adb_shell(), main(), restore_critical(), run()
 Cohesion: 0.20
 Nodes (9): 1. Core Architecture: The 3-File State Anchor, 2. The BMAD Workflow (Break, Map, Architect, Deliver), 3. Context Conservation Checklist (Anti-Token Bloat), A. `PROJECT_SPEC.md` (Static Anchor), B. `ROADMAP.md` (Global Progress Matrix), C. `CURRENT_PHASE.md` (Active Working Memory), Execution Rules, File Schemas (+1 more)
 
+### Community 112 - "30. Как я победила скрытый Chimera-бутлуп на Redmi Note 4: дизассемблирование adbd, RW-разметка и вечный рут в ядре"
+Cohesion: 0.20
+Nodes (9): 1. Пациент снова на столе: симптомы и анатомия скрытого бутлупа, 2. Разбор граблей: почему Android 6 сходит с ума от Google Play Services, 30. Как я победила скрытый Chimera-бутлуп на Redmi Note 4: дизассемблирование adbd, RW-разметка и вечный рут в ядре, 3. Хирургия: как получить вечный root и разблокировать запись в /system, 4. Прошивка и триумфальный запуск, 5. Итог: почему этот бутлуп больше никогда не повторится, Шаг 1. Перемонтирование /system в RW на уровне fstab, Шаг 2. Дизассемблирование adbd и отсечение сброса привилегий (+1 more)
+
 ### Community 113 - "standards_rag_search.py"
 Cohesion: 0.36
 Nodes (3): main(), StandardsRAG, tokenize()
@@ -470,6 +473,14 @@ Nodes (3): main(), StandardsRAG, tokenize()
 ### Community 114 - "omni_mcp_server.py"
 Cohesion: 0.38
 Nodes (3): call_hub(), main(), run_graphify()
+
+### Community 115 - "omni_gateway_v4_0.py"
+Cohesion: 0.18
+Nodes (7): add_log(), detect_domain(), get_kb_context(), get_local_telemetry(), http_json(), telemetry_watchdog_thread(), web_search_ddg()
+
+### Community 116 - "14. Превращение Redmi Note 4 в Apple-терминал и оффлайн-каталог Awesome-REA"
+Cohesion: 0.33
+Nodes (5): 14. Превращение Redmi Note 4 в Apple-терминал и оффлайн-каталог Awesome-REA, 1. Зачем я переписала UI под Apple Design System, 2. Интеграция базы Awesome-REA прямо в пульт, 3. Генеральная уборка: минус 41 мусорный пакет MIUI, 4. Архитектурный статус кластера
 
 ### Community 128 - "colab_package/cartridge_manager.py"
 Cohesion: 0.16
@@ -488,16 +499,16 @@ Cohesion: 0.11
 Nodes (18): 10. Замена тупого браузера на TV Bro, 11. Грабли №4: «Плеер не поддерживает такой формат» — ликвидация стокового com.kgzn.media и внедрение Nova Video Player, 12. Грабли №5: Зависание видео в Lampa — почему Go-рантайм TorrServer раздулся до 520 МБ и как его укротил GOMEMLIMIT, 13. Грабли №6: «В торрентах снова пусто» — детектив с JacRed в блэклисте Lampa и спасительный локальный Rutor, 14. Итоговая шпаргалка инженера, 1. Вскрытие пациента: 1.4 ГБ памяти на грани инфаркта, 2. Грабли №1: Ловушка `android:persistent="true"` — почему `pm disable` не убивает мусор, 3. Грабли №2: Петля смерти Bluetooth — как 2.4G свисток уронил Bluetooth HAL (+10 more)
 
 ### Community 285 - "sqlite3"
-Cohesion: 0.13
+Cohesion: 0.12
 Nodes (13): init_db(), add_fact(), init_knowledge_db(), search_knowledge(), build_fts_db(), create_bundle(), init_db(), parse_skill_file() (+5 more)
 
 ### Community 289 - "web_tools.py"
-Cohesion: 0.13
-Nodes (14): Priority Router in `agent_orchestrator.py`:, clean_rss_text(), extract_news_count(), extract_news_topic(), get_currency_rates(), get_current_datetime_fact(), get_live_news(), get_live_weather() (+6 more)
+Cohesion: 0.11
+Nodes (16): Priority Router in `agent_orchestrator.py`:, clean_rss_text(), extract_news_count(), extract_news_topic(), get_currency_dict(), get_currency_rates(), get_current_datetime_fact(), get_live_news() (+8 more)
 
 ### Community 305 - "scripts/cartridge_manager.py"
-Cohesion: 0.14
-Nodes (9): activate_version(), compute_sha256(), get_active_cartridge(), get_storage_stats(), list_cartridges(), prune_cartridge_cache(), set_active_cartridge(), unpack_and_install_cartridge() (+1 more)
+Cohesion: 0.18
+Nodes (8): activate_version(), compute_sha256(), get_active_cartridge(), get_storage_stats(), list_cartridges(), prune_cartridge_cache(), set_active_cartridge(), unpack_and_install_cartridge()
 
 ### Community 383 - "Статья 20: «Triad-Omni v4.5» — Как я собрала мобильный ИИ-кластер из доноров с Авито и почему он рвет видеокарты за 50 тысяч"
 Cohesion: 0.10
@@ -515,10 +526,6 @@ Nodes (12): 1. Железный аудит: почему Helio X20 умрёт о
 Cohesion: 0.17
 Nodes (10): Applying the reasoning elsewhere, Exact-address lookup: a measured, narrow improvement, Kuna: reuse before adding machinery, Other transferable changes and their limits, Recorded workload and results, Compare completed tasks and limit the claim, Keep one interpretation and a defined reuse lifetime, Locate the earliest unnecessary work (+2 more)
 
-### Community 460 - "hashlib"
-Cohesion: 0.52
-Nodes (5): dump_partition(), get_device_sha256_and_size(), get_file_sha256(), main(), run_cmd()
-
 ### Community 469 - "REA CI and tests audit"
 Cohesion: 0.18
 Nodes (9): Equivalent completed work, Measurement and CI checks, Runner waits and console noise, Workflow, caches, and shared artifacts, Assess efficiency without losing the gate, Establish the executed baseline, Fix, verify, and hand off within scope, Prove the failure or protection (+1 more)
@@ -529,15 +536,15 @@ Nodes (15): Ask once, upfront, Build the seed and the edit, Choose the install, 
 
 ### Community 491 - "omni_fast_router_v4_9.py"
 Cohesion: 0.13
-Nodes (19): check_node3_active(), check_node_sync(), detect_local_node_id(), find_adb_executable(), find_live_node2_url(), find_live_node3_url(), get_adb_devices_status(), get_cluster_status_sync() (+11 more)
+Nodes (21): check_node3_active(), check_node_sync(), detect_local_node_id(), find_adb_executable(), find_live_node2_url(), find_live_node3_url(), get_adb_devices_status(), get_cluster_status_sync() (+13 more)
 
 ### Community 506 - "05. Питание и физика 24/7 (Triad-Omni v4.7)"
 Cohesion: 0.13
 Nodes (14): 05. Питание и физика 24/7 (Triad-Omni v4.7), 10. Чек-лист приёмки питания, 1. Почему один XL4015 на три платы — отказ, 2.1. Защита BMS срабатывает как предохранитель от ИИ, 2.2. Подвижник buck = 12 В на PMIC, 2.3. USB при живой шине = обратный ток в buck, 2. Три независимых механизма убийства плат и их лечение, 3. Схема (на каждую плату — одинаковая) (+6 more)
 
-### Community 511 - "omni_gateway_v4_0.py"
-Cohesion: 0.05
-Nodes (23): add_log(), detect_domain(), get_kb_context(), get_local_telemetry(), http_json(), MasterGatewayHandler, telemetry_watchdog_thread(), web_search_ddg() (+15 more)
+### Community 511 - "omni_gateway_v4_6.py"
+Cohesion: 0.19
+Nodes (9): add_log(), cosine_sim(), FastOmniHandler, fetch_active_skills(), filter_mcp_tools(), get_db(), get_embedding(), http_json() (+1 more)
 
 ### Community 521 - "Часть 10: Китайский проектор на Rockchip RK3128: разоблачение фейковых 8 ГБ RAM, вычищение троянов, TorrServer на порту 3191, Miracast со смартфона и разгон Кинопоиска в AOT Speed Mode"
 Cohesion: 0.06
@@ -885,20 +892,20 @@ Nodes (3): 1. Матрица приоритетов RICE, 2. Структура 
 
 ## Knowledge Gaps
 - **94 isolated node(s):** `GGML_OPENMP`, `HOME`, `LD_LIBRARY_PATH`, `OMP_NUM_THREADS`, `PATH` (+89 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1358 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **102 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1377 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **100 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **What connects `GGML_OPENMP`, `HOME`, `LD_LIBRARY_PATH` to the rest of the system?**
   _94 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `MainActivity` be split into smaller, more focused modules?**
-  _Cohesion score 0.05868118572292801 - nodes in this community are weakly interconnected._
 - **Should `BatteryDiagnosticsActivity` be split into smaller, more focused modules?**
-  _Cohesion score 0.1038961038961039 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10952380952380952 - nodes in this community are weakly interconnected._
 - **Should `organizer_engine.py` be split into smaller, more focused modules?**
   _Cohesion score 0.06531986531986532 - nodes in this community are weakly interconnected._
+- **Should `BugTracker` be split into smaller, more focused modules?**
+  _Cohesion score 0.09615384615384616 - nodes in this community are weakly interconnected._
 - **Should `Budget Android & Tablet Engineering: Unmasking, Debloating, AOT Tuning & DPI Bypass` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Melvin Edge AI: On-Device Autonomous Smart Assistant Blueprint` be split into smaller, more focused modules?**
