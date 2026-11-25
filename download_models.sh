@@ -21,14 +21,14 @@ if [ "$TARGET" = "all" ] || [ "$TARGET" = "bge" ] || [ "$TARGET" = "node2" ]; th
     echo "✅ BGE-M3 ready: $(ls -lh bge-m3.gguf)"
 fi
 
-# 2. LFM2.5-8B-A1B (Node-2 Nord N10, Reflex Fast LLM)
-if [ "$TARGET" = "all" ] || [ "$TARGET" = "lfm" ] || [ "$TARGET" = "node2" ]; then
-    echo "=== [2/3] Downloading LFM2.5-8B-A1B Reflex LLM (IQ3_XXS) ==="
-    if [ ! -f "lfm25-8b-a1b-iq3xxs.gguf" ] || [ $(stat -c%s "lfm25-8b-a1b-iq3xxs.gguf" 2>/dev/null || echo 0) -lt 2500000000 ]; then
-        curl -f -C - -L -o lfm25-8b-a1b-iq3xxs.gguf.tmp "https://huggingface.co/unsloth/LFM2.5-8B-A1B-GGUF/resolve/main/LFM2.5-8B-A1B-UD-IQ3_XXS.gguf"
-        mv lfm25-8b-a1b-iq3xxs.gguf.tmp lfm25-8b-a1b-iq3xxs.gguf
+# 2. Reflex Fast LLM (Node-2 Nord N10: Qwen2.5-3B-Instruct Q4_K_M)
+if [ "$TARGET" = "all" ] || [ "$TARGET" = "qwen" ] || [ "$TARGET" = "reflex" ] || [ "$TARGET" = "node2" ]; then
+    echo "=== [2/3] Downloading Qwen2.5-3B-Instruct Reflex LLM (Q4_K_M) ==="
+    if [ ! -f "qwen2.5-3b-instruct-q4_k_m.gguf" ] || [ $(stat -c%s "qwen2.5-3b-instruct-q4_k_m.gguf" 2>/dev/null || echo 0) -lt 2000000000 ]; then
+        curl -f -C - -L -o qwen2.5-3b-instruct-q4_k_m.gguf.tmp "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct-GGUF/resolve/main/qwen2.5-3b-instruct-q4_k_m.gguf"
+        mv qwen2.5-3b-instruct-q4_k_m.gguf.tmp qwen2.5-3b-instruct-q4_k_m.gguf
     fi
-    echo "✅ LFM2.5 ready: $(ls -lh lfm25-8b-a1b-iq3xxs.gguf)"
+    echo "✅ Qwen2.5-3B ready: $(ls -lh qwen2.5-3b-instruct-q4_k_m.gguf)"
 fi
 
 # 3. Brain LLM (Node-1 Mi 10T 5G, Main 9B/7B Brain)

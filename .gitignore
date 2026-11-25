@@ -39,6 +39,7 @@ system_enabled_packages.txt
 *.dex
 
 # Personal downloads & heavy backups (gigabytes of firmware, ROMs, videos)
+UNIVERSAL_DISASTER_RECOVERY_VAULT/
 DOWNLOADS_ARCHIVE/
 BACKUP_ONEPLUS_NORD_N10_BILLIE/
 BACKUP_XIAOMI_MI10T_APOLLO/

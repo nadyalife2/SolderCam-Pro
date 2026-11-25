@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/sh
+#!/system/bin/sh
 # ==============================================================================
 # Triad-Omni 24/7 Battery Guard & Hardware Bypass Manager
 # Works across Qualcomm (PM8150B, PM7250B, PMI8952) and MediaTek PMICs.
