@@ -1,78 +1,54 @@
 # Community 115
 
-> 38 nodes
+> 21 nodes
 
 ## Key Concepts
 
-- **awesome-rea/docs/README.md** (34 connections) — `.agents/skills/awesome-rea/docs/README.md`
-- **awesome-rea/docs/README.zh-CN.md** (34 connections) — `.agents/skills/awesome-rea/docs/README.zh-CN.md`
-- **awesome-rea/data/README.md** (30 connections) — `.agents/skills/awesome-rea/data/README.md`
-- **awesome-rea/CONTRIBUTING.md** (26 connections) — `.agents/skills/awesome-rea/CONTRIBUTING.md`
-- **awesome-rea/CONTRIBUTING.zh-CN.md** (22 connections) — `.agents/skills/awesome-rea/CONTRIBUTING.zh-CN.md`
-- **awesome-rea/docs/source-scan.md** (17 connections) — `.agents/skills/awesome-rea/docs/source-scan.md`
-- **awesome-rea/docs/agent-contributing.md** (16 connections) — `.agents/skills/awesome-rea/docs/agent-contributing.md`
-- **awesome-rea/docs/automation.md** (16 connections) — `.agents/skills/awesome-rea/docs/automation.md`
-- **awesome-rea/docs/agent-contributing.zh-CN.md** (15 connections) — `.agents/skills/awesome-rea/docs/agent-contributing.zh-CN.md`
-- **awesome-rea/AGENTS.md** (12 connections) — `.agents/skills/awesome-rea/AGENTS.md`
-- **awesome-rea/docs/promotion-worksheet.md** (12 connections) — `.agents/skills/awesome-rea/docs/promotion-worksheet.md`
-- **awesome-rea/docs/promotion-worksheet.zh-CN.md** (11 connections) — `.agents/skills/awesome-rea/docs/promotion-worksheet.zh-CN.md`
-- **awesome-rea/data/discoveries/README.md** (10 connections) — `.agents/skills/awesome-rea/data/discoveries/README.md`
-- **awesome-rea/docs/first-resource.md** (10 connections) — `.agents/skills/awesome-rea/docs/first-resource.md`
-- **awesome-rea/docs/first-resource.zh-CN.md** (10 connections) — `.agents/skills/awesome-rea/docs/first-resource.zh-CN.md`
-- **awesome-rea/docs/website.md** (10 connections) — `.agents/skills/awesome-rea/docs/website.md`
-- **awesome-rea/docs/search-discovery.md** (9 connections) — `.agents/skills/awesome-rea/docs/search-discovery.md`
-- **awesome-rea/data/locales/README.md** (8 connections) — `.agents/skills/awesome-rea/data/locales/README.md`
-- **awesome-rea/docs/papers.md** (8 connections) — `.agents/skills/awesome-rea/docs/papers.md`
-- **awesome-rea/docs/papers.zh-CN.md** (8 connections) — `.agents/skills/awesome-rea/docs/papers.zh-CN.md`
-- **awesome-rea/SECURITY.md** (8 connections) — `.agents/skills/awesome-rea/SECURITY.md`
-- **awesome-rea/docs/case-coverage.md** (7 connections) — `.agents/skills/awesome-rea/docs/case-coverage.md`
-- **awesome-rea/docs/case-coverage.zh-CN.md** (7 connections) — `.agents/skills/awesome-rea/docs/case-coverage.zh-CN.md`
-- **awesome-rea/docs/paper-updates.md** (7 connections) — `.agents/skills/awesome-rea/docs/paper-updates.md`
-- **awesome-rea/docs/paper-updates.zh-CN.md** (7 connections) — `.agents/skills/awesome-rea/docs/paper-updates.zh-CN.md`
-- *... and 13 more nodes in this community*
+- **test_harness_adapter.py** (17 connections) — `scripts/test_harness_adapter.py`
+- **execute_cluster_tool()** (15 connections) — `scripts/omni_fast_router_v4_9.py`
+- **TestHarnessAdapter** (11 connections) — `scripts/test_harness_adapter.py`
+- **build_node1_payload()** (7 connections) — `scripts/omni_fast_router_v4_9.py`
+- **evaluate_complexity()** (7 connections) — `scripts/omni_fast_router_v4_9.py`
+- **handle_tier0()** (6 connections) — `scripts/omni_fast_router_v4_9.py`
+- **test_fast_router.py** (6 connections) — `scripts/test_fast_router.py`
+- **.test_10_multitier_latent_speculative_routing()** (5 connections) — `scripts/test_harness_adapter.py`
+- **.test_07_complexity_and_payload_builder()** (3 connections) — `scripts/test_harness_adapter.py`
+- **.test_02_router_tool_execution()** (2 connections) — `scripts/test_harness_adapter.py`
+- **.test_05_router_edge_cases()** (2 connections) — `scripts/test_harness_adapter.py`
+- **.test_08_rea_tools_edge_cases()** (2 connections) — `scripts/test_harness_adapter.py`
+- **.test_01_dataset_integrity()** (1 connections) — `scripts/test_harness_adapter.py`
+- **.test_04_notebook_structure()** (1 connections) — `scripts/test_harness_adapter.py`
+- **__init__()** (1 connections) — `scripts/test_harness_adapter.py`
+- **send_json()** (1 connections) — `scripts/test_harness_adapter.py`
+- **Детерминированное исполнение инструментов кластера Triad-Omni для Harness…** (1 connections) — `scripts/omni_fast_router_v4_9.py`
+- **Оценка сложности запроса по формуле Sc для адаптивного переключения CoT-…** (1 connections) — `scripts/omni_fast_router_v4_9.py`
+- **Формирует ChatML-запрос для llama-server на Node-1 (:8080). При…** (1 connections) — `scripts/omni_fast_router_v4_9.py`
+- **Triad-Omni Harness Adapter Verification Suite Тестирует все компоненты Fast-…** (1 connections) — `scripts/test_harness_adapter.py`
+- **unittest** (1 connections)
 
 ## Relationships
 
-- [Community 238](Community_238.md) (12 shared connections)
-- [Community 109](Community_109.md) (10 shared connections)
-- [Community 485](Community_485.md) (9 shared connections)
-- [Community 764](Community_764.md) (1 shared connections)
-- [Community 536](Community_536.md) (1 shared connections)
-- [Community 353](Community_353.md) (1 shared connections)
-- [Community 456](Community_456.md) (1 shared connections)
-- [Community 765](Community_765.md) (1 shared connections)
-- [Community 878](Community_878.md) (1 shared connections)
-- [Community 814](Community_814.md) (1 shared connections)
-- [Community 654](Community_654.md) (1 shared connections)
-- [Community 655](Community_655.md) (1 shared connections)
+- [Community 11](Community_11.md) (9 shared connections)
+- [Community 491](Community_491.md) (8 shared connections)
+- [Community 13](Community_13.md) (5 shared connections)
+- [Community 305](Community_305.md) (3 shared connections)
+- [Community 24](Community_24.md) (3 shared connections)
+- [Community 21](Community_21.md) (2 shared connections)
+- [Community 12](Community_12.md) (1 shared connections)
+- [Community 285](Community_285.md) (1 shared connections)
+- [Community 71](Community_71.md) (1 shared connections)
+- [Community 158](Community_158.md) (1 shared connections)
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/.github/PULL_REQUEST_TEMPLATE.md`
-- `.agents/skills/awesome-rea/AGENTS.md`
-- `.agents/skills/awesome-rea/CONTRIBUTING.md`
-- `.agents/skills/awesome-rea/CONTRIBUTING.zh-CN.md`
-- `.agents/skills/awesome-rea/SECURITY.md`
-- `.agents/skills/awesome-rea/data/README.md`
-- `.agents/skills/awesome-rea/data/discoveries/README.md`
-- `.agents/skills/awesome-rea/data/locales/README.md`
-- `.agents/skills/awesome-rea/data/source-supplements/README.md`
-- `.agents/skills/awesome-rea/docs/README.md`
-- `.agents/skills/awesome-rea/docs/README.zh-CN.md`
-- `.agents/skills/awesome-rea/docs/agent-contributing.md`
-- `.agents/skills/awesome-rea/docs/agent-contributing.zh-CN.md`
-- `.agents/skills/awesome-rea/docs/artifact-evidence.md`
-- `.agents/skills/awesome-rea/docs/artifact-evidence.zh-CN.md`
-- `.agents/skills/awesome-rea/docs/automation.md`
-- `.agents/skills/awesome-rea/docs/benchmark-research.zh-CN.md`
-- `.agents/skills/awesome-rea/docs/case-coverage.md`
-- `.agents/skills/awesome-rea/docs/case-coverage.zh-CN.md`
-- `.agents/skills/awesome-rea/docs/cases.md`
+- `scripts/omni_fast_router_v4_9.py`
+- `scripts/test_fast_router.py`
+- `scripts/test_harness_adapter.py`
 
 ## Audit Trail
 
-- EXTRACTED: 242 (100%)
-- INFERRED: 0 (0%)
+- EXTRACTED: 62 (98%)
+- INFERRED: 1 (2%)
 - AMBIGUOUS: 0 (0%)
 
 ---

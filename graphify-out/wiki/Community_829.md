@@ -1,27 +1,30 @@
 # Community 829
 
-> 6 nodes
+> 9 nodes
 
 ## Key Concepts
 
-- **CuratedTranslationReviewTests** (5 connections) — `Awesome-REA/tests/test_curated_translations.py`
-- **.review()** (5 connections) — `Awesome-REA/tests/test_curated_translations.py`
-- **.test_full_json_is_privacy_checked_even_without_a_diff()** (2 connections) — `Awesome-REA/tests/test_curated_translations.py`
-- **.test_unknown_ids_and_malformed_requirements_fail_review()** (2 connections) — `Awesome-REA/tests/test_curated_translations.py`
-- **.test_valid_change_passes_and_is_reported_as_checked()** (2 connections) — `Awesome-REA/tests/test_curated_translations.py`
-- **Review a PR that changes only the translations, using fixture base data and no…** (1 connections) — `Awesome-REA/tests/test_curated_translations.py`
+- **cartridge_vault.sh** (8 connections) — `scripts/cartridge_vault.sh`
+- **cartridge_vault.sh script** (7 connections) — `scripts/cartridge_vault.sh`
+- **generate_manifest()** (6 connections) — `scripts/cartridge_vault.sh`
+- **install_zip()** (5 connections) — `scripts/cartridge_vault.sh`
+- **prune_vault()** (5 connections) — `scripts/cartridge_vault.sh`
+- **activate_vault()** (4 connections) — `scripts/cartridge_vault.sh`
+- **get_active_tag()** (4 connections) — `scripts/cartridge_vault.sh`
+- **list_vault()** (4 connections) — `scripts/cartridge_vault.sh`
+- **download_cloud()** (3 connections) — `scripts/cartridge_vault.sh`
 
 ## Relationships
 
-- [Community 331](Community_331.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `Awesome-REA/tests/test_curated_translations.py`
+- `scripts/cartridge_vault.sh`
 
 ## Audit Trail
 
-- EXTRACTED: 9 (100%)
+- EXTRACTED: 23 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

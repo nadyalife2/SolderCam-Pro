@@ -1,41 +1,48 @@
 # Community 7
 
-> 19 nodes
+> 16 nodes
 
 ## Key Concepts
 
-- **FakeGitHub** (9 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **WaitTests** (6 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.wait()** (6 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **Clock** (5 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **ReceiptTests** (4 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.test_a_baseline_in_another_manifest_format_falls_back_to_a_full_notification()** (3 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.test_the_newest_receipt_of_a_successful_default_branch_run_is_the_baseline()** (3 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.test_a_deployment_that_does_not_reproduce_this_build_or_never_lands_fails()** (3 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.test_a_newer_commit_supersedes_and_a_failed_deployment_stops()** (3 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.test_live_as_soon_as_the_deployment_serves_this_build()** (3 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.test_a_receipt_holds_exactly_its_manifest()** (2 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.__call__()** (1 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.__init__()** (1 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.sleep()** (1 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.download()** (1 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.get()** (1 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.__init__()** (1 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **.setUp()** (1 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
-- **fetch()** (1 connections) — `Awesome-REA/tests/test_indexnow_automation.py`
+- **dialogue_engine.py** (16 connections) — `melvin_src/dialogue_engine.py`
+- **random** (15 connections)
+- **handle_continuation()** (5 connections) — `melvin_src/dialogue_engine.py`
+- **check_user_identity()** (4 connections) — `melvin_src/dialogue_engine.py`
+- **format_dynamic_response()** (4 connections) — `melvin_src/dialogue_engine.py`
+- **get_recent_dialog_context()** (4 connections) — `melvin_src/dialogue_engine.py`
+- **check_popular_science()** (3 connections) — `melvin_src/dialogue_engine.py`
+- **match_advanced_smalltalk()** (3 connections) — `melvin_src/dialogue_engine.py`
+- **match_capability_query()** (3 connections) — `melvin_src/dialogue_engine.py`
+- **update_session()** (3 connections) — `melvin_src/dialogue_engine.py`
+- **Melvin & Rick Advanced Dialogue Engine & Conversational Flow Manager Features:…** (1 connections) — `melvin_src/dialogue_engine.py`
+- **Оборачивает факты в разнообразный живой стиль без монотонных повторов.** (1 connections) — `melvin_src/dialogue_engine.py`
+- **Извлекает последние N реплик диалога для ChatML контекста.** (1 connections) — `melvin_src/dialogue_engine.py`
+- **Перехватывает мета-вопросы о возможностях ассистента: - «ты можешь создать…** (1 connections) — `melvin_src/dialogue_engine.py`
+- **Обрабатывает реплики продолжения диалога: «а ещё», «что ещё», «дальше»,…** (1 connections) — `melvin_src/dialogue_engine.py`
+- **Распознает знакомство и сохраняет имя пользователя.** (1 connections) — `melvin_src/dialogue_engine.py`
 
 ## Relationships
 
-- [Community 32](Community_32.md) (7 shared connections)
+- [Community 17](Community_17.md) (10 shared connections)
+- [Community 71](Community_71.md) (4 shared connections)
+- [Community 2149](Community_2149.md) (3 shared connections)
+- [Community 289](Community_289.md) (3 shared connections)
+- [Community 285](Community_285.md) (2 shared connections)
+- [Community 24](Community_24.md) (2 shared connections)
+- [Community 20](Community_20.md) (2 shared connections)
+- [Community 123](Community_123.md) (1 shared connections)
+- [Community 511](Community_511.md) (1 shared connections)
+- [Community 3](Community_3.md) (1 shared connections)
+- [Community 29](Community_29.md) (1 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/tests/test_indexnow_automation.py`
+- `melvin_src/dialogue_engine.py`
 
 ## Audit Trail
 
-- EXTRACTED: 30 (97%)
-- INFERRED: 1 (3%)
+- EXTRACTED: 48 (100%)
+- INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
 ---

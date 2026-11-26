@@ -1,29 +1,77 @@
 # Community 24
 
-> 8 nodes
+> 46 nodes
 
 ## Key Concepts
 
-- **Жизнь после деблоата: Кинопоиск TV, AOT-компиляция в speed mode и победа над замедлением YouTube** (6 connections) — `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
-- **1. Ловушка обычных приложений: почему мобильный Кинопоиск умирает на 2 ГБ ОЗУ** (2 connections) — `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
-- **3. Битва за YouTube: почему рухнули зеркала Piped** (2 connections) — `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
-- **2. Секретное оружие: компиляция байткода в чистый машинный код (`speed` mode)** (1 connections) — `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
-- **4. ByeDPI против UltraDPI: почему на Android Go не всё так просто** (1 connections) — `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
-- **5. Финальный чеклист победы над планшетом** (1 connections) — `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
-- **В чем магия TV-версии (`ru.kinopoisk.tv`):** (1 connections) — `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
-- **Инженерный разбор фейла:** (1 connections) — `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
+- **subprocess** (97 connections)
+- **time** (71 connections)
+- **deploy_qwen_node2.py** (6 connections) — `deploy_qwen_node2.py`
+- **fast_rescue_nord10.py** (6 connections) — `fast_rescue_nord10.py`
+- **heavy_debloat_nord10.py** (6 connections) — `heavy_debloat_nord10.py`
+- **deploy_mi10t_complete.py** (6 connections) — `scripts/deploy_mi10t_complete.py`
+- **update_and_start_reflex.py** (6 connections) — `update_and_start_reflex.py`
+- **colab_package/deploy_to_mi10t.py** (5 connections) — `colab_package/deploy_to_mi10t.py`
+- **dump_billie_partitions.py** (5 connections) — `dump_billie_partitions.py`
+- **scripts/deploy_to_mi10t.py** (5 connections) — `scripts/deploy_to_mi10t.py`
+- **deploy()** (4 connections) — `scripts/deploy_mi10t_complete.py`
+- **rescue_stage2.py** (4 connections) — `rescue_stage2.py`
+- **diagnose_black_screen.py** (4 connections) — `scripts/diagnose_black_screen.py`
+- **uninstall_stage2.py** (4 connections) — `uninstall_stage2.py`
+- **push_file()** (3 connections) — `deploy_qwen_node2.py`
+- **sh()** (3 connections) — `deploy_qwen_node2.py`
+- **main()** (3 connections) — `fast_rescue_nord10.py`
+- **run()** (3 connections) — `fast_rescue_nord10.py`
+- **run_adb()** (3 connections) — `heavy_debloat_nord10.py`
+- **run_adb()** (3 connections) — `scripts/deploy_mi10t_complete.py`
+- **push_and_install()** (3 connections) — `update_and_start_reflex.py`
+- **su()** (3 connections) — `update_and_start_reflex.py`
+- **inspect_node2.py** (3 connections) — `inspect_node2.py`
+- **start_qwen_test.py** (3 connections) — `start_qwen_test.py`
+- **run_adb()** (2 connections) — `colab_package/deploy_to_mi10t.py`
+- *... and 21 more nodes in this community*
 
 ## Relationships
 
-- [Community 18](Community_18.md) (1 shared connections)
+- [Community 21](Community_21.md) (31 shared connections)
+- [Community 9](Community_9.md) (22 shared connections)
+- [Community 491](Community_491.md) (17 shared connections)
+- [Community 285](Community_285.md) (8 shared connections)
+- [Community 158](Community_158.md) (6 shared connections)
+- [Community 408](Community_408.md) (4 shared connections)
+- [Community 144](Community_144.md) (4 shared connections)
+- [Community 25](Community_25.md) (4 shared connections)
+- [Community 511](Community_511.md) (4 shared connections)
+- [Community 20](Community_20.md) (3 shared connections)
+- [Community 11](Community_11.md) (3 shared connections)
+- [Community 115](Community_115.md) (3 shared connections)
 
 ## Source Files
 
-- `ARTICLES/06_KINOPOISK_TV_SPEED_MODE_AND_DPI_BYPASS.md`
+- `colab_package/deploy_to_mi10t.py`
+- `deploy_qwen_node2.py`
+- `dump_billie_partitions.py`
+- `fast_rescue_nord10.py`
+- `heavy_debloat_nord10.py`
+- `inspect_node2.py`
+- `rescue_stage2.py`
+- `run_restore.py`
+- `scratch/check_nodes_processes.py`
+- `scratch/check_ports.py`
+- `scripts/check_llama_help.py`
+- `scripts/check_mi10t_lora.py`
+- `scripts/daemonize_mi10t_brain.py`
+- `scripts/deploy_mi10t_complete.py`
+- `scripts/deploy_to_mi10t.py`
+- `scripts/diagnose_black_screen.py`
+- `scripts/persist_iptables.py`
+- `scripts/restart_brain_lora.py`
+- `scripts/test_llama_lora_run.py`
+- `scripts/test_termux_bash.py`
 
 ## Audit Trail
 
-- EXTRACTED: 8 (100%)
+- EXTRACTED: 212 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

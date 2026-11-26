@@ -1,6 +1,6 @@
 # Community 1
 
-> 24 nodes
+> 22 nodes
 
 ## Key Concepts
 
@@ -10,7 +10,6 @@
 - **ActivityBatteryDiagnosticsBinding** (2 connections)
 - **AppCompatActivity** (2 connections)
 - **Bundle** (2 connections)
-- **Handler** (2 connections)
 - **ToneGenerator** (2 connections)
 - **batterymanager** (2 connections)
 - **intentfilter** (2 connections)
@@ -25,16 +24,17 @@
 - **fileprovider** (1 connections)
 - **jsonarray** (1 connections)
 - **locale** (1 connections)
-- **looper** (1 connections)
 - **printwriter** (1 connections)
 - **stringwriter** (1 connections)
 
 ## Relationships
 
 - [Community 220](Community_220.md) (7 shared connections)
-- [Community 4](Community_4.md) (4 shared connections)
-- [Community 0](Community_0.md) (3 shared connections)
-- [Community 327](Community_327.md) (1 shared connections)
+- [Community 475](Community_475.md) (3 shared connections)
+- [Community 4](Community_4.md) (2 shared connections)
+- [Community 0](Community_0.md) (2 shared connections)
+- [Community 52](Community_52.md) (1 shared connections)
+- [Community 129](Community_129.md) (1 shared connections)
 
 ## Source Files
 
@@ -43,7 +43,7 @@
 
 ## Audit Trail
 
-- EXTRACTED: 41 (100%)
+- EXTRACTED: 40 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

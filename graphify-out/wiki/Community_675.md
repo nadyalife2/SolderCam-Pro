@@ -1,30 +1,35 @@
 # Community 675
 
-> 7 nodes
+> 14 nodes
 
 ## Key Concepts
 
-- **search_index()** (7 connections) — `.agents/skills/awesome-rea/tests/test_paper_search.py`
-- **PaperSearchTests** (5 connections) — `.agents/skills/awesome-rea/tests/test_paper_search.py`
-- **.test_changed_search_fields_get_a_new_index_name()** (2 connections) — `.agents/skills/awesome-rea/tests/test_paper_search.py`
-- **.test_markup_in_a_title_stays_text_in_the_page_and_data_in_the_index()** (2 connections) — `.agents/skills/awesome-rea/tests/test_paper_search.py`
-- **.test_real_bibliography_stays_complete_without_javascript()** (2 connections) — `.agents/skills/awesome-rea/tests/test_paper_search.py`
-- **.test_browser_search_and_composition_contract()** (1 connections) — `.agents/skills/awesome-rea/tests/test_paper_search.py`
-- **The index file a built listing's form names and preloads.** (1 connections) — `.agents/skills/awesome-rea/tests/test_paper_search.py`
+- **Глава 2. Мой голос — Practico (редакция 2)** (13 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **practico-editorial-book-ch2.md** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.10. Стоп-фразы** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.11. Сигнатурные приёмы** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.12. Приоритет документов** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.1. Отношение к читателю и позиция автора** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.2. Ход объяснения** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.3. Язык, ритм и честность** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.4. Юмор и ирония** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.5. Как открывать статью** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.6. Эталонные примеры голоса** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.7. Плохо и в голосе** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.8. Самопроверка перед выдачей** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
+- **2.9. Завершение статьи** (1 connections) — `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
 
 ## Relationships
 
-- [Community 289](Community_289.md) (2 shared connections)
-- [Community 231](Community_231.md) (1 shared connections)
-- [Community 202](Community_202.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/tests/test_paper_search.py`
+- `.agents/skills/content-creator/references/practico-editorial-book-ch2.md`
 
 ## Audit Trail
 
-- EXTRACTED: 12 (100%)
+- EXTRACTED: 13 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

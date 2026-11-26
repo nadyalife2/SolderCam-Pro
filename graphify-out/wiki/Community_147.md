@@ -1,50 +1,44 @@
 # Community 147
 
-> 31 nodes
+> 8 nodes
 
 ## Key Concepts
 
-- **awesome-rea/scripts/site_shell.py** (27 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **apply_site_shell()** (16 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **icon()** (6 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **_shell_language_link()** (5 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **star_button()** (5 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **announcement_bar()** (4 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **_before_title()** (4 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **head_early()** (4 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **header()** (4 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **mobile_bar()** (4 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **shell_assets()** (4 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **_with_shared_footer()** (4 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **palette()** (3 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **_section()** (3 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **_with_html_attributes()** (3 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **plain_language_link()** (2 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **sprite()** (2 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **Path** (2 connections)
-- **The one header, mobile bar, search palette and icon set every page shares. Page…** (1 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **The nav key a page path belongs to.** (1 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **The one site-wide announcement. Static and reserved in the layout, so it works…** (1 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **Theme before first paint, then the only two font files worth preloading.** (1 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **The shared stylesheet and script; the stylesheet comes last so its tokens win…** (1 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **Reuse the page's language link, which may carry attributes its scripts read;…** (1 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- **Give every generated page the shared chrome; return the number of pages changed.** (1 connections) — `.agents/skills/awesome-rea/scripts/site_shell.py`
-- *... and 6 more nodes in this community*
+- **urllib_request** (14 connections)
+- **urllib_parse** (9 connections)
+- **fetch_colab_cartridge.py** (6 connections) — `scripts/fetch_colab_cartridge.py`
+- **download_cartridge.py** (5 connections) — `scripts/download_cartridge.py`
+- **check_gdrive_file.py** (4 connections) — `scripts/check_gdrive_file.py`
+- **scratch_afh.py** (3 connections) — `scratch_afh.py`
+- **scratch_sf.py** (3 connections) — `scratch_sf.py`
+- **http_cookiejar** (3 connections)
 
 ## Relationships
 
-- [Community 231](Community_231.md) (6 shared connections)
-- [Community 32](Community_32.md) (3 shared connections)
-- [Community 278](Community_278.md) (1 shared connections)
+- [Community 2149](Community_2149.md) (5 shared connections)
+- [Community 136](Community_136.md) (4 shared connections)
+- [Community 511](Community_511.md) (3 shared connections)
+- [Community 71](Community_71.md) (2 shared connections)
+- [Community 158](Community_158.md) (2 shared connections)
+- [Community 21](Community_21.md) (2 shared connections)
+- [Community 123](Community_123.md) (1 shared connections)
 - [Community 289](Community_289.md) (1 shared connections)
+- [Community 120](Community_120.md) (1 shared connections)
+- [Community 74](Community_74.md) (1 shared connections)
+- [Community 121](Community_121.md) (1 shared connections)
+- [Community 491](Community_491.md) (1 shared connections)
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/scripts/site_shell.py`
+- `scratch_afh.py`
+- `scratch_sf.py`
+- `scripts/check_gdrive_file.py`
+- `scripts/download_cartridge.py`
+- `scripts/fetch_colab_cartridge.py`
 
 ## Audit Trail
 
-- EXTRACTED: 63 (100%)
+- EXTRACTED: 36 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

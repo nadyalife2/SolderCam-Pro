@@ -1,28 +1,36 @@
 # Community 27
 
-> 7 nodes
+> 12 nodes
 
 ## Key Concepts
 
-- **Как я превратила старый хлам за 1000 рублей в дерзкую умную колонку с локальной LLM** (4 connections) — `ARTICLES/01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md`
-- **Акт 1: Почему PRoot убивал производительность на 40%** (3 connections) — `ARTICLES/01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md`
-- **01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md** (2 connections) — `ARTICLES/01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md`
-- **Акт 2: Чистый старт и выбор альтер-эго** (1 connections) — `ARTICLES/01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md`
-- **В чем была засада:** (1 connections) — `ARTICLES/01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md`
-- **Наш инженерный хак: Разделение рантайма** (1 connections) — `ARTICLES/01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md`
-- **Пролог: Зачем покупать Яндекс Станцию, когда на полке пылится телефон?** (1 connections) — `ARTICLES/01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md`
+- **async_omni_gateway_v4_8.py** (14 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **handle_chat()** (4 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **handle_anthropic_messages()** (2 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **init_db()** (2 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **asyncio** (2 connections)
+- **get_silicon_temp()** (1 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **ping_loop()** (1 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **handle_control()** (1 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **handle_models()** (1 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **setup_mdns()** (1 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **Triad-Omni Async Gateway v4.8 (Hardened Edition) Audit Improvements: 1. mDNS…** (1 connections) — `archive/legacy_gateways/async_omni_gateway_v4_8.py`
+- **aiohttp** (1 connections)
 
 ## Relationships
 
-- [Community 18](Community_18.md) (1 shared connections)
+- [Community 285](Community_285.md) (2 shared connections)
+- [Community 71](Community_71.md) (1 shared connections)
+- [Community 21](Community_21.md) (1 shared connections)
+- [Community 24](Community_24.md) (1 shared connections)
 
 ## Source Files
 
-- `ARTICLES/01_HOW_I_TURNED_JUNK_PHONE_INTO_SMART_SPEAKER.md`
+- `archive/legacy_gateways/async_omni_gateway_v4_8.py`
 
 ## Audit Trail
 
-- EXTRACTED: 7 (100%)
+- EXTRACTED: 18 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

@@ -1,25 +1,29 @@
 # Community 915
 
-> 4 nodes
+> 8 nodes
 
 ## Key Concepts
 
-- **CommandTests** (4 connections) — `.agents/skills/awesome-rea/tests/test_review_age.py`
-- **.run_main()** (3 connections) — `.agents/skills/awesome-rea/tests/test_review_age.py`
-- **.test_command_reads_the_catalogs_offline_with_a_supplied_date()** (2 connections) — `.agents/skills/awesome-rea/tests/test_review_age.py`
-- **.test_command_rejects_invalid_dates_and_bands()** (2 connections) — `.agents/skills/awesome-rea/tests/test_review_age.py`
+- **scripts/start_brain.sh** (7 connections) — `scripts/start_brain.sh`
+- **GGML_OPENMP** (1 connections) — `scripts/start_brain.sh`
+- **HOME** (1 connections) — `scripts/start_brain.sh`
+- **LD_LIBRARY_PATH** (1 connections) — `scripts/start_brain.sh`
+- **OMP_NUM_THREADS** (1 connections) — `scripts/start_brain.sh`
+- **PATH** (1 connections) — `scripts/start_brain.sh`
+- **PREFIX** (1 connections) — `scripts/start_brain.sh`
+- **start_brain.sh script** (1 connections) — `scripts/start_brain.sh`
 
 ## Relationships
 
-- [Community 32](Community_32.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/tests/test_review_age.py`
+- `scripts/start_brain.sh`
 
 ## Audit Trail
 
-- EXTRACTED: 6 (100%)
+- EXTRACTED: 7 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

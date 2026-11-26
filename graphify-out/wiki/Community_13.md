@@ -1,59 +1,58 @@
 # Community 13
 
-> 30 nodes
+> 45 nodes
 
 ## Key Concepts
 
-- **awesome-rea/scripts/collect_discovery_leads.py** (66 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **run()** (14 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **main()** (10 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **readme_listings()** (10 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **commit_batch()** (6 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **Path** (6 connections)
-- **due()** (5 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **write_collection()** (4 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **allowed()** (4 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **markdown_links()** (4 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **merge_pull()** (4 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **quote_subsections()** (4 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **run_validators()** (4 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **kind_for()** (3 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **output()** (3 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **pull_request_body()** (3 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **step_summary()** (3 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **datetime** (3 connections)
-- **dispatch_checks()** (2 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **log()** (2 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **open_or_update_pull()** (2 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **One commit on ``base_sha`` that adds the lead batch file; the leads branch is…** (1 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **The scheduled workflow path: collect once, then prepare, check and merge on the…** (1 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **Rebase-merge exactly ``sha``, so main keeps the one commit this job wrote, with…** (1 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- **Follow the registered public sources and keep what they list as unreviewed…** (1 connections) — `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
-- *... and 5 more nodes in this community*
+- **colab_package/prune_vocab_head.py** (15 connections) — `colab_package/prune_vocab_head.py`
+- **scripts/prune_vocab_head.py** (15 connections) — `scripts/prune_vocab_head.py`
+- **train_lora_unsloth.py** (14 connections) — `scripts/train_lora_unsloth.py`
+- **generate_vocab_pruning_plan()** (9 connections) — `scripts/prune_vocab_head.py`
+- **argparse** (8 connections)
+- **generate_vocab_pruning_plan()** (7 connections) — `colab_package/prune_vocab_head.py`
+- **build_pruning_indices()** (7 connections) — `scripts/prune_vocab_head.py`
+- **main()** (6 connections) — `colab_package/prune_vocab_head.py`
+- **calculate_ram_savings()** (6 connections) — `scripts/prune_vocab_head.py`
+- **main()** (6 connections) — `scripts/prune_vocab_head.py`
+- **simulate_pruned_head_tensors()** (6 connections) — `scripts/prune_vocab_head.py`
+- **analyze_token_frequencies()** (5 connections) — `colab_package/prune_vocab_head.py`
+- **build_pruning_indices()** (5 connections) — `colab_package/prune_vocab_head.py`
+- **analyze_token_frequencies()** (5 connections) — `scripts/prune_vocab_head.py`
+- **.test_09_pruned_head_vocabulary()** (5 connections) — `scripts/test_harness_adapter.py`
+- **main()** (5 connections) — `scripts/train_lora_unsloth.py`
+- **Any** (5 connections)
+- **Any** (5 connections)
+- **calculate_ram_savings()** (4 connections) — `colab_package/prune_vocab_head.py`
+- **prune_model_weights_torch()** (4 connections) — `colab_package/prune_vocab_head.py`
+- **simulate_pruned_head_tensors()** (4 connections) — `colab_package/prune_vocab_head.py`
+- **prune_model_weights_torch()** (4 connections) — `scripts/prune_vocab_head.py`
+- **parse_args()** (3 connections) — `scripts/train_lora_unsloth.py`
+- **run_canary_tests()** (2 connections) — `scripts/train_lora_unsloth.py`
+- **Path** (2 connections)
+- *... and 20 more nodes in this community*
 
 ## Relationships
 
-- [Community 212](Community_212.md) (23 shared connections)
-- [Community 146](Community_146.md) (8 shared connections)
-- [Community 231](Community_231.md) (7 shared connections)
-- [Community 32](Community_32.md) (6 shared connections)
-- [Community 255](Community_255.md) (6 shared connections)
-- [Community 202](Community_202.md) (4 shared connections)
-- [Community 289](Community_289.md) (4 shared connections)
-- [Community 66](Community_66.md) (3 shared connections)
-- [Community 88](Community_88.md) (3 shared connections)
-- [Community 232](Community_232.md) (2 shared connections)
-- [Community 340](Community_340.md) (2 shared connections)
-- [Community 53](Community_53.md) (2 shared connections)
+- [Community 71](Community_71.md) (10 shared connections)
+- [Community 21](Community_21.md) (6 shared connections)
+- [Community 115](Community_115.md) (5 shared connections)
+- [Community 158](Community_158.md) (3 shared connections)
+- [Community 42](Community_42.md) (2 shared connections)
+- [Community 2](Community_2.md) (2 shared connections)
+- [Community 60](Community_60.md) (1 shared connections)
+- [Community 54](Community_54.md) (1 shared connections)
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/scripts/collect_discovery_leads.py`
+- `colab_package/prune_vocab_head.py`
+- `scripts/prune_vocab_head.py`
+- `scripts/test_harness_adapter.py`
+- `scripts/train_lora_unsloth.py`
 
 ## Audit Trail
 
-- EXTRACTED: 123 (100%)
-- INFERRED: 0 (0%)
+- EXTRACTED: 103 (99%)
+- INFERRED: 1 (1%)
 - AMBIGUOUS: 0 (0%)
 
 ---

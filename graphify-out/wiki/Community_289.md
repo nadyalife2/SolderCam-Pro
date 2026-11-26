@@ -1,78 +1,61 @@
 # Community 289
 
-> 333 nodes
+> 30 nodes
 
 ## Key Concepts
 
-- **pathlib** (503 connections)
-- **unittest** (382 connections)
-- **subprocess** (174 connections)
-- **Awesome-REA/tests/test_paper_source_labels.py** (15 connections) — `Awesome-REA/tests/test_paper_source_labels.py`
-- **awesome-rea/tests/test_curated_translations.py** (13 connections) — `.agents/skills/awesome-rea/tests/test_curated_translations.py`
-- **awesome-rea/tests/test_evidence_pins.py** (13 connections) — `.agents/skills/awesome-rea/tests/test_evidence_pins.py`
-- **awesome-rea/tests/test_paper_search.py** (13 connections) — `.agents/skills/awesome-rea/tests/test_paper_search.py`
-- **awesome-rea/tests/test_readme_tags.py** (13 connections) — `.agents/skills/awesome-rea/tests/test_readme_tags.py`
-- **Awesome-REA/tests/test_case_discovery.py** (13 connections) — `Awesome-REA/tests/test_case_discovery.py`
-- **Awesome-REA/tests/test_paper_search.py** (13 connections) — `Awesome-REA/tests/test_paper_search.py`
-- **awesome-rea/tests/test_language_fragment.py** (12 connections) — `.agents/skills/awesome-rea/tests/test_language_fragment.py`
-- **awesome-rea/tests/test_requirement_budget.py** (12 connections) — `.agents/skills/awesome-rea/tests/test_requirement_budget.py`
-- **awesome-rea/tests/test_source_category.py** (12 connections) — `.agents/skills/awesome-rea/tests/test_source_category.py`
-- **Awesome-REA/tests/test_language_fragment.py** (12 connections) — `Awesome-REA/tests/test_language_fragment.py`
-- **Awesome-REA/tests/test_readme_contents.py** (12 connections) — `Awesome-REA/tests/test_readme_contents.py`
-- **Awesome-REA/tests/test_requirement_budget.py** (12 connections) — `Awesome-REA/tests/test_requirement_budget.py`
-- **Awesome-REA/tests/test_source_category.py** (12 connections) — `Awesome-REA/tests/test_source_category.py`
-- **awesome-rea/tests/test_category_labels.py** (11 connections) — `.agents/skills/awesome-rea/tests/test_category_labels.py`
-- **awesome-rea/tests/test_lean_catalog.py** (11 connections) — `.agents/skills/awesome-rea/tests/test_lean_catalog.py`
-- **awesome-rea/tests/test_paper_diagnostics.py** (11 connections) — `.agents/skills/awesome-rea/tests/test_paper_diagnostics.py`
-- **awesome-rea/tests/test_site_shell.py** (11 connections) — `.agents/skills/awesome-rea/tests/test_site_shell.py`
-- **Awesome-REA/tests/test_category_labels.py** (11 connections) — `Awesome-REA/tests/test_category_labels.py`
-- **Awesome-REA/tests/test_lean_catalog.py** (11 connections) — `Awesome-REA/tests/test_lean_catalog.py`
-- **Awesome-REA/tests/test_pacm_venue.py** (11 connections) — `Awesome-REA/tests/test_pacm_venue.py`
-- **Awesome-REA/tests/test_paper_diagnostics.py** (11 connections) — `Awesome-REA/tests/test_paper_diagnostics.py`
-- *... and 308 more nodes in this community*
+- **web_tools.py** (28 connections) — `melvin_src/web_tools.py`
+- **route_web_fact()** (12 connections) — `melvin_src/web_tools.py`
+- **get_live_news()** (9 connections) — `melvin_src/web_tools.py`
+- **handle_morning_briefing()** (9 connections) — `melvin_src/xiaomi_speaker_skills.py`
+- **get_currency_dict()** (6 connections) — `melvin_src/web_tools.py`
+- **get_news_detail()** (5 connections) — `melvin_src/web_tools.py`
+- **extract_news_count()** (4 connections) — `melvin_src/web_tools.py`
+- **extract_news_topic()** (4 connections) — `melvin_src/web_tools.py`
+- **get_currency_rates()** (4 connections) — `melvin_src/web_tools.py`
+- **get_current_datetime_fact()** (4 connections) — `melvin_src/web_tools.py`
+- **get_live_weather()** (4 connections) — `melvin_src/web_tools.py`
+- **parse_news_detail_request()** (4 connections) — `melvin_src/web_tools.py`
+- **parse_rss_items()** (4 connections) — `melvin_src/web_tools.py`
+- **Priority Router in `agent_orchestrator.py`:** (4 connections) — `.agents/skills/melvin-edge-ai/SKILL.md`
+- **search_duckduckgo()** (3 connections) — `melvin_src/web_tools.py`
+- **search_wikipedia_fact()** (3 connections) — `melvin_src/web_tools.py`
+- **clean_rss_text()** (2 connections) — `melvin_src/web_tools.py`
+- **find_rate()** (1 connections) — `melvin_src/web_tools.py`
+- **Возвращает словарь курсов валют {'usd': float, 'eur': float, 'cny': float}.** (1 connections) — `melvin_src/web_tools.py`
+- **Официальный XML-фид курсов валют ЦБ РФ.** (1 connections) — `melvin_src/web_tools.py`
+- **Двухшаговый поиск Википедии без 404 ошибок.** (1 connections) — `melvin_src/web_tools.py`
+- **DuckDuckGo Instant Answers API для быстрых фактов.** (1 connections) — `melvin_src/web_tools.py`
+- **Парсит элементы RSS с извлечением заголовка, описания (тела) и ссылки.** (1 connections) — `melvin_src/web_tools.py`
+- **Парсит живые RSS-ленты топ-изданий (VC.ru, Хабр, 4PDA, iXBT, DTF, Rozetked и…** (1 connections) — `melvin_src/web_tools.py`
+- **Извлекает подробное описание новости по запросам вида: «расскажи про 3…** (1 connections) — `melvin_src/web_tools.py`
+- *... and 5 more nodes in this community*
 
 ## Relationships
 
-- [Community 32](Community_32.md) (136 shared connections)
-- [Community 53](Community_53.md) (103 shared connections)
-- [Community 331](Community_331.md) (99 shared connections)
-- [Community 202](Community_202.md) (84 shared connections)
-- [Community 843](Community_843.md) (48 shared connections)
-- [Community 231](Community_231.md) (41 shared connections)
-- [Community 25](Community_25.md) (18 shared connections)
-- [Community 88](Community_88.md) (13 shared connections)
-- [Community 394](Community_394.md) (8 shared connections)
-- [Community 232](Community_232.md) (6 shared connections)
-- [Community 334](Community_334.md) (6 shared connections)
-- [Community 311](Community_311.md) (5 shared connections)
+- [Community 40](Community_40.md) (3 shared connections)
+- [Community 17](Community_17.md) (3 shared connections)
+- [Community 7](Community_7.md) (3 shared connections)
+- [Community 20](Community_20.md) (3 shared connections)
+- [Community 285](Community_285.md) (2 shared connections)
+- [Community 123](Community_123.md) (2 shared connections)
+- [Community 408](Community_408.md) (1 shared connections)
+- [Community 2149](Community_2149.md) (1 shared connections)
+- [Community 71](Community_71.md) (1 shared connections)
+- [Community 147](Community_147.md) (1 shared connections)
+- [Community 54](Community_54.md) (1 shared connections)
+- [Community 24](Community_24.md) (1 shared connections)
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/tests/test_active_filters.py`
-- `.agents/skills/awesome-rea/tests/test_agent_formats.py`
-- `.agents/skills/awesome-rea/tests/test_app_logic.py`
-- `.agents/skills/awesome-rea/tests/test_category_labels.py`
-- `.agents/skills/awesome-rea/tests/test_community_outreach.py`
-- `.agents/skills/awesome-rea/tests/test_curated_repository_search.py`
-- `.agents/skills/awesome-rea/tests/test_curated_search_rank.py`
-- `.agents/skills/awesome-rea/tests/test_curated_sort.py`
-- `.agents/skills/awesome-rea/tests/test_curated_translations.py`
-- `.agents/skills/awesome-rea/tests/test_empty_paper_search.py`
-- `.agents/skills/awesome-rea/tests/test_empty_repository_search.py`
-- `.agents/skills/awesome-rea/tests/test_evidence_pins.py`
-- `.agents/skills/awesome-rea/tests/test_expanded_details.py`
-- `.agents/skills/awesome-rea/tests/test_eyebrow_min_size.py`
-- `.agents/skills/awesome-rea/tests/test_fact_lists_phone.py`
-- `.agents/skills/awesome-rea/tests/test_failure_metadata.py`
-- `.agents/skills/awesome-rea/tests/test_filter_focus.py`
-- `.agents/skills/awesome-rea/tests/test_filter_history.py`
-- `.agents/skills/awesome-rea/tests/test_filtered_export.py`
-- `.agents/skills/awesome-rea/tests/test_homepage_url.py`
+- `.agents/skills/melvin-edge-ai/SKILL.md`
+- `melvin_src/web_tools.py`
+- `melvin_src/xiaomi_speaker_skills.py`
 
 ## Audit Trail
 
-- EXTRACTED: 1590 (100%)
-- INFERRED: 0 (0%)
+- EXTRACTED: 67 (92%)
+- INFERRED: 6 (8%)
 - AMBIGUOUS: 0 (0%)
 
 ---

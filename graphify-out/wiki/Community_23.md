@@ -1,17 +1,16 @@
 # Community 23
 
-> 8 nodes
+> 7 nodes
 
 ## Key Concepts
 
-- **Разбор граблей: Почему нейросеть тупит на простых вещах и как мы разогнали отклик до 0.05 секунды** (6 connections) — `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
-- **02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md** (2 connections) — `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
-- **Шаг 2: Взлом фонарика — как обойти защиту Android без Root-прав** (2 connections) — `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
-- **Архитектурный закон: Никогда не гоняй нейросеть ради точных данных** (1 connections) — `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
-- **Наше решение: Файловый IPC-мост** (1 connections) — `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
-- **Пролог: Первые живые тесты и дикое разочарование** (1 connections) — `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
-- **Шаг 1: Мгновенный калькулятор и курс валют ЦБ РФ (`smart_calc.py`)** (1 connections) — `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
-- **Шаг 3: Таймеры без внешних MP3-файлов** (1 connections) — `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
+- **Анатомия китайского обмана: как я вывела на чистую воду «Pad 7 Ultra» с фейковыми 16 ГБ ОЗУ и 1 ТБ памяти** (6 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
+- **04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md** (2 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
+- **1. «Чудо за 5 тысяч»: когда маркетологи потеряли всякий стыд** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
+- **2. Атака через ADB: снимаем лапшу с ушей ядра** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
+- **3. Где мой терабайт? Считаем физические сектора eMMC** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
+- **4. Контрольный выстрел: китайское Factory Mode с иероглифами** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
+- **5. Чеклист разоблачения: как проверить китайца за 2 минуты** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
 
 ## Relationships
 
@@ -19,11 +18,11 @@
 
 ## Source Files
 
-- `ARTICLES/02_TAMING_LATENCY_AND_DETERMINISTIC_TOOLS.md`
+- `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
 
 ## Audit Trail
 
-- EXTRACTED: 8 (100%)
+- EXTRACTED: 7 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

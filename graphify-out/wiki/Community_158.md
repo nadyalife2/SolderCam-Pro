@@ -1,54 +1,72 @@
 # Community 158
 
-> 29 nodes
+> 33 nodes
 
 ## Key Concepts
 
-- **awesome-rea/scripts/check_scan_increment.py** (26 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **main()** (11 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **check_increment()** (7 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **read_shards()** (6 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **accounting_errors()** (5 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **snapshot()** (5 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **annotation()** (4 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **directory_reader()** (4 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **git_reader()** (4 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **integrity_review_error()** (4 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **missing_items()** (4 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **baseline_binding()** (3 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **read()** (3 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **unique_object()** (3 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **read()** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Return the annotation kinds that deterministically turn the retained record…** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Count retained observations absent from the candidate, as a multiset so order…** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Find where the candidate names the baseline bytes and confirm the counts it…** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Read locale shards as {filename: {id: entry}}, rejecting duplicate keys.** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Return a report whose errors list is empty when the candidate only extends the…** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Compare a proposed source-index increment with its frozen baseline, offline.…** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Read committed files from the local object store; a missing path reads as None.** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Parse a snapshot without trusting its counters; structural problems are fatal.** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **Recompute counters and ledger arithmetic from the recorded entries.** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- **A review may only explain a retained mismatch with complete, ordered evidence.** (1 connections) — `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
-- *... and 4 more nodes in this community*
+- **pathlib** (55 connections)
+- **adb_screenshot.py** (4 connections) — `scripts/adb_screenshot.py`
+- **build_updated_web_ui.py** (4 connections) — `scripts/build_updated_web_ui.py`
+- **generate_web_ui.py** (4 connections) — `scripts/generate_web_ui.py`
+- **apply_device_cartridge.py** (3 connections) — `scripts/apply_device_cartridge.py`
+- **build_web_ui.py** (3 connections) — `scripts/build_web_ui.py`
+- **patch_router_restart_drivers.py** (3 connections) — `scripts/patch_router_restart_drivers.py`
+- **patch_router_stop_termux.py** (3 connections) — `scripts/patch_router_stop_termux.py`
+- **patch_router_upload.py** (3 connections) — `scripts/patch_router_upload.py`
+- **patch_web_ui_mi10t.py** (3 connections) — `scripts/patch_web_ui_mi10t.py`
+- **patch_web_ui_reboot_drivers.py** (3 connections) — `scripts/patch_web_ui_reboot_drivers.py`
+- **patch_web_ui_stop_termux.py** (3 connections) — `scripts/patch_web_ui_stop_termux.py`
+- **patch_web_ui_upload.py** (3 connections) — `scripts/patch_web_ui_upload.py`
+- **generate()** (2 connections) — `scripts/build_updated_web_ui.py`
+- **update_web_ui.py** (2 connections) — `scripts/update_web_ui.py`
+- **main()** (1 connections) — `scripts/build_web_ui.py`
+- **apply_patch()** (1 connections) — `scripts/patch_router_restart_drivers.py`
+- **apply_router_patch()** (1 connections) — `scripts/patch_router_stop_termux.py`
+- **apply_patch()** (1 connections) — `scripts/patch_router_upload.py`
+- **apply_patch()** (1 connections) — `scripts/patch_web_ui_mi10t.py`
+- **apply_patch()** (1 connections) — `scripts/patch_web_ui_reboot_drivers.py`
+- **apply_web_ui_patch()** (1 connections) — `scripts/patch_web_ui_stop_termux.py`
+- **apply_patch()** (1 connections) — `scripts/patch_web_ui_upload.py`
+- **apply_exact_upload_patch.py** (1 connections) — `scripts/apply_exact_upload_patch.py`
+- **Generator for Triad-Omni Brain Web UI v5.2 Enhanced for Redmi Note 4 (16:9…** (1 connections) — `scripts/build_updated_web_ui.py`
+- *... and 8 more nodes in this community*
 
 ## Relationships
 
-- [Community 202](Community_202.md) (6 shared connections)
-- [Community 231](Community_231.md) (4 shared connections)
-- [Community 232](Community_232.md) (2 shared connections)
-- [Community 32](Community_32.md) (2 shared connections)
-- [Community 289](Community_289.md) (2 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
-- [Community 297](Community_297.md) (1 shared connections)
+- [Community 24](Community_24.md) (6 shared connections)
+- [Community 71](Community_71.md) (6 shared connections)
+- [Community 2149](Community_2149.md) (4 shared connections)
+- [Community 21](Community_21.md) (3 shared connections)
+- [Community 13](Community_13.md) (3 shared connections)
+- [Community 136](Community_136.md) (3 shared connections)
+- [Community 42](Community_42.md) (2 shared connections)
+- [Community 147](Community_147.md) (2 shared connections)
+- [Community 128](Community_128.md) (1 shared connections)
+- [Community 29](Community_29.md) (1 shared connections)
+- [Community 54](Community_54.md) (1 shared connections)
+- [Community 60](Community_60.md) (1 shared connections)
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/scripts/check_scan_increment.py`
+- `scripts/adb_screenshot.py`
+- `scripts/apply_device_cartridge.py`
+- `scripts/apply_exact_upload_patch.py`
+- `scripts/build_updated_web_ui.py`
+- `scripts/build_web_ui.py`
+- `scripts/generate_web_ui.py`
+- `scripts/patch_router_restart_drivers.py`
+- `scripts/patch_router_stop_termux.py`
+- `scripts/patch_router_upload.py`
+- `scripts/patch_web_ui_mi10t.py`
+- `scripts/patch_web_ui_reboot_drivers.py`
+- `scripts/patch_web_ui_stop_termux.py`
+- `scripts/patch_web_ui_upload.py`
+- `scripts/update_web_ui.py`
 
 ## Audit Trail
 
-- EXTRACTED: 57 (93%)
-- INFERRED: 4 (7%)
+- EXTRACTED: 82 (100%)
+- INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
 ---

@@ -1,55 +1,30 @@
 # Community 143
 
-> 31 nodes
+> 8 nodes
 
 ## Key Concepts
 
-- **awesome-rea/scripts/build_api.py** (31 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **build_api()** (14 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **csv_bytes()** (6 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **changes_document()** (5 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **envelope()** (5 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **candidates_document()** (4 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **schema_document()** (4 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **snapshot_time()** (4 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **categories_document()** (3 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **utc_timestamp()** (3 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **_cell()** (2 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **csv_rows()** (2 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **paper_api_record()** (2 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **add()** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **file()** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **The static read-only API under /api/v1/ and its documentation page /api/.…** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **Inclusions, later source reviews and queue batches in the 30 days that end at…** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **RFC 4180 CSV in UTF-8; list values are joined with " | "; every row repeats…** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **JSON Schema (2020-12) for every API file, built from the catalog's own…** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **Write /api/v1/ and return its index document.** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **A recorded date or time as a UTC timestamp; a bare date is the start of its day.** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **The newest recorded time in the data: the API's deterministic ``generated_at``.** (1 connections) — `.agents/skills/awesome-rea/scripts/build_api.py`
-- **ambiguous_python_import_027b33c5a8ca** (1 connections)
-- **ambiguous_python_import_0c15335e7b13** (1 connections)
-- **ambiguous_python_import_55655d19b34b** (1 connections)
-- *... and 6 more nodes in this community*
+- **1. Структура каталогов** (3 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
+- **2. Как восстановить разделы при необходимости** (3 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
+- **Полный резервный дамп разделов Xiaomi Mi 10T (apollo / M2007J3SY)** (3 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
+- **mi10t_apollo/README.md** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
+- **`boot_firmware/` — Системные разделы ядра, загрузчика и прошивки** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
+- **`critical_efs_persist/` — Уникальные калибровочные разделы (Золотой фонд устройства)** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
+- **Вариант А: Восстановление ядра и прошивки через Fastboot (при бутлупе или после неудачных экспериментов)** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
+- **Вариант Б: Восстановление EFS и Persist (при потере IMEI, MAC-адресов или калибровок)** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
 
 ## Relationships
 
-- [Community 32](Community_32.md) (4 shared connections)
-- [Community 178](Community_178.md) (3 shared connections)
-- [Community 202](Community_202.md) (2 shared connections)
-- [Community 57](Community_57.md) (2 shared connections)
-- [Community 117](Community_117.md) (1 shared connections)
-- [Community 520](Community_520.md) (1 shared connections)
-- [Community 278](Community_278.md) (1 shared connections)
-- [Community 289](Community_289.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/scripts/build_api.py`
+- `UNIVERSAL_DISASTER_RECOVERY_VAULT/firmware/mi10t_apollo/README.md`
 
 ## Audit Trail
 
-- EXTRACTED: 58 (98%)
-- INFERRED: 1 (2%)
+- EXTRACTED: 7 (100%)
+- INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
 ---

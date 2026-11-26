@@ -1,57 +1,57 @@
 # Community 74
 
-> 35 nodes
+> 46 nodes
 
 ## Key Concepts
 
-- **cluster_docs/omni_gateway.py** (38 connections) — `cluster_docs/omni_gateway.py`
-- **.do_POST()** (15 connections) — `cluster_docs/omni_gateway.py`
-- **.handle_chat()** (13 connections) — `cluster_docs/omni_gateway.py`
-- **OmniGatewayHandler** (9 connections) — `cluster_docs/omni_gateway.py`
-- **save_training_pair()** (8 connections) — `cluster_docs/omni_gateway.py`
-- **add_log()** (7 connections) — `cluster_docs/omni_gateway.py`
-- **http_json()** (7 connections) — `cluster_docs/omni_gateway.py`
-- **db_exec()** (6 connections) — `cluster_docs/omni_gateway.py`
-- **set_domain_adapter()** (6 connections) — `cluster_docs/omni_gateway.py`
-- **anthropic_to_oai()** (5 connections) — `cluster_docs/omni_gateway.py`
-- **db_query()** (5 connections) — `cluster_docs/omni_gateway.py`
-- **dynamic_detect_domain()** (4 connections) — `cluster_docs/omni_gateway.py`
-- **escalate()** (4 connections) — `cluster_docs/omni_gateway.py`
-- **fetch_active_skills()** (4 connections) — `cluster_docs/omni_gateway.py`
-- **get_embedding()** (4 connections) — `cluster_docs/omni_gateway.py`
-- **.do_GET()** (4 connections) — `cluster_docs/omni_gateway.py`
-- **._send()** (4 connections) — `cluster_docs/omni_gateway.py`
-- **cosine_sim()** (3 connections) — `cluster_docs/omni_gateway.py`
-- **oai_clean_messages()** (3 connections) — `cluster_docs/omni_gateway.py`
-- **._authorized()** (3 connections) — `cluster_docs/omni_gateway.py`
-- **strip_think()** (3 connections) — `cluster_docs/omni_gateway.py`
-- **last_user_and_image()** (2 connections) — `cluster_docs/omni_gateway.py`
-- **local_telemetry_loop()** (2 connections) — `cluster_docs/omni_gateway.py`
-- **log_tokens()** (2 connections) — `cluster_docs/omni_gateway.py`
-- **start_mdns()** (2 connections) — `cluster_docs/omni_gateway.py`
-- *... and 10 more nodes in this community*
+- **omni_gateway_v4_7.py** (38 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **.do_POST()** (15 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **.handle_chat()** (13 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **StreamRelay** (11 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **OmniGatewayHandler** (9 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **save_training_pair()** (8 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **add_log()** (7 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **http_json()** (7 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **.run()** (7 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **db_exec()** (6 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **set_domain_adapter()** (6 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **anthropic_to_oai()** (5 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **db_query()** (5 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **.emit_event()** (5 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **._write()** (5 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **dynamic_detect_domain()** (4 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **escalate()** (4 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **fetch_active_skills()** (4 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **get_embedding()** (4 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **.do_GET()** (4 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **._send()** (4 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **.anthropic_chunk()** (4 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **.anthropic_finish()** (4 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **cosine_sim()** (3 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- **oai_clean_messages()** (3 connections) — `archive/legacy_gateways/omni_gateway_v4_7.py`
+- *... and 21 more nodes in this community*
 
 ## Relationships
 
-- [Community 32](Community_32.md) (4 shared connections)
-- [Community 314](Community_314.md) (3 shared connections)
-- [Community 786](Community_786.md) (3 shared connections)
-- [Community 202](Community_202.md) (1 shared connections)
-- [Community 62](Community_62.md) (1 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
-- [Community 231](Community_231.md) (1 shared connections)
-- [Community 618](Community_618.md) (1 shared connections)
-- [Community 289](Community_289.md) (1 shared connections)
-- [Community 88](Community_88.md) (1 shared connections)
-- [Community 520](Community_520.md) (1 shared connections)
+- [Community 511](Community_511.md) (3 shared connections)
+- [Community 24](Community_24.md) (2 shared connections)
+- [Community 60](Community_60.md) (1 shared connections)
+- [Community 71](Community_71.md) (1 shared connections)
+- [Community 42](Community_42.md) (1 shared connections)
+- [Community 21](Community_21.md) (1 shared connections)
+- [Community 2149](Community_2149.md) (1 shared connections)
+- [Community 285](Community_285.md) (1 shared connections)
+- [Community 121](Community_121.md) (1 shared connections)
+- [Community 147](Community_147.md) (1 shared connections)
+- [Community 54](Community_54.md) (1 shared connections)
 
 ## Source Files
 
-- `cluster_docs/omni_gateway.py`
+- `archive/legacy_gateways/omni_gateway_v4_7.py`
 
 ## Audit Trail
 
-- EXTRACTED: 95 (99%)
+- EXTRACTED: 115 (99%)
 - INFERRED: 1 (1%)
 - AMBIGUOUS: 0 (0%)
 

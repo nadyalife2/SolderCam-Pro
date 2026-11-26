@@ -1,23 +1,18 @@
 # Community 38
 
-> 2 nodes
+> 1 nodes
 
 ## Key Concepts
 
-- **init.sh** (1 connections) — `note4_apks/init.sh`
-- **init.sh script** (1 connections) — `note4_apks/init.sh`
+- **BaseHTTPRequestHandler** (0 connections)
 
 ## Relationships
 
 - No strong cross-community connections detected
 
-## Source Files
-
-- `note4_apks/init.sh`
-
 ## Audit Trail
 
-- EXTRACTED: 1 (100%)
+- EXTRACTED: 0 (0%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

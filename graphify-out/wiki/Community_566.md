@@ -1,38 +1,33 @@
 # Community 566
 
-> 13 nodes
+> 11 nodes
 
 ## Key Concepts
 
-- **awesome-rea/scripts/source_browser.py** (9 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **project_source_browser()** (7 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **read_json_bytes()** (6 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **validate_source_browser()** (5 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **write_source_browser()** (5 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **compact_json_bytes()** (4 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **invalid_constant()** (1 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **unique_object()** (1 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **Path** (1 connections)
-- **Project the full evidence export into a compact, ordered browser payload.** (1 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **Reject missing evidence, reordered records, excluded rows and extra data.** (1 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **Write only the projection, or remove it when the full source is unavailable.** (1 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
-- **Derive the payload and bind it to the exact complete export bytes.** (1 connections) — `.agents/skills/awesome-rea/scripts/source_browser.py`
+- **Changelog - Triad-Omni Edge AI Cluster** (5 connections) — `CHANGELOG.md`
+- **[5.1.0] - 2026-11-21** (3 connections) — `CHANGELOG.md`
+- **[4.0.0] - 2026-11-10** (2 connections) — `CHANGELOG.md`
+- **[4.7.0] - 2026-11-15** (2 connections) — `CHANGELOG.md`
+- **[5.0.0] - 2026-11-19** (2 connections) — `CHANGELOG.md`
+- **CHANGELOG.md** (1 connections) — `CHANGELOG.md`
+- **Added** (1 connections) — `CHANGELOG.md`
+- **Added** (1 connections) — `CHANGELOG.md`
+- **Added** (1 connections) — `CHANGELOG.md`
+- **Added** (1 connections) — `CHANGELOG.md`
+- **Fixed** (1 connections) — `CHANGELOG.md`
 
 ## Relationships
 
-- [Community 202](Community_202.md) (3 shared connections)
-- [Community 32](Community_32.md) (2 shared connections)
-- [Community 505](Community_505.md) (1 shared connections)
-- [Community 289](Community_289.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/scripts/source_browser.py`
+- `CHANGELOG.md`
 
 ## Audit Trail
 
-- EXTRACTED: 22 (88%)
-- INFERRED: 3 (12%)
+- EXTRACTED: 10 (100%)
+- INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
 ---

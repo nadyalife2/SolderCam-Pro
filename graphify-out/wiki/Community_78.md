@@ -1,52 +1,34 @@
 # Community 78
 
-> 54 nodes
+> 12 nodes
 
 ## Key Concepts
 
-- **IndexNowDeltaTests** (23 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **Awesome-REA/tests/test_unavailable_upstreams.py** (19 connections) — `Awesome-REA/tests/test_unavailable_upstreams.py`
-- **.run_main()** (15 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.delta_args()** (11 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.live_network()** (10 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **errors_for()** (7 connections) — `Awesome-REA/tests/test_unavailable_upstreams.py`
-- **ValidationTests** (6 connections) — `Awesome-REA/tests/test_unavailable_upstreams.py`
-- **entry()** (6 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.changed_baseline()** (6 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **CollectionTests** (5 connections) — `Awesome-REA/tests/test_unavailable_upstreams.py`
-- **.test_accepted_pending_rejected_and_uncertain_responses_never_retry()** (5 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_filtered_post_follows_full_ownership_manifest_and_page_preflight()** (5 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_unchanged_page_mismatch_blocks_even_a_filtered_post()** (5 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_untrusted_baseline_schema_hash_and_path_fail_before_network()** (5 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **FakeAPI** (4 connections) — `Awesome-REA/tests/test_unavailable_upstreams.py`
-- **.baseline()** (4 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_asset_only_delta_requires_review_without_post()** (4 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_asset_only_delta_verifies_the_deployment_and_records_a_receipt()** (4 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_delta_dry_run_is_deterministic_and_never_fetches()** (4 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_unknown_removed_html_is_only_a_filename_not_a_notification()** (4 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **with_check()** (4 connections) — `Awesome-REA/tests/test_unavailable_upstreams.py`
-- **.test_a_full_submission_records_its_receipt_and_another_build_directory_works()** (3 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_current_sitemap_guards_are_not_bypassed()** (3 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_default_dry_run_and_full_submission_still_use_entire_sitemap()** (3 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- **.test_empty_delta_has_no_preflight_or_post()** (3 connections) — `Awesome-REA/tests/test_indexnow_delta.py`
-- *... and 29 more nodes in this community*
+- **🔑 Главные сценарии ручного спасения через Fastboot** (5 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **🛠️ Инструкция: Аварийное раскирпичивание и Fastboot-реанимация** (5 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **Сценарий 3. Полное восстановление связки разделов загрузки (Boot + DTBO + VBMeta)** (3 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **INSTRUCTIONS_FASTBOOT_UNBRICK.md** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **Для OnePlus Nord N10 5G (`billie`):** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **Для Xiaomi Mi 10T (`apollo`):** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **🛡️ Защита критических разделов радиомодема и EFS** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **🛑 Симптомы окирпичивания** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **Сценарий 1. Смена активного слота A/B (Спасает в 90% бутлупов!)** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **Сценарий 2. Восстановление заводского ядра (Stock Boot)** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **Сценарий 4. Восстановление кастомного рекавери (TWRP / OrangeFox)** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
+- **⚡ Экспресс-спасение через скрипт `fastboot_emergency_flash.bat`** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
 
 ## Relationships
 
-- [Community 32](Community_32.md) (5 shared connections)
-- [Community 289](Community_289.md) (2 shared connections)
-- [Community 202](Community_202.md) (1 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `Awesome-REA/tests/test_indexnow_delta.py`
-- `Awesome-REA/tests/test_unavailable_upstreams.py`
+- `UNIVERSAL_DISASTER_RECOVERY_VAULT/INSTRUCTIONS_FASTBOOT_UNBRICK.md`
 
 ## Audit Trail
 
-- EXTRACTED: 110 (97%)
-- INFERRED: 3 (3%)
+- EXTRACTED: 11 (100%)
+- INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
 ---

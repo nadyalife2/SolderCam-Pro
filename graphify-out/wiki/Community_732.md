@@ -1,26 +1,33 @@
 # Community 732
 
-> 5 nodes
+> 12 nodes
 
 ## Key Concepts
 
-- **PaperVenueSearchTests** (5 connections) — `.agents/skills/awesome-rea/tests/test_paper_venue_search.py`
-- **.setUpClass()** (1 connections) — `.agents/skills/awesome-rea/tests/test_paper_venue_search.py`
-- **.test_search_data_includes_every_venue()** (1 connections) — `.agents/skills/awesome-rea/tests/test_paper_venue_search.py`
-- **.test_search_hints_mention_venues_in_both_languages()** (1 connections) — `.agents/skills/awesome-rea/tests/test_paper_venue_search.py`
-- **.test_venue_matching_in_the_shipped_module()** (1 connections) — `.agents/skills/awesome-rea/tests/test_paper_venue_search.py`
+- **2. Анатомия 7 этапов конвейера: Что делает агент** (8 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **Автономный SaaS-пайплайн «Точка Плавления»: Как я передала агенту управление инженерным контентом полного цикла** (4 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **1. Пролог: Зачем агенту свой SaaS-конвейер?** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **3. Итог: Что мы получили?** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **Шаг 1. Бриф и семантическое ядро** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **Шаг 2. Выбор голоса и генерация** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **Шаг 3. Парсинг и очистка Markdown** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **Шаг 4. Автономный ОТК (Скоринг)** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **Шаг 5. Сборка контракта v1.1** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **Шаг 6. Контролируемая доставка в WordPress** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
+- **Шаг 7. Проверка Rich Snippets** (1 connections) — `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
 
 ## Relationships
 
-- [Community 289](Community_289.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/tests/test_paper_venue_search.py`
+- `ARTICLES/44_TOCHKA_PLAVLENIYA_SAAS_AGENT_PIPELINE.md`
 
 ## Audit Trail
 
-- EXTRACTED: 5 (100%)
+- EXTRACTED: 11 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

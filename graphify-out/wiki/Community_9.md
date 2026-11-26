@@ -1,46 +1,58 @@
 # Community 9
 
-> 16 nodes
+> 68 nodes
 
 ## Key Concepts
 
-- **phone_tools.py** (14 connections) — `melvin_src/phone_tools.py`
-- **dispatch_tool()** (7 connections) — `melvin_src/phone_tools.py`
-- **get_battery()** (7 connections) — `melvin_src/phone_tools.py`
-- **check_fast_tools()** (6 connections) — `melvin_src/agent_orchestrator.py`
-- **toggle_torch()** (6 connections) — `melvin_src/phone_tools.py`
-- **get_hardware_status()** (4 connections) — `melvin_src/phone_tools.py`
-- **search_memory()** (4 connections) — `melvin_src/phone_tools.py`
-- **set_torch()** (3 connections) — `melvin_src/phone_tools.py`
-- **get_live_weather()** (2 connections) — `melvin_src/agent_orchestrator.py`
-- **Melvin On-Device Phone Tools Direct low-latency hardware and OS interfaces for…** (1 connections) — `melvin_src/phone_tools.py`
-- **Alias for toggle_torch for compatibility.** (1 connections) — `melvin_src/phone_tools.py`
-- **Queries SQLite FTS5 database.** (1 connections) — `melvin_src/phone_tools.py`
-- **Parses and executes compact calls: !bat() !sys() !torch(1) or !torch(0)…** (1 connections) — `melvin_src/phone_tools.py`
-- **Returns battery percentage, status, and temperature.** (1 connections) — `melvin_src/phone_tools.py`
-- **Returns RAM usage and CPU temperature/load on Helio X20.** (1 connections) — `melvin_src/phone_tools.py`
-- **Turns flashlight on (1) or off (0) using multi-layer hardware & screen…** (1 connections) — `melvin_src/phone_tools.py`
+- **cluster_runtime/omni_fast_router_v4_9.py** (45 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **Any** (25 connections)
+- **.do_POST()** (20 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **TriadRouterHandler** (19 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **.send_json()** (15 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **.do_GET()** (14 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **get_adb_devices_status()** (12 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **.handle_query()** (12 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **detect_local_node_id()** (11 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **get_cluster_status_sync()** (11 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **handle_start_termux_node()** (11 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **handle_stop_termux_node()** (11 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **execute_cluster_tool()** (10 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **handle_autostart_cluster()** (10 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **handle_deploy_cartridge_to_mi10t()** (10 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **handle_restart_termux_node()** (10 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **find_adb_executable()** (9 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **handle_check_drivers()** (9 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **search_local_rag()** (8 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **get_target_brain_url()** (7 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **select_dynamic_skill()** (7 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **run_paper2code_pipeline()** (6 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **.handle_completion()** (6 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **check_node_sync()** (5 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- **get_local_cartridges_list()** (5 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
+- *... and 43 more nodes in this community*
 
 ## Relationships
 
-- [Community 11](Community_11.md) (4 shared connections)
-- [Community 231](Community_231.md) (3 shared connections)
-- [Community 289](Community_289.md) (3 shared connections)
-- [Community 618](Community_618.md) (2 shared connections)
+- [Community 24](Community_24.md) (22 shared connections)
+- [Community 71](Community_71.md) (7 shared connections)
+- [Community 285](Community_285.md) (3 shared connections)
+- [Community 2149](Community_2149.md) (3 shared connections)
+- [Community 21](Community_21.md) (2 shared connections)
+- [Community 11](Community_11.md) (1 shared connections)
 - [Community 2](Community_2.md) (1 shared connections)
-- [Community 88](Community_88.md) (1 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
-- [Community 769](Community_769.md) (1 shared connections)
+- [Community 147](Community_147.md) (1 shared connections)
+- [Community 121](Community_121.md) (1 shared connections)
+- [Community 158](Community_158.md) (1 shared connections)
+- [Community 511](Community_511.md) (1 shared connections)
 
 ## Source Files
 
-- `melvin_src/agent_orchestrator.py`
-- `melvin_src/phone_tools.py`
+- `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/omni_fast_router_v4_9.py`
 
 ## Audit Trail
 
-- EXTRACTED: 38 (100%)
-- INFERRED: 0 (0%)
+- EXTRACTED: 224 (99%)
+- INFERRED: 3 (1%)
 - AMBIGUOUS: 0 (0%)
 
 ---

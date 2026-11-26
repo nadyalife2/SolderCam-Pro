@@ -146,7 +146,7 @@
   "144": "restore_nord10_system.py",
   "145": "Статья 47: Воскрешение шлюза NODE-3 на Redmi Note 4 и ликвидация фейковой телеметрии",
   "146": "cluster_runtime/standards_rag_search.py",
-  "147": "nord_tool.py",
+  "147": "urllib_request",
   "158": "pathlib",
   "220": "BatteryDiagnosticsActivity",
   "260": "Часть 9: Оживление тупящего Android TV на MediaTek MT7332: петля смерти Bluetooth, ловушка android:persistent и разгон в чистый native",

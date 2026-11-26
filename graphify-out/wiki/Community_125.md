@@ -1,35 +1,15 @@
 # Community 125
 
-> 37 nodes
+> 6 nodes
 
 ## Key Concepts
 
-- **steps** (7 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **merge** (6 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **permissions** (6 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **Awesome-REA/.github/workflows/merge-pr.yml** (5 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **env** (5 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **pr** (4 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **concurrency** (3 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **with** (3 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **jobs** (2 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **on** (2 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **workflow_dispatch** (2 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **permissions** (2 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **contents** (2 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **inputs** (2 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **cancel-in-progress** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **group** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **DEFAULT_BRANCH** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **GH_TOKEN** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **HEAD_SHA** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **PR** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **if** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **runs-on** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **timeout-minutes** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **name** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- **actions** (1 connections) — `Awesome-REA/.github/workflows/merge-pr.yml`
-- *... and 12 more nodes in this community*
+- **knowledge_backup/cartridges/manifest.json** (5 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/manifest.json`
+- **active_tag** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/manifest.json`
+- **cartridges** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/manifest.json`
+- **quota_max_mb** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/manifest.json`
+- **quota_percent** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/manifest.json`
+- **quota_used_mb** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/manifest.json`
 
 ## Relationships
 
@@ -37,11 +17,11 @@
 
 ## Source Files
 
-- `Awesome-REA/.github/workflows/merge-pr.yml`
+- `UNIVERSAL_DISASTER_RECOVERY_VAULT/knowledge_backup/cartridges/manifest.json`
 
 ## Audit Trail
 
-- EXTRACTED: 37 (100%)
+- EXTRACTED: 5 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

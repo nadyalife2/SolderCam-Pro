@@ -4,12 +4,12 @@
 
 ## Key Concepts
 
-- **Project Guidelines: OnePlus Nord N10 5G (SolderCam Pro & Battery Diagnostics)** (5 connections) — `GEMINI.md`
+- **Project Guidelines: Triad-Omni Edge AI Cluster (Xiaomi Mi 10T, OnePlus Nord N10 5G, Redmi Note 4)** (5 connections) — `GEMINI.md`
 - **GEMINI.md** (1 connections) — `GEMINI.md`
 - **Active Skills for This Workspace** (1 connections) — `GEMINI.md`
-- **Documentation & Evidence Policy** (1 connections) — `GEMINI.md`
 - **Domain Scope** (1 connections) — `GEMINI.md`
 - **Excluded Skills** (1 connections) — `GEMINI.md`
+- **Mandatory Execution Rules (Strictly Follow on EVERY Turn Without Reminders)** (1 connections) — `GEMINI.md`
 
 ## Relationships
 

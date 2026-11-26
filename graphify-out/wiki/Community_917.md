@@ -1,25 +1,30 @@
 # Community 917
 
-> 4 nodes
+> 9 nodes
 
 ## Key Concepts
 
-- **ProtocolReportTests** (3 connections) — `Awesome-REA/tests/test_scan_classification.py`
-- **.test_report_lists_protocol_changes_without_rewriting_records()** (2 connections) — `Awesome-REA/tests/test_scan_classification.py`
-- **.test_command_reads_the_snapshot_offline_and_retags_nothing()** (1 connections) — `Awesome-REA/tests/test_scan_classification.py`
-- **stored()** (1 connections) — `Awesome-REA/tests/test_scan_classification.py`
+- **40. Генеральный план Triad-Omni v4.9: от физики кремния Snapdragon до схемотехники питания и потокового аудио** (5 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
+- **4. Схемотехника прямого питания DC-DC на Redmi Note 4 (Node-3)** (3 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
+- **2. Математика QLoRA: почему нельзя запекать адаптер в 3-битный квант** (2 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
+- **40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md** (1 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
+- **1. Спекуляция на Snapdragon 865: окончательный вердикт** (1 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
+- **3. Голосовой контур: Piper TTS на OnePlus Nord N10 (:8083)** (1 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
+- **Бронебойный SQLite:** (1 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
+- **Скорректированные параметры обучения (Google Colab T4):** (1 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
+- **Трехступенчатая батарея конденсаторов (напаивается прямо на клеммы платы):** (1 connections) — `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
 
 ## Relationships
 
-- [Community 32](Community_32.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `Awesome-REA/tests/test_scan_classification.py`
+- `ARTICLES/40_MASTER_BLUEPRINT_TRIAD_OMNI_V4_9.md`
 
 ## Audit Trail
 
-- EXTRACTED: 4 (100%)
+- EXTRACTED: 8 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

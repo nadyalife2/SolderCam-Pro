@@ -1,37 +1,41 @@
 # Community 408
 
-> 13 nodes
+> 14 nodes
 
 ## Key Concepts
 
-- **Awesome-REA/tests/test_paper_url_identifiers.py** (11 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **PaperURLIdentifierTests** (7 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **errors_for()** (6 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **.test_artifact_dois_in_other_links_are_not_the_paper_doi()** (2 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **.test_matching_arxiv_and_doi_urls_pass()** (2 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **.test_mismatched_arxiv_urls_fail()** (2 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **.test_mismatched_doi_resolver_urls_fail()** (2 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **.test_publisher_landing_pages_and_other_hosts_are_not_interpreted()** (2 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **.test_pull_request_review_applies_the_same_rule()** (1 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **Paper url and pdf_url agree offline with the record's arXiv ID, reviewed…** (1 connections) — `Awesome-REA/tests/test_paper_url_identifiers.py`
-- **ambiguous_python_import_57d958d7b7e7** (1 connections)
-- **ambiguous_python_import_8661006814b8** (1 connections)
-- **ambiguous_python_import_985ca946e559** (1 connections)
+- **phone_tools.py** (14 connections) — `melvin_src/phone_tools.py`
+- **dispatch_tool()** (7 connections) — `melvin_src/phone_tools.py`
+- **get_battery()** (7 connections) — `melvin_src/phone_tools.py`
+- **toggle_torch()** (6 connections) — `melvin_src/phone_tools.py`
+- **get_hardware_status()** (4 connections) — `melvin_src/phone_tools.py`
+- **search_memory()** (4 connections) — `melvin_src/phone_tools.py`
+- **set_torch()** (3 connections) — `melvin_src/phone_tools.py`
+- **Melvin On-Device Phone Tools Direct low-latency hardware and OS interfaces for…** (1 connections) — `melvin_src/phone_tools.py`
+- **Alias for toggle_torch for compatibility.** (1 connections) — `melvin_src/phone_tools.py`
+- **Queries SQLite FTS5 database.** (1 connections) — `melvin_src/phone_tools.py`
+- **Parses and executes compact calls: !bat() !sys() !torch(1) or !torch(0)…** (1 connections) — `melvin_src/phone_tools.py`
+- **Returns battery percentage, status, and temperature.** (1 connections) — `melvin_src/phone_tools.py`
+- **Returns RAM usage and CPU temperature/load on Helio X20.** (1 connections) — `melvin_src/phone_tools.py`
+- **Turns flashlight on (1) or off (0) using multi-layer hardware & screen…** (1 connections) — `melvin_src/phone_tools.py`
 
 ## Relationships
 
-- [Community 289](Community_289.md) (2 shared connections)
-- [Community 520](Community_520.md) (1 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
-- [Community 32](Community_32.md) (1 shared connections)
+- [Community 17](Community_17.md) (4 shared connections)
+- [Community 24](Community_24.md) (4 shared connections)
+- [Community 2149](Community_2149.md) (3 shared connections)
+- [Community 285](Community_285.md) (2 shared connections)
+- [Community 289](Community_289.md) (1 shared connections)
+- [Community 21](Community_21.md) (1 shared connections)
+- [Community 20](Community_20.md) (1 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/tests/test_paper_url_identifiers.py`
+- `melvin_src/phone_tools.py`
 
 ## Audit Trail
 
-- EXTRACTED: 22 (100%)
+- EXTRACTED: 34 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

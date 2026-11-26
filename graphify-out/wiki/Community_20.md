@@ -1,30 +1,34 @@
 # Community 20
 
-> 9 nodes
+> 8 nodes
 
 ## Key Concepts
 
-- **«Ошибка сети»: как я спасла NewPipe от скрытого DNS-коллапса и запустила YouTube на китайском планшете** (7 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
-- **2. Ловушка №1: Смерть персонального DNS (DoT / Port 853)** (2 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
-- **3. Ловушка №2: Дефолтный Cloudflare 1.1.1.1 внутри ByeDPI** (2 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
-- **1. Когда всё вроде настроено, но ничего не работает** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
-- **4. Момент истины: NewPipe оживает** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
-- **5. Запуск плеера: как видеочип Mali-T720 берет нагрузку на себя** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
-- **6. Краткая шпаргалка: как сейчас смотреть YouTube на планшете** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
-- **Инженерное решение в 2 клика:** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
-- **Лечение:** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **xiaomi_speaker_skills.py** (11 connections) — `melvin_src/xiaomi_speaker_skills.py`
+- **parse_xiaomi_speaker_commands()** (9 connections) — `melvin_src/xiaomi_speaker_skills.py`
+- **adjust_system_volume()** (4 connections) — `melvin_src/xiaomi_speaker_skills.py`
+- **parse_sleep_timer()** (4 connections) — `melvin_src/xiaomi_speaker_skills.py`
+- **Xiaomi Smart Speaker Skills & Ambient Engine for Melvin & Rick Ported features…** (1 connections) — `melvin_src/xiaomi_speaker_skills.py`
+- **Извлекает количество секунд таймера сна из фразы.** (1 connections) — `melvin_src/xiaomi_speaker_skills.py`
+- **Распознает и обрабатывает фишки умной колонки Xiaomi: - Утреннее шоу - Звуки…** (1 connections) — `melvin_src/xiaomi_speaker_skills.py`
+- **Устанавливает громкость Android media_volume (шкала 0..15).** (1 connections) — `melvin_src/xiaomi_speaker_skills.py`
 
 ## Relationships
 
-- [Community 18](Community_18.md) (1 shared connections)
+- [Community 24](Community_24.md) (3 shared connections)
+- [Community 2149](Community_2149.md) (3 shared connections)
+- [Community 289](Community_289.md) (3 shared connections)
+- [Community 17](Community_17.md) (2 shared connections)
+- [Community 7](Community_7.md) (2 shared connections)
+- [Community 408](Community_408.md) (1 shared connections)
 
 ## Source Files
 
-- `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- `melvin_src/xiaomi_speaker_skills.py`
 
 ## Audit Trail
 
-- EXTRACTED: 9 (100%)
+- EXTRACTED: 23 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

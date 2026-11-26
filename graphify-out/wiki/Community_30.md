@@ -1,16 +1,17 @@
 # Community 30
 
-> 7 nodes
+> 8 nodes
 
 ## Key Concepts
 
-- **Профиль авторского голоса и стиля (User Voice & Style Guide)** (6 connections) — `USER_VOICE_STYLE_GUIDE.md`
+- **Профиль авторского голоса и стиля: Practico (Редакция 2)** (7 connections) — `USER_VOICE_STYLE_GUIDE.md`
 - **USER_VOICE_STYLE_GUIDE.md** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
-- **1. Личность автора (Persona & Tone)** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
-- **2. Грамматика и языковые маркеры** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
-- **3. Архитектура статьи / гайда (Драматургия повествования)** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
-- **4. Специфика оформления и верстки** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
-- **5. Антипаттерны (Чего делать НЕЛЬЗЯ при генерации текста)** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
+- **1. Отношение к читателю и позиция автора** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
+- **2. Ход объяснения и архитектура текста** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
+- **3. Сигнатурные приёмы автора (2–3 на статью)** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
+- **4. Юмор, ирония и табу** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
+- **5. Категорические стоп-фразы** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
+- **6. Чеклист самопроверки перед публикацией** (1 connections) — `USER_VOICE_STYLE_GUIDE.md`
 
 ## Relationships
 
@@ -22,7 +23,7 @@
 
 ## Audit Trail
 
-- EXTRACTED: 6 (100%)
+- EXTRACTED: 7 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

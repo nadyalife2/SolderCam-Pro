@@ -1,16 +1,18 @@
 # Community 760
 
-> 7 nodes
+> 9 nodes
 
 ## Key Concepts
 
-- **Анатомия китайского обмана: как я вывела на чистую воду «Pad 7 Ultra» с фейковыми 16 ГБ ОЗУ и 1 ТБ памяти** (6 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
-- **04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md** (2 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
-- **1. «Чудо за 5 тысяч»: когда маркетологи потеряли всякий стыд** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
-- **2. Атака через ADB: снимаем лапшу с ушей ядра** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
-- **3. Где мой терабайт? Считаем физические сектора eMMC** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
-- **4. Контрольный выстрел: китайское Factory Mode с иероглифами** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
-- **5. Чеклист разоблачения: как проверить китайца за 2 минуты** (1 connections) — `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
+- **«Ошибка сети»: как я спасла NewPipe от скрытого DNS-коллапса и запустила YouTube на китайском планшете** (7 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **2. Ловушка №1: Смерть персонального DNS (DoT / Port 853)** (2 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **3. Ловушка №2: Дефолтный Cloudflare 1.1.1.1 внутри ByeDPI** (2 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **1. Когда всё вроде настроено, но ничего не работает** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **4. Момент истины: NewPipe оживает** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **5. Запуск плеера: как видеочип Mali-T720 берет нагрузку на себя** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **6. Краткая шпаргалка: как сейчас смотреть YouTube на планшете** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **Инженерное решение в 2 клика:** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
+- **Лечение:** (1 connections) — `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
 
 ## Relationships
 
@@ -18,11 +20,11 @@
 
 ## Source Files
 
-- `ARTICLES/04_UNMASKING_PAD7_ULTRA_FAKE_SPECS.md`
+- `ARTICLES/07_DNS_COLLAPSE_AND_NEWPIPE_HARDWARE_PLAYBACK.md`
 
 ## Audit Trail
 
-- EXTRACTED: 7 (100%)
+- EXTRACTED: 9 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

@@ -1,28 +1,31 @@
 # Community 752
 
-> 6 nodes
+> 10 nodes
 
 ## Key Concepts
 
-- **meta_line()** (5 connections) — `Awesome-REA/tests/test_browse_card_density.py`
-- **BrowseCardDensityTests** (4 connections) — `Awesome-REA/tests/test_browse_card_density.py`
-- **.test_cards_without_stars_still_render_readme_and_license()** (2 connections) — `Awesome-REA/tests/test_browse_card_density.py`
-- **.test_head_holds_only_the_title_and_the_meta_line_holds_stars_readme_and_license()** (2 connections) — `Awesome-REA/tests/test_browse_card_density.py`
-- **.test_compact_rules_are_scoped_to_repository_cards()** (1 connections) — `Awesome-REA/tests/test_browse_card_density.py`
-- **The card's meta line, with the README link's aria-hidden arrow folded back into…** (1 connections) — `Awesome-REA/tests/test_browse_card_density.py`
+- **Статья 43. Тотальная автономия: Дистилляция CoT-рассуждений, однослотовый турбо-кэш и разгон Snapdragon 865 без облаков** (8 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md** (2 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **5. 100% Оффлайн Дистилляция: Генератор CoT (<think>) Датасетов** (2 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **1. Входная проблема: Куда утекают секунды и как выжать максимум из кремния?** (1 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **2. Раскопки в исходниках llama.cpp: Почему умер cache-reuse?** (1 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **3. Грабли с многопоточностью слотов и калибровка под 1 слот** (1 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **4. Развенчание мифа: OLED против IPS LCD на Mi 10T** (1 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **6. Редизайн Omni-Forge Studio: Кибердек-пульт и мониторинг кластера** (1 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **7. Фиксация и доказательная база через ADB** (1 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
+- **Как это обучать без облаков?** (1 connections) — `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
 
 ## Relationships
 
-- [Community 289](Community_289.md) (2 shared connections)
-- [Community 231](Community_231.md) (1 shared connections)
+- [Community 18](Community_18.md) (1 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/tests/test_browse_card_density.py`
+- `ARTICLES/43_TOTAL_AUTONOMY_COT_DISTILLATION_AND_KRYO_ACCELERATION.md`
 
 ## Audit Trail
 
-- EXTRACTED: 9 (100%)
+- EXTRACTED: 10 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

@@ -4,8 +4,8 @@
 
 ## Key Concepts
 
-- **start_deck.sh** (1 connections) — `note4_apks/start_deck.sh`
-- **start_deck.sh script** (1 connections) — `note4_apks/start_deck.sh`
+- **fix_mi10t.sh** (1 connections) — `scripts/fix_mi10t.sh`
+- **fix_mi10t.sh script** (1 connections) — `scripts/fix_mi10t.sh`
 
 ## Relationships
 
@@ -13,7 +13,7 @@
 
 ## Source Files
 
-- `note4_apks/start_deck.sh`
+- `scripts/fix_mi10t.sh`
 
 ## Audit Trail
 

@@ -1,12 +1,13 @@
 # Community 22
 
-> 8 nodes
+> 9 nodes
 
 ## Key Concepts
 
-- **Проектные правила: OnePlus Nord N10 5G (SolderCam Pro & Battery Guard)** (7 connections) — `.agents/rules/AGENTS.md`
-- **rules/AGENTS.md** (1 connections) — `.agents/rules/AGENTS.md`
+- **Проектные правила: Triad-Omni Edge AI Cluster (Xiaomi Mi 10T, OnePlus Nord N10 5G, Redmi Note 4)** (8 connections) — `.agents/rules/AGENTS.md`
+- **AGENTS.md** (1 connections) — `.agents/rules/AGENTS.md`
 - **1. Специализация и фокус проекта** (1 connections) — `.agents/rules/AGENTS.md`
+- **2. Железные обязательные правила (Выполнять ВСЕГДА БЕЗ НАПОМИНАНИЙ)** (1 connections) — `.agents/rules/AGENTS.md`
 - **2. Разрешенные скилы для проекта** (1 connections) — `.agents/rules/AGENTS.md`
 - **3. Исключенные (игнорируемые) скилы** (1 connections) — `.agents/rules/AGENTS.md`
 - **4. Авторский стиль и голос публикаций** (1 connections) — `.agents/rules/AGENTS.md`
@@ -23,7 +24,7 @@
 
 ## Audit Trail
 
-- EXTRACTED: 7 (100%)
+- EXTRACTED: 8 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

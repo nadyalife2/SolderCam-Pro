@@ -1,47 +1,36 @@
 # Community 121
 
-> 37 nodes
+> 7 nodes
 
 ## Key Concepts
 
-- **steps** (7 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **merge** (6 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **permissions** (6 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **awesome-rea/.github/workflows/merge-pr.yml** (5 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **env** (5 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **pr** (4 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **concurrency** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **with** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **jobs** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **on** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **workflow_dispatch** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **permissions** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **contents** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **inputs** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **cancel-in-progress** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **group** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **DEFAULT_BRANCH** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **GH_TOKEN** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **HEAD_SHA** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **PR** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **if** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **runs-on** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **timeout-minutes** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **name** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- **actions** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
-- *... and 12 more nodes in this community*
+- **omni_mcp_server.py** (11 connections) — `omni_mcp_server.py`
+- **urllib_error** (6 connections)
+- **main()** (4 connections) — `omni_mcp_server.py`
+- **call_hub()** (3 connections) — `omni_mcp_server.py`
+- **run_graphify()** (3 connections) — `omni_mcp_server.py`
+- **load_cluster_env()** (1 connections) — `omni_mcp_server.py`
+- **Triad-Omni Unified MCP Server v5.1 (Fully Compliant with MCP Protocol…** (1 connections) — `omni_mcp_server.py`
 
 ## Relationships
 
-- No strong cross-community connections detected
+- [Community 71](Community_71.md) (3 shared connections)
+- [Community 24](Community_24.md) (2 shared connections)
+- [Community 21](Community_21.md) (2 shared connections)
+- [Community 147](Community_147.md) (1 shared connections)
+- [Community 511](Community_511.md) (1 shared connections)
+- [Community 74](Community_74.md) (1 shared connections)
+- [Community 136](Community_136.md) (1 shared connections)
+- [Community 491](Community_491.md) (1 shared connections)
+- [Community 9](Community_9.md) (1 shared connections)
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/.github/workflows/merge-pr.yml`
+- `omni_mcp_server.py`
 
 ## Audit Trail
 
-- EXTRACTED: 37 (100%)
+- EXTRACTED: 21 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

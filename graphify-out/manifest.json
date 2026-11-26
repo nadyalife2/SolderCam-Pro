@@ -300,9 +300,9 @@
     "semantic_hash": ""
   },
   "ARTICLES/README.md": {
-    "mtime": 1795280720.2649062,
-    "seen": 1795282964.542237,
-    "ast_hash": "38759f32a180e4b5cd58bb3d2eaa0929",
+    "mtime": 1795716267.5563016,
+    "seen": 1795716487.046531,
+    "ast_hash": "c6a3467aa0507648aca2e8c4291d1dd9",
     "semantic_hash": ""
   },
   "GEMINI.md": {
@@ -6333,6 +6333,66 @@
     "mtime": 1795713303.1762278,
     "seen": 1795713469.0136886,
     "ast_hash": "f3c828a6eb48fd063b40f56227c10820",
+    "semantic_hash": ""
+  },
+  "screenshots/recovery_vault_verified_nord.png": {
+    "mtime": 1795714632.1465037,
+    "seen": 1795714735.8392224,
+    "ast_hash": "c88faf87e16af0245625522525a7bf3c",
+    "semantic_hash": ""
+  },
+  "screenshots/recovery_vault_verified_redmi.png": {
+    "mtime": 1795714626.490073,
+    "seen": 1795714735.8392224,
+    "ast_hash": "25c99e799b2ec890680d3379dac5175b",
+    "semantic_hash": ""
+  },
+  "screenshots/node3_redmi_live_check.png": {
+    "mtime": 1795715109.414993,
+    "seen": 1795715150.3998713,
+    "ast_hash": "6c1867d5034d452a927e6675e355948b",
+    "semantic_hash": ""
+  },
+  "screenshots/device_mi10t_node1_active.png": {
+    "mtime": 1795715124.0396976,
+    "seen": 1795715182.9241886,
+    "ast_hash": "6b479a7bea2ae21e11a7f995f3a37241",
+    "semantic_hash": ""
+  },
+  "screenshots/device_nordn10_node2_active.png": {
+    "mtime": 1795715123.520481,
+    "seen": 1795715182.9241886,
+    "ast_hash": "c88faf87e16af0245625522525a7bf3c",
+    "semantic_hash": ""
+  },
+  "screenshots/device_redmi4_node3_active.png": {
+    "mtime": 1795715122.88483,
+    "seen": 1795715182.9251878,
+    "ast_hash": "43f01007a14f2717f78902ce9704cb04",
+    "semantic_hash": ""
+  },
+  "ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md": {
+    "mtime": 1795716131.385874,
+    "seen": 1795716487.046531,
+    "ast_hash": "c97b48cf74ca2e4f10b6145b3b68c517",
+    "semantic_hash": ""
+  },
+  "screenshots/benchmark_audit_mi10t.png": {
+    "mtime": 1795716079.4401555,
+    "seen": 1795716487.826132,
+    "ast_hash": "6b479a7bea2ae21e11a7f995f3a37241",
+    "semantic_hash": ""
+  },
+  "screenshots/benchmark_audit_nordn10.png": {
+    "mtime": 1795716078.6220386,
+    "seen": 1795716487.826132,
+    "ast_hash": "c88faf87e16af0245625522525a7bf3c",
+    "semantic_hash": ""
+  },
+  "screenshots/benchmark_audit_redmi4.png": {
+    "mtime": 1795716080.7026174,
+    "seen": 1795716487.826132,
+    "ast_hash": "fcfb22e131d04f8e4c12c6f9cb0048ee",
     "semantic_hash": ""
   }
 }

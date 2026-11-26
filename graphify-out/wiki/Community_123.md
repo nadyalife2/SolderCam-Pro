@@ -1,62 +1,43 @@
 # Community 123
 
-> 37 nodes
+> 11 nodes
 
 ## Key Concepts
 
-- **ref_node_path** (30 connections)
-- **ref_node_fs** (26 connections)
-- **awesome-rea/tests/empty_repository_search_ui.cjs** (16 connections) — `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- **Awesome-REA/tests/empty_repository_search_ui.cjs** (16 connections) — `Awesome-REA/tests/empty_repository_search_ui.cjs`
-- **awesome-rea/tests/awesome-lint/lint.mjs** (8 connections) — `.agents/skills/awesome-rea/tests/awesome-lint/lint.mjs`
-- **Awesome-REA/tests/awesome-lint/lint.mjs** (8 connections) — `Awesome-REA/tests/awesome-lint/lint.mjs`
-- **main()** (6 connections) — `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- **main()** (6 connections) — `Awesome-REA/tests/empty_repository_search_ui.cjs`
-- **application()** (3 connections) — `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- **application()** (3 connections) — `Awesome-REA/tests/empty_repository_search_ui.cjs`
-- **curatedState()** (2 connections) — `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- **element()** (2 connections) — `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- **settle()** (2 connections) — `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- **sourceRequests()** (2 connections) — `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- **curatedState()** (2 connections) — `Awesome-REA/tests/empty_repository_search_ui.cjs`
-- **element()** (2 connections) — `Awesome-REA/tests/empty_repository_search_ui.cjs`
-- **settle()** (2 connections) — `Awesome-REA/tests/empty_repository_search_ui.cjs`
-- **sourceRequests()** (2 connections) — `Awesome-REA/tests/empty_repository_search_ui.cjs`
-- **awesome-lint** (2 connections) — `awesome-lint`
-- **ref_node_module** (2 connections)
-- **ref_node_process** (2 connections)
-- **findings** (1 connections) — `.agents/skills/awesome-rea/tests/awesome-lint/lint.mjs`
-- **[input = 'README.md', output = '.cache/awesome-lint/findings.json']** (1 connections) — `.agents/skills/awesome-rea/tests/awesome-lint/lint.mjs`
-- **{version}** (1 connections) — `.agents/skills/awesome-rea/tests/awesome-lint/lint.mjs`
-- **assert** (1 connections) — `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- *... and 12 more nodes in this community*
+- **smart_calc.py** (10 connections) — `melvin_src/smart_calc.py`
+- **test_corner_cases.py** (6 connections) — `scratch/test_corner_cases.py`
+- **parse_currency_conversion()** (3 connections) — `melvin_src/smart_calc.py`
+- **parse_timer_command()** (3 connections) — `melvin_src/smart_calc.py`
+- **safe_math_eval()** (3 connections) — `melvin_src/smart_calc.py`
+- **decode_share.py** (3 connections) — `decode_share.py`
+- **html** (3 connections)
+- **parse_unit_conversion()** (2 connections) — `melvin_src/smart_calc.py`
+- **Безопасный парсер арифметических выражений через regex + математические функции.** (1 connections) — `melvin_src/smart_calc.py`
+- **Конвертирует валюты (USD, EUR, CNY) в RUB и наоборот. rates = {'usd': 96.5,…** (1 connections) — `melvin_src/smart_calc.py`
+- **Распознает команды таймера: - "поставь таймер на 5 минут" - "таймер на 30…** (1 connections) — `melvin_src/smart_calc.py`
 
 ## Relationships
 
-- [Community 61](Community_61.md) (11 shared connections)
-- [Community 59](Community_59.md) (9 shared connections)
-- [Community 107](Community_107.md) (2 shared connections)
-- [Community 103](Community_103.md) (2 shared connections)
-- [Community 265](Community_265.md) (2 shared connections)
-- [Community 302](Community_302.md) (2 shared connections)
-- [Community 213](Community_213.md) (2 shared connections)
-- [Community 266](Community_266.md) (2 shared connections)
-- [Community 316](Community_316.md) (2 shared connections)
-- [Community 133](Community_133.md) (2 shared connections)
-- [Community 108](Community_108.md) (2 shared connections)
-- [Community 100](Community_100.md) (2 shared connections)
+- [Community 17](Community_17.md) (5 shared connections)
+- [Community 2149](Community_2149.md) (2 shared connections)
+- [Community 289](Community_289.md) (2 shared connections)
+- [Community 71](Community_71.md) (1 shared connections)
+- [Community 42](Community_42.md) (1 shared connections)
+- [Community 147](Community_147.md) (1 shared connections)
+- [Community 21](Community_21.md) (1 shared connections)
+- [Community 7](Community_7.md) (1 shared connections)
+- [Community 3](Community_3.md) (1 shared connections)
+- [Community 285](Community_285.md) (1 shared connections)
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/tests/awesome-lint/lint.mjs`
-- `.agents/skills/awesome-rea/tests/empty_repository_search_ui.cjs`
-- `Awesome-REA/tests/awesome-lint/lint.mjs`
-- `Awesome-REA/tests/empty_repository_search_ui.cjs`
-- `awesome-lint`
+- `decode_share.py`
+- `melvin_src/smart_calc.py`
+- `scratch/test_corner_cases.py`
 
 ## Audit Trail
 
-- EXTRACTED: 108 (100%)
+- EXTRACTED: 26 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

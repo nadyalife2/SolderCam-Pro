@@ -1,58 +1,33 @@
 # Community 114
 
-> 39 nodes
+> 12 nodes
 
 ## Key Concepts
 
-- **Awesome-REA/scripts/collect_public_artifact_leads.py** (36 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **.collect()** (12 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **validate_report()** (10 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **SourceError** (8 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **canonical_lead()** (8 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **Collector** (7 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **allowed_fetch()** (7 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **.add_links()** (7 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **PublicClient** (6 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **clean_url()** (6 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **.github()** (6 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **digest()** (6 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **Links** (5 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **capture()** (5 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **.web_page()** (5 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **main()** (5 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **write_report()** (5 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **NoRedirect** (4 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **lead_id()** (4 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **.fetch()** (4 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **web_case()** (4 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **counts()** (3 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **.json()** (3 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **repo_slug()** (3 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- **select_case_pages()** (3 connections) — `Awesome-REA/scripts/collect_public_artifact_leads.py`
-- *... and 14 more nodes in this community*
+- **cluster_runtime/start_router.sh** (11 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **HOME** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **LD_LIBRARY_PATH** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **NODE_ID** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **NODE_IP** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **NODE_NAME** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **PATH** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **PORT** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **PREFIX** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **PYTHONUNBUFFERED** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **SECONDARY_PORT** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
+- **start_router.sh script** (1 connections) — `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
 
 ## Relationships
 
-- [Community 231](Community_231.md) (6 shared connections)
-- [Community 32](Community_32.md) (5 shared connections)
-- [Community 232](Community_232.md) (2 shared connections)
-- [Community 520](Community_520.md) (2 shared connections)
-- [Community 202](Community_202.md) (2 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
-- [Community 88](Community_88.md) (1 shared connections)
-- [Community 843](Community_843.md) (1 shared connections)
-- [Community 289](Community_289.md) (1 shared connections)
-- [Community 297](Community_297.md) (1 shared connections)
-- [Community 331](Community_331.md) (1 shared connections)
-- [Community 278](Community_278.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `Awesome-REA/scripts/collect_public_artifact_leads.py`
+- `UNIVERSAL_DISASTER_RECOVERY_VAULT/termux_bootstrap/cluster_runtime/start_router.sh`
 
 ## Audit Trail
 
-- EXTRACTED: 106 (100%)
+- EXTRACTED: 11 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

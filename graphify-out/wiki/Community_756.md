@@ -1,31 +1,30 @@
 # Community 756
 
-> 8 nodes
+> 9 nodes
 
 ## Key Concepts
 
-- **Awesome-REA/scripts/evidence_links.py** (7 connections) — `Awesome-REA/scripts/evidence_links.py`
-- **source_label()** (5 connections) — `Awesome-REA/scripts/evidence_links.py`
-- **accessible_name()** (4 connections) — `Awesome-REA/scripts/evidence_links.py`
-- **evidence_link()** (4 connections) — `Awesome-REA/scripts/evidence_links.py`
-- **Return a link label and optional context HTML for one evidence URL. Only…** (1 connections) — `Awesome-REA/scripts/evidence_links.py`
-- **Label evidence links the same way on detail pages, /resources/, /cases/ and…** (1 connections) — `Awesome-REA/scripts/evidence_links.py`
-- **Name a compact link by its visible path plus repository and revision, so paths…** (1 connections) — `Awesome-REA/scripts/evidence_links.py`
-- **Render one evidence link from its validated, escaped href, with the full URL as…** (1 connections) — `Awesome-REA/scripts/evidence_links.py`
+- **Дневник выживания с железом: Превращение OnePlus Nord N10 в чистокровную камерную ноду: Zygisk, GCam 8.1 на OV64B и тотальный деблоат** (8 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
+- **31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md** (1 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
+- **Введение: План переходит в фазу «Огонь»** (1 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
+- **Фиксация в скриншотах** (1 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
+- **Что в итоге?** (1 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
+- **Шаг 1. Включение Zygisk через прямую инъекцию в базу Magisk** (1 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
+- **Шаг 2. Развертывание GCam 8.1 под OmniVision OV64B** (1 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
+- **Шаг 3. Хирургический деблоат: Под нож пошли 32 шпиона и пожирателя ресурсов** (1 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
+- **Шаг 4. Результат: 2.82 ГБ чистой свободной LPDDR4X!** (1 connections) — `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
 
 ## Relationships
 
-- [Community 231](Community_231.md) (2 shared connections)
-- [Community 278](Community_278.md) (1 shared connections)
-- [Community 297](Community_297.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `Awesome-REA/scripts/evidence_links.py`
+- `ARTICLES/31_ONEPLUS_NORD_N10_ZYGISK_GCAM_OV64B_AND_DEBLOAT.md`
 
 ## Audit Trail
 
-- EXTRACTED: 14 (100%)
+- EXTRACTED: 8 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

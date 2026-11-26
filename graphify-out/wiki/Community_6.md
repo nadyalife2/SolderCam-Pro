@@ -1,6 +1,6 @@
 # Community 6
 
-> 22 nodes
+> 23 nodes
 
 ## Key Concepts
 
@@ -13,6 +13,7 @@
 - **1.1. Разъем Micro-USB Type-B (5 контактов)** (2 connections) — `.agents/skills/melvin-edge-ai/references/HARDWARE_PINOUTS_AND_SOC_AUDIT.md`
 - **1.2. Разъем USB Type-A (4 контакта)** (2 connections) — `.agents/skills/melvin-edge-ai/references/HARDWARE_PINOUTS_AND_SOC_AUDIT.md`
 - **1. Architecture Overview: The Hybrid Bionic / PRoot Stack** (2 connections) — `.agents/skills/melvin-edge-ai/SKILL.md`
+- **2. Low-Latency Deterministic Routing Hierarchy** (2 connections) — `.agents/skills/melvin-edge-ai/SKILL.md`
 - **3. Hardware Torch IPC Bridge on Android** (2 connections) — `.agents/skills/melvin-edge-ai/SKILL.md`
 - **1.3. Разъем USB Type-C (24 контакта, симметричный)** (1 connections) — `.agents/skills/melvin-edge-ai/references/HARDWARE_PINOUTS_AND_SOC_AUDIT.md`
 - **2. База данных производителей флеш-памяти (JEDEC CID `manfid`)** (1 connections) — `.agents/skills/melvin-edge-ai/references/HARDWARE_PINOUTS_AND_SOC_AUDIT.md`
@@ -30,7 +31,7 @@
 ## Relationships
 
 - [Community 18](Community_18.md) (1 shared connections)
-- [Community 2](Community_2.md) (1 shared connections)
+- [Community 289](Community_289.md) (1 shared connections)
 
 ## Source Files
 
@@ -39,7 +40,7 @@
 
 ## Audit Trail
 
-- EXTRACTED: 23 (100%)
+- EXTRACTED: 24 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

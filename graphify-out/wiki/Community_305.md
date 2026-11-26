@@ -1,41 +1,51 @@
 # Community 305
 
-> 17 nodes
+> 24 nodes
 
 ## Key Concepts
 
-- **Awesome-REA/scripts/build_repository_index.py** (17 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **rendered_files()** (5 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **curated_resources()** (4 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **main()** (4 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **obsolete_pages()** (3 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **related_markers()** (3 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **Return Markdown pages in the output directory that the generator no longer…** (1 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **Generate a browsable bilingual Markdown index from the scanned repository data.** (1 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **Curated records with the Chinese display names the website uses for related-…** (1 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **Link exact curated or paper matches, as the website's repository cards do;…** (1 connections) — `Awesome-REA/scripts/build_repository_index.py`
-- **ambiguous_python_import_1668f6954257** (1 connections)
-- **ambiguous_python_import_36d08ff3f872** (1 connections)
-- **ambiguous_python_import_5bfdb8594122** (1 connections)
-- **ambiguous_python_import_7c1f32142ee0** (1 connections)
-- **ambiguous_python_import_bf39292309ae** (1 connections)
-- **ambiguous_python_import_c16c7baef671** (1 connections)
-- **ambiguous_python_import_dec37c7dfa9c** (1 connections)
+- **scripts/cartridge_manager.py** (17 connections) — `scripts/cartridge_manager.py`
+- **unpack_and_install_cartridge()** (9 connections) — `scripts/cartridge_manager.py`
+- **list_cartridges()** (8 connections) — `scripts/cartridge_manager.py`
+- **Any** (8 connections)
+- **prune_cartridge_cache()** (7 connections) — `scripts/cartridge_manager.py`
+- **set_active_cartridge()** (7 connections) — `scripts/cartridge_manager.py`
+- **verify_cartridge_passport()** (6 connections) — `scripts/cartridge_manager.py`
+- **activate_version()** (5 connections) — `scripts/cartridge_manager.py`
+- **compute_sha256()** (5 connections) — `scripts/cartridge_manager.py`
+- **get_active_cartridge()** (5 connections) — `scripts/cartridge_manager.py`
+- **get_storage_stats()** (5 connections) — `scripts/cartridge_manager.py`
+- **.test_03_cartridge_passport_verification()** (2 connections) — `scripts/test_harness_adapter.py`
+- **.test_06_passport_edge_cases()** (2 connections) — `scripts/test_harness_adapter.py`
+- **Path** (2 connections)
+- **Сохраняет активный картридж в конфигурацию и обновляет рабочий…** (1 connections) — `scripts/cartridge_manager.py`
+- **Сканирует каталог cartridges/ и возвращает список установленных картриджей и…** (1 connections) — `scripts/cartridge_manager.py`
+- **Возвращает детальную статистику использования локальной памяти под картриджи.** (1 connections) — `scripts/cartridge_manager.py`
+- **Интеллектуальная ротация (LRU) версий картриджей: 1. Никогда не удаляет…** (1 connections) — `scripts/cartridge_manager.py`
+- **Triad-Omni Cartridge Manager v2.0 (Smart Rolling Cache & Version Pool) Модуль…** (1 connections) — `scripts/cartridge_manager.py`
+- **Активирует конкретную версию картриджа из локального хранилища.** (1 connections) — `scripts/cartridge_manager.py`
+- **Распаковывает zip или перемещает gguf в изолированную папку версии,…** (1 connections) — `scripts/cartridge_manager.py`
+- **Вычисляет SHA256 хеш файла (или первых max_bytes).** (1 connections) — `scripts/cartridge_manager.py`
+- **Возвращает информацию о текущем активном картридже.** (1 connections) — `scripts/cartridge_manager.py`
+- **Проверяет соответствие паспорта спецификации omni.lora.card/1 и готовность к…** (1 connections) — `scripts/cartridge_manager.py`
 
 ## Relationships
 
-- [Community 202](Community_202.md) (3 shared connections)
-- [Community 232](Community_232.md) (2 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
-- [Community 297](Community_297.md) (1 shared connections)
+- [Community 71](Community_71.md) (6 shared connections)
+- [Community 2](Community_2.md) (5 shared connections)
+- [Community 115](Community_115.md) (3 shared connections)
+- [Community 60](Community_60.md) (2 shared connections)
+- [Community 21](Community_21.md) (1 shared connections)
+- [Community 158](Community_158.md) (1 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/scripts/build_repository_index.py`
+- `scripts/cartridge_manager.py`
+- `scripts/test_harness_adapter.py`
 
 ## Audit Trail
 
-- EXTRACTED: 27 (100%)
+- EXTRACTED: 58 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

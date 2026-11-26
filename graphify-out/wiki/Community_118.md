@@ -1,58 +1,32 @@
 # Community 118
 
-> 51 nodes
+> 10 nodes
 
 ## Key Concepts
 
-- **Awesome-REA/scripts/build_discoveries.py** (32 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **write_discoveries()** (14 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **Awesome-REA/scripts/discovery_reviews.py** (14 connections) — `Awesome-REA/scripts/discovery_reviews.py`
-- **timestamp()** (13 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **discovery_queue()** (10 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **validate_discovery_outputs()** (10 connections) — `Awesome-REA/scripts/validate_site.py`
-- **export_document()** (9 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **page_content()** (7 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **status_document()** (6 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **badge_document()** (5 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **batch_export()** (5 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **counts()** (5 connections) — `Awesome-REA/scripts/discovery_reviews.py`
-- **batch_export_path()** (4 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **discovery_feed()** (4 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **export_record()** (4 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **llms_section()** (4 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **main_feed_batches()** (4 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **run_url()** (4 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **export_document()** (4 connections) — `Awesome-REA/scripts/discovery_reviews.py`
-- **card()** (3 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- **dumps()** (3 connections) — `Awesome-REA/scripts/discovery_reviews.py`
-- **read_reviews()** (3 connections) — `Awesome-REA/scripts/discovery_reviews.py`
-- **split_queue()** (3 connections) — `Awesome-REA/scripts/discovery_reviews.py`
-- **validate_reviews()** (3 connections) — `Awesome-REA/scripts/discovery_reviews.py`
-- **batch_file_url()** (2 connections) — `Awesome-REA/scripts/build_discoveries.py`
-- *... and 26 more nodes in this community*
+- **Статья 48: Честный аудит Edge AI: галлюцинации в ГОСТах, 35 секунд на ответ и границы автономности кластера** (7 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **5. Где локальный агент необходим, а где он переоценен** (3 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md** (2 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **1. Иллюзия всесилия: когда маркетинг мобильного ИИ сталкивается с кремнием** (1 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **2. Аппаратный бенчмарк: замеры скорости и латентности** (1 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **3. Анатомия галлюцинации: как 3B-модель «расплавила» олово при 61°C** (1 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **4. Ловушка скрытых рассуждений (CoT Loop) на NODE-1** (1 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **6. Итоговая каскадная архитектура Triad-Omni** (1 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **Где локальный агент незаменим и работает идеально:** (1 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
+- **Где локальный агент переоценен и опасен:** (1 connections) — `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
 
 ## Relationships
 
-- [Community 65](Community_65.md) (7 shared connections)
-- [Community 129](Community_129.md) (5 shared connections)
-- [Community 202](Community_202.md) (5 shared connections)
-- [Community 231](Community_231.md) (4 shared connections)
-- [Community 289](Community_289.md) (2 shared connections)
-- [Community 150](Community_150.md) (1 shared connections)
-- [Community 520](Community_520.md) (1 shared connections)
-- [Community 278](Community_278.md) (1 shared connections)
-- [Community 250](Community_250.md) (1 shared connections)
+- [Community 18](Community_18.md) (1 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/scripts/build_discoveries.py`
-- `Awesome-REA/scripts/discovery_reviews.py`
-- `Awesome-REA/scripts/validate_site.py`
+- `ARTICLES/48_EDGE_AI_CLUSTER_REALITY_CHECK_HALLUCINATIONS_AND_LATENCY.md`
 
 ## Audit Trail
 
-- EXTRACTED: 115 (99%)
-- INFERRED: 1 (1%)
+- EXTRACTED: 10 (100%)
+- INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
 ---

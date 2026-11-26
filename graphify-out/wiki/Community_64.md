@@ -1,48 +1,47 @@
 # Community 64
 
-> 27 nodes
+> 26 nodes
 
 ## Key Concepts
 
-- **PrivacyGuardTests** (26 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **kinds()** (14 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_accents_full_width_letters_and_escapes_are_folded_or_decoded()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_adjacent_items_of_a_list_never_pair()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_archives_beyond_the_bounds_or_unreadable_fail_as_unchecked()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_citation_name_fields_count_as_one_name()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_comma_lists_of_authors_do_not_pair_but_family_given_forms_do()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_escaped_letters_are_decoded_before_words_are_collected()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_findings_give_the_line_of_the_match()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_handles_domains_and_profile_ids_match()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_identifiers_in_attributes_of_inline_markup_still_match()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_inline_markup_does_not_split_a_name_but_list_markup_does()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_names_match_in_either_order_case_spacing_or_joined()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_single_words_initials_and_longer_words_do_not_match()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_soft_hyphens_zero_width_characters_and_comments_do_not_split_a_name()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_structured_name_fields_count_as_one_name()** (2 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_archives_are_read_member_by_member()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_archives_behind_a_prepended_stub_are_still_read()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **archive()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_every_compressed_stream_is_read_in_full_and_unknown_formats_fail()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_file_paths_and_member_names_are_checked_and_never_printed()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_gzip_and_tar_contents_are_read()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_no_archive_is_exempt_whatever_it_holds_or_whoever_produced_it()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_only_digests_are_stored()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- **.test_scan_reports_paths_relative_to_the_root()** (1 connections) — `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
-- *... and 2 more nodes in this community*
+- **📜 Сводный реестр стандартов, ГОСТов и спецификаций «Точка Плавления»** (8 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **4. Группа 3: Сборка, монтаж и критерии приемки (Assembly & Acceptance)** (7 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **2. Группа 1: Припои и паяльные сплавы (Alloys & Solid Solders)** (5 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **3. Группа 2: Флюсы, химия и паяльные пасты (Fluxes & Chemistry)** (4 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **5. Группа 4: Печатные платы и топология (PCB Design & Tolerances)** (3 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **6. Группа 5: ESD-безопасность и охрана труда (ESD & Safety)** (3 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **1. Структура стандартов в экосистеме «Точка Плавления»** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **2.1. ГОСТ 21930-76 — Припои оловянно-свинцовые в чушках. Технические условия** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **2.2. ГОСТ 21931-76 — Припои оловянно-свинцовые в изделиях. Технические условия** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **2.3. ГОСТ Р ИСО 9453-2014 (ISO 9453:2014) — Припои мягкие. Химический состав и формы** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **2.4. IPC J-STD-006C (с изменением Amendment 1) — Requirements for Electronic Grade Solder Alloys** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **3.1. ГОСТ 19250-73 и ГОСТ 26115-84 — Флюсы паяльные** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **3.2. IPC J-STD-004D (Актуальная ревизия 2023/2024 гг.) — Requirements for Soldering Fluxes** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **3.3. IPC J-STD-005B (Март 2024 г.) — Requirements for Solder Pastes** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **4.1. IPC-A-610J (Март 2024 г.) — Acceptability of Electronic Assemblies** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **4.2. IPC-J-STD-001J (Март 2024 г.) — Requirements for Soldered Electrical and Electronic Assemblies** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **4.3. ГОСТ Р 56427-2022 — Пайка электронных модулей РЭС** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **4.4. IPC-7095E — Design and Assembly Process Guidance for BGAs** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **4.5. IPC-7093A — Design and Assembly for Bottom Termination Components (BTC / QFN / DFN)** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **4.6. IPC-7711/7721C — Rework, Modification and Repair of Electronic Assemblies** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **5.1. ГОСТ Р 53429-2009 — Платы печатные. Основные параметры конструкции** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **5.2. ГОСТ 23752-79 — Платы печатные. Общие технические условия** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **6.1. ГОСТ Р 53734.5.1-2014 (МЭК 61340-5-1:2007) / ANSI/ESD S20.20 — Защита от электростатики** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- **6.2. ГОСТ 12.3.040-86 — ССБТ. Работы паяльные. Требования безопасности** (1 connections) — `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
+- *... and 1 more nodes in this community*
 
 ## Relationships
 
-- [Community 458](Community_458.md) (2 shared connections)
-- [Community 168](Community_168.md) (1 shared connections)
+- No strong cross-community connections detected
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/tests/test_privacy_guard.py`
+- `cluster_docs/09_TOCHKA_PLAVLENIYA_STANDARDS_REGISTRY.md`
 
 ## Audit Trail
 
-- EXTRACTED: 41 (100%)
+- EXTRACTED: 25 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

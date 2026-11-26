@@ -1,54 +1,29 @@
 # Community 145
 
-> 31 nodes
+> 8 nodes
 
 ## Key Concepts
 
-- **awesome-rea/scripts/build_site.py** (45 connections) — `.agents/skills/awesome-rea/scripts/build_site.py`
-- **Build the dependency-free static site from the two source catalogs.** (1 connections) — `.agents/skills/awesome-rea/scripts/build_site.py`
-- **ambiguous_python_import_0eff7af2ba2e** (1 connections)
-- **ambiguous_python_import_17557ba2d7c2** (1 connections)
-- **ambiguous_python_import_309b3ea9f550** (1 connections)
-- **ambiguous_python_import_36be4c324360** (1 connections)
-- **ambiguous_python_import_3840ab148ad3** (1 connections)
-- **ambiguous_python_import_4224b9389ddd** (1 connections)
-- **ambiguous_python_import_422cf90f892f** (1 connections)
-- **ambiguous_python_import_4e57fb1a0ece** (1 connections)
-- **ambiguous_python_import_59eb4c2a5f51** (1 connections)
-- **ambiguous_python_import_7ed5a4b7667a** (1 connections)
-- **ambiguous_python_import_80cbdda43993** (1 connections)
-- **ambiguous_python_import_836ec57a861a** (1 connections)
-- **ambiguous_python_import_848016a1ec34** (1 connections)
-- **ambiguous_python_import_8707fb750ecb** (1 connections)
-- **ambiguous_python_import_9e2e2abfe620** (1 connections)
-- **ambiguous_python_import_9f98512900ab** (1 connections)
-- **ambiguous_python_import_a1f4dda4f30f** (1 connections)
-- **ambiguous_python_import_a3be011042fc** (1 connections)
-- **ambiguous_python_import_c869f55aff87** (1 connections)
-- **ambiguous_python_import_dc45729cf518** (1 connections)
-- **ambiguous_python_import_ddc4ba39b829** (1 connections)
-- **ambiguous_python_import_e1588d4f5fb8** (1 connections)
-- **ambiguous_python_import_e4cc8660880c** (1 connections)
-- *... and 6 more nodes in this community*
+- **Статья 47: Воскрешение шлюза NODE-3 на Redmi Note 4 и ликвидация фейковой телеметрии** (7 connections) — `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
+- **47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md** (2 connections) — `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
+- **1. Симптом: «Призрак онлайна» при мертвом сокете** (1 connections) — `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
+- **2. Диагностика узла NODE-3: где споткнулся Termux** (1 connections) — `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
+- **3. Решение: запуск с явным окружением и ADB-форвардинг** (1 connections) — `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
+- **4. Перестройка фронтенда: нулевая терпимость к ложным статусам** (1 connections) — `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
+- **5. Аппаратная и визуальная верификация** (1 connections) — `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
+- **6. Практическая рекомендация инженеру** (1 connections) — `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
 
 ## Relationships
 
-- [Community 416](Community_416.md) (8 shared connections)
-- [Community 331](Community_331.md) (1 shared connections)
-- [Community 232](Community_232.md) (1 shared connections)
-- [Community 32](Community_32.md) (1 shared connections)
-- [Community 202](Community_202.md) (1 shared connections)
-- [Community 231](Community_231.md) (1 shared connections)
-- [Community 25](Community_25.md) (1 shared connections)
-- [Community 289](Community_289.md) (1 shared connections)
+- [Community 18](Community_18.md) (1 shared connections)
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/scripts/build_site.py`
+- `ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md`
 
 ## Audit Trail
 
-- EXTRACTED: 45 (100%)
+- EXTRACTED: 8 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

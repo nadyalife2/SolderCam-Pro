@@ -1,61 +1,58 @@
 # Community 17
 
-> 66 nodes
+> 25 nodes
 
 ## Key Concepts
 
-- **Awesome-REA/scripts/scheduled_source_scan.py** (65 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **orchestrate()** (34 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **unpack_checkpoint()** (19 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **Awesome-REA/scripts/scan_seed.py** (17 connections) — `Awesome-REA/scripts/scan_seed.py`
-- **validate_shape()** (14 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **file_info()** (12 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **pack_seed()** (11 connections) — `Awesome-REA/scripts/scan_seed.py`
-- **scanner_child()** (11 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **load_seed()** (10 connections) — `Awesome-REA/scripts/scan_seed.py`
-- **validate_snapshot()** (10 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **reconcile()** (9 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **counts()** (8 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **read_frontier()** (8 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **read_snapshot()** (8 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **digest()** (7 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **known_ids()** (7 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **compress_file()** (6 connections) — `Awesome-REA/scripts/scan_seed.py`
-- **import_seed()** (6 connections) — `Awesome-REA/scripts/scan_seed.py`
-- **read_manifest()** (6 connections) — `Awesome-REA/scripts/scan_seed.py`
-- **emit_summary()** (6 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **integrity_counts()** (6 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **now()** (6 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **retain_superseded_hashes()** (6 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **stream_copy()** (6 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- **validate_integrity_receipt()** (6 connections) — `Awesome-REA/scripts/scheduled_source_scan.py`
-- *... and 41 more nodes in this community*
+- **agent_orchestrator.py** (43 connections) — `melvin_src/agent_orchestrator.py`
+- **chat()** (26 connections) — `melvin_src/agent_orchestrator.py`
+- **route** (11 connections)
+- **check_fast_tools()** (6 connections) — `melvin_src/agent_orchestrator.py`
+- **api_tts()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **check_quips()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **check_thermal_guard()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **get_burp_audio()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **get_live_weather()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **get_persona()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **get_sound_clip()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **health()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **index()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **query_perplexity_or_web()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **save_memory()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **search_relevant_memories()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **set_persona()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **should_rick_burp()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **transcribe_audio()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **warmup_kv_cache()** (2 connections) — `melvin_src/agent_orchestrator.py`
+- **_warm()** (1 connections) — `melvin_src/agent_orchestrator.py`
+- **Melvin Autonomous On-Device Agent Orchestrator (Hands-Free Wake-Word Edition)…** (1 connections) — `melvin_src/agent_orchestrator.py`
+- **flask** (1 connections)
+- **logging** (1 connections)
+- **speech_recognition** (1 connections)
 
 ## Relationships
 
-- [Community 32](Community_32.md) (21 shared connections)
-- [Community 124](Community_124.md) (9 shared connections)
-- [Community 348](Community_348.md) (8 shared connections)
-- [Community 231](Community_231.md) (7 shared connections)
-- [Community 242](Community_242.md) (5 shared connections)
-- [Community 112](Community_112.md) (4 shared connections)
-- [Community 232](Community_232.md) (4 shared connections)
-- [Community 202](Community_202.md) (3 shared connections)
-- [Community 88](Community_88.md) (3 shared connections)
-- [Community 53](Community_53.md) (3 shared connections)
+- [Community 7](Community_7.md) (10 shared connections)
+- [Community 3](Community_3.md) (6 shared connections)
+- [Community 123](Community_123.md) (5 shared connections)
+- [Community 285](Community_285.md) (5 shared connections)
+- [Community 408](Community_408.md) (4 shared connections)
 - [Community 289](Community_289.md) (3 shared connections)
-- [Community 520](Community_520.md) (2 shared connections)
+- [Community 20](Community_20.md) (2 shared connections)
+- [Community 29](Community_29.md) (2 shared connections)
+- [Community 18](Community_18.md) (1 shared connections)
+- [Community 71](Community_71.md) (1 shared connections)
+- [Community 24](Community_24.md) (1 shared connections)
+- [Community 2149](Community_2149.md) (1 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/scripts/scan_seed.py`
-- `Awesome-REA/scripts/scheduled_source_scan.py`
-- `Awesome-REA/scripts/search_frontier.py`
+- `melvin_src/agent_orchestrator.py`
 
 ## Audit Trail
 
-- EXTRACTED: 233 (95%)
-- INFERRED: 11 (5%)
+- EXTRACTED: 82 (99%)
+- INFERRED: 1 (1%)
 - AMBIGUOUS: 0 (0%)
 
 ---

@@ -1,54 +1,19 @@
 # Community 70
 
-> 60 nodes
+> 1 nodes
 
 ## Key Concepts
 
-- **state()** (25 connections) — `.agents/skills/awesome-rea/tests/test_search_frontier.py`
-- **response()** (18 connections) — `.agents/skills/awesome-rea/tests/test_search_frontier.py`
-- **awesome-rea/tests/test_search_frontier.py** (17 connections) — `.agents/skills/awesome-rea/tests/test_search_frontier.py`
-- **repo()** (16 connections) — `.agents/skills/awesome-rea/tests/test_search_frontier.py`
-- **DeliveryTests** (15 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **API** (14 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **Transport** (13 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.scan()** (13 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **arguments()** (12 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **QueueTests** (10 connections) — `.agents/skills/awesome-rea/tests/test_search_frontier.py`
-- **PersistenceTests** (9 connections) — `.agents/skills/awesome-rea/tests/test_search_frontier.py`
-- **PartitionTests** (8 connections) — `.agents/skills/awesome-rea/tests/test_search_frontier.py`
-- **.test_curated_and_paper_seed_metadata_reports_hold_without_readme_attempt()** (7 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_identity_only_failures_stay_pending_but_readme404_is_real_attempt()** (7 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_pre_dispatch_rechecks_candidates_queued_before_new_backoff()** (7 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_seed_deferral_and_expiry_use_actual_frontier_deadline()** (7 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **repo()** (7 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_fresh_search_holds_block_rest_and_graphql_delivery()** (6 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_identity_rejection_does_not_pause_eligible_sibling()** (6 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_legacy_lookup_skips_held_id_before_budget_and_releases_only_next_explicit_run()** (6 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_saved_frontier_hold_never_invents_backoff_or_ack()** (6 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **saved_frontier()** (6 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.assert_pending_only()** (5 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_fresh_search_cannot_bypass_frontier_deferral()** (5 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- **.test_hold_does_not_modify_a_retained_success()** (5 connections) — `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- *... and 35 more nodes in this community*
+- **Any** (0 connections)
 
 ## Relationships
 
-- [Community 32](Community_32.md) (10 shared connections)
-- [Community 289](Community_289.md) (2 shared connections)
-- [Community 202](Community_202.md) (1 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
-- [Community 331](Community_331.md) (1 shared connections)
-- [Community 297](Community_297.md) (1 shared connections)
-
-## Source Files
-
-- `.agents/skills/awesome-rea/tests/test_scan_delivery_holds.py`
-- `.agents/skills/awesome-rea/tests/test_search_frontier.py`
+- No strong cross-community connections detected
 
 ## Audit Trail
 
-- EXTRACTED: 179 (98%)
-- INFERRED: 3 (2%)
+- EXTRACTED: 0 (0%)
+- INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
 ---

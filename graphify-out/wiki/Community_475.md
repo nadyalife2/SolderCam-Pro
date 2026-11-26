@@ -1,33 +1,45 @@
 # Community 475
 
-> 11 nodes
+> 20 nodes
 
 ## Key Concepts
 
-- **GitHub** (7 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **.get()** (7 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **APIOnlyRedirect** (4 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **is_api_origin()** (4 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **.redirect_request()** (3 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **.json()** (3 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **._record_headers()** (2 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **._throttle()** (2 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **.__init__()** (1 connections) — `Awesome-REA/scripts/scan_sources.py`
-- **HTTPRedirectHandler** (1 connections)
-- **Credentials may only follow redirects within GitHub's HTTPS API origin.** (1 connections) — `Awesome-REA/scripts/scan_sources.py`
+- **ClusterNodeManager.kt** (14 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **ClusterNodeManager** (8 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **.runAction()** (7 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **Context** (6 connections)
+- **.showCleanTermuxDialog()** (5 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **.confirmAndExecute()** (4 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **.startLocalTermux()** (4 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **AppCompatActivity** (4 connections)
+- **.cleanLocalDevice()** (3 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **.restartLocalTermux()** (3 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **Handler** (3 connections)
+- **.sendRemoteRequest()** (2 connections) — `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
+- **looper** (2 connections)
+- **toast** (2 connections)
+- **bufferedreader** (1 connections)
+- **httpurlconnection** (1 connections)
+- **inputstreamreader** (1 connections)
+- **outputstreamwriter** (1 connections)
+- **thread** (1 connections)
+- **url** (1 connections)
 
 ## Relationships
 
-- [Community 417](Community_417.md) (4 shared connections)
-- [Community 308](Community_308.md) (3 shared connections)
+- [Community 0](Community_0.md) (4 shared connections)
+- [Community 1](Community_1.md) (3 shared connections)
+- [Community 220](Community_220.md) (2 shared connections)
+- [Community 52](Community_52.md) (1 shared connections)
+- [Community 129](Community_129.md) (1 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/scripts/scan_sources.py`
+- `app/src/main/java/com/soldercam/pro/ClusterNodeManager.kt`
 
 ## Audit Trail
 
-- EXTRACTED: 21 (100%)
+- EXTRACTED: 42 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

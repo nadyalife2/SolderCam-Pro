@@ -1,54 +1,67 @@
 # Community 71
 
-> 60 nodes
+> 35 nodes
 
 ## Key Concepts
 
-- **state()** (25 connections) — `Awesome-REA/tests/test_search_frontier.py`
-- **response()** (18 connections) — `Awesome-REA/tests/test_search_frontier.py`
-- **Awesome-REA/tests/test_search_frontier.py** (17 connections) — `Awesome-REA/tests/test_search_frontier.py`
-- **repo()** (16 connections) — `Awesome-REA/tests/test_search_frontier.py`
-- **DeliveryTests** (15 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **API** (14 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **Transport** (13 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.scan()** (13 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **arguments()** (12 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **QueueTests** (10 connections) — `Awesome-REA/tests/test_search_frontier.py`
-- **PersistenceTests** (9 connections) — `Awesome-REA/tests/test_search_frontier.py`
-- **PartitionTests** (8 connections) — `Awesome-REA/tests/test_search_frontier.py`
-- **.test_curated_and_paper_seed_metadata_reports_hold_without_readme_attempt()** (7 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_identity_only_failures_stay_pending_but_readme404_is_real_attempt()** (7 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_pre_dispatch_rechecks_candidates_queued_before_new_backoff()** (7 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_seed_deferral_and_expiry_use_actual_frontier_deadline()** (7 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **repo()** (7 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_fresh_search_holds_block_rest_and_graphql_delivery()** (6 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_identity_rejection_does_not_pause_eligible_sibling()** (6 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_legacy_lookup_skips_held_id_before_budget_and_releases_only_next_explicit_run()** (6 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_saved_frontier_hold_never_invents_backoff_or_ack()** (6 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **saved_frontier()** (6 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.assert_pending_only()** (5 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_fresh_search_cannot_bypass_frontier_deferral()** (5 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- **.test_hold_does_not_modify_a_retained_success()** (5 connections) — `Awesome-REA/tests/test_scan_delivery_holds.py`
-- *... and 35 more nodes in this community*
+- **json** (102 connections)
+- **typing** (16 connections)
+- **colab_package/build_harness_adapter_sft.py** (8 connections) — `colab_package/build_harness_adapter_sft.py`
+- **scripts/build_harness_adapter_sft.py** (8 connections) — `scripts/build_harness_adapter_sft.py`
+- **create_colab_notebook.py** (7 connections) — `scripts/create_colab_notebook.py`
+- **update_trainer_nb.py** (7 connections) — `scripts/update_trainer_nb.py`
+- **generate_harness_dataset()** (6 connections) — `colab_package/build_harness_adapter_sft.py`
+- **generate_harness_dataset()** (6 connections) — `scripts/build_harness_adapter_sft.py`
+- **generate_schema_markup.py** (6 connections) — `scripts/generate_schema_markup.py`
+- **rice_prioritizer.py** (6 connections) — `scripts/rice_prioritizer.py`
+- **get_notebook_dict()** (4 connections) — `scripts/update_trainer_nb.py`
+- **build_rea_sft.py** (4 connections) — `scripts/build_rea_sft.py`
+- **main()** (3 connections) — `colab_package/build_harness_adapter_sft.py`
+- **main()** (3 connections) — `scripts/build_harness_adapter_sft.py`
+- **main()** (3 connections) — `scripts/create_colab_notebook.py`
+- **main()** (3 connections) — `scripts/update_trainer_nb.py`
+- **main()** (2 connections) — `scripts/build_rea_sft.py`
+- **generate_article_schema()** (2 connections) — `scripts/generate_schema_markup.py`
+- **generate_faq_schema()** (2 connections) — `scripts/generate_schema_markup.py`
+- **generate_software_schema()** (2 connections) — `scripts/generate_schema_markup.py`
+- **calculate_rice()** (2 connections) — `scripts/rice_prioritizer.py`
+- **main()** (2 connections) — `scripts/rice_prioritizer.py`
+- **Any** (1 connections)
+- **Any** (1 connections)
+- **dump_cells.py** (1 connections) — `scripts/dump_cells.py`
+- *... and 10 more nodes in this community*
 
 ## Relationships
 
-- [Community 32](Community_32.md) (10 shared connections)
-- [Community 289](Community_289.md) (2 shared connections)
-- [Community 202](Community_202.md) (1 shared connections)
-- [Community 53](Community_53.md) (1 shared connections)
-- [Community 331](Community_331.md) (1 shared connections)
-- [Community 297](Community_297.md) (1 shared connections)
+- [Community 21](Community_21.md) (10 shared connections)
+- [Community 13](Community_13.md) (10 shared connections)
+- [Community 136](Community_136.md) (9 shared connections)
+- [Community 9](Community_9.md) (7 shared connections)
+- [Community 158](Community_158.md) (6 shared connections)
+- [Community 128](Community_128.md) (6 shared connections)
+- [Community 305](Community_305.md) (6 shared connections)
+- [Community 37](Community_37.md) (6 shared connections)
+- [Community 491](Community_491.md) (5 shared connections)
+- [Community 7](Community_7.md) (4 shared connections)
+- [Community 285](Community_285.md) (4 shared connections)
+- [Community 121](Community_121.md) (3 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/tests/test_scan_delivery_holds.py`
-- `Awesome-REA/tests/test_search_frontier.py`
+- `colab_package/build_harness_adapter_sft.py`
+- `scripts/build_harness_adapter_sft.py`
+- `scripts/build_rea_sft.py`
+- `scripts/create_colab_notebook.py`
+- `scripts/dump_cells.py`
+- `scripts/generate_schema_markup.py`
+- `scripts/inspect_nb_2.py`
+- `scripts/rice_prioritizer.py`
+- `scripts/update_trainer_nb.py`
 
 ## Audit Trail
 
-- EXTRACTED: 179 (98%)
-- INFERRED: 3 (2%)
+- EXTRACTED: 163 (100%)
+- INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
 ---

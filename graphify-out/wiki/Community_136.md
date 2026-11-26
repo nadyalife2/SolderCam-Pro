@@ -1,48 +1,60 @@
 # Community 136
 
-> 27 nodes
+> 49 nodes
 
 ## Key Concepts
 
-- **PrivacyGuardTests** (26 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **kinds()** (14 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_accents_full_width_letters_and_escapes_are_folded_or_decoded()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_adjacent_items_of_a_list_never_pair()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_archives_beyond_the_bounds_or_unreadable_fail_as_unchecked()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_citation_name_fields_count_as_one_name()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_comma_lists_of_authors_do_not_pair_but_family_given_forms_do()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_escaped_letters_are_decoded_before_words_are_collected()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_findings_give_the_line_of_the_match()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_handles_domains_and_profile_ids_match()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_identifiers_in_attributes_of_inline_markup_still_match()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_inline_markup_does_not_split_a_name_but_list_markup_does()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_names_match_in_either_order_case_spacing_or_joined()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_single_words_initials_and_longer_words_do_not_match()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_soft_hyphens_zero_width_characters_and_comments_do_not_split_a_name()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_structured_name_fields_count_as_one_name()** (2 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_archives_are_read_member_by_member()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_archives_behind_a_prepended_stub_are_still_read()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **archive()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_every_compressed_stream_is_read_in_full_and_unknown_formats_fail()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_file_paths_and_member_names_are_checked_and_never_printed()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_gzip_and_tar_contents_are_read()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_no_archive_is_exempt_whatever_it_holds_or_whoever_produced_it()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_only_digests_are_stored()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- **.test_scan_reports_paths_relative_to_the_root()** (1 connections) — `Awesome-REA/tests/test_privacy_guard.py`
-- *... and 2 more nodes in this community*
+- **omni_forge_ui.py** (40 connections) — `scripts/omni_forge_ui.py`
+- **cloud_sync.py** (16 connections) — `scripts/cloud_sync.py`
+- **scripts/knowledge_manager.py** (14 connections) — `scripts/knowledge_manager.py`
+- **.do_POST()** (12 connections) — `scripts/omni_forge_ui.py`
+- **sync_all_to_cloud()** (11 connections) — `scripts/cloud_sync.py`
+- **.do_GET()** (10 connections) — `scripts/omni_forge_ui.py`
+- **load_cloud_config()** (7 connections) — `scripts/cloud_sync.py`
+- **save_article()** (7 connections) — `scripts/knowledge_manager.py`
+- **save_cloud_config()** (6 connections) — `scripts/cloud_sync.py`
+- **AppleForgeHandler** (5 connections) — `scripts/omni_forge_ui.py`
+- **upload_file_to_yandex_disk()** (5 connections) — `scripts/cloud_sync.py`
+- **rollback_article()** (5 connections) — `scripts/knowledge_manager.py`
+- **Any** (5 connections)
+- **get_article()** (4 connections) — `scripts/knowledge_manager.py`
+- **get_article_history()** (4 connections) — `scripts/knowledge_manager.py`
+- **list_articles()** (4 connections) — `scripts/knowledge_manager.py`
+- **find_local_cloud_folders()** (3 connections) — `scripts/cloud_sync.py`
+- **get_yandex_public_download_url()** (3 connections) — `scripts/cloud_sync.py`
+- **.send_json()** (3 connections) — `scripts/omni_forge_ui.py`
+- **get_active_cartridge()** (3 connections) — `scripts/omni_forge_ui.py`
+- **list_cartridges()** (3 connections) — `scripts/omni_forge_ui.py`
+- **load_training_state()** (3 connections) — `scripts/omni_forge_ui.py`
+- **mark_as_trained()** (3 connections) — `scripts/omni_forge_ui.py`
+- **get_article()** (2 connections) — `scripts/omni_forge_ui.py`
+- **get_article_history()** (2 connections) — `scripts/omni_forge_ui.py`
+- *... and 24 more nodes in this community*
 
 ## Relationships
 
-- [Community 458](Community_458.md) (2 shared connections)
-- [Community 56](Community_56.md) (1 shared connections)
+- [Community 71](Community_71.md) (9 shared connections)
+- [Community 21](Community_21.md) (5 shared connections)
+- [Community 147](Community_147.md) (4 shared connections)
+- [Community 285](Community_285.md) (3 shared connections)
+- [Community 158](Community_158.md) (3 shared connections)
+- [Community 133](Community_133.md) (3 shared connections)
+- [Community 60](Community_60.md) (2 shared connections)
+- [Community 2](Community_2.md) (2 shared connections)
+- [Community 54](Community_54.md) (2 shared connections)
+- [Community 511](Community_511.md) (2 shared connections)
+- [Community 121](Community_121.md) (1 shared connections)
+- [Community 2149](Community_2149.md) (1 shared connections)
 
 ## Source Files
 
-- `Awesome-REA/tests/test_privacy_guard.py`
+- `scripts/cloud_sync.py`
+- `scripts/knowledge_manager.py`
+- `scripts/omni_forge_ui.py`
 
 ## Audit Trail
 
-- EXTRACTED: 41 (100%)
+- EXTRACTED: 124 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

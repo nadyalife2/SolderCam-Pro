@@ -1,35 +1,10 @@
 # Community 91
 
-> 45 nodes
+> 1 nodes
 
 ## Key Concepts
 
-- **steps** (6 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **dispatched-review** (6 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **review** (6 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **steps** (6 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **awesome-rea/.github/workflows/review.yml** (5 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **permissions** (5 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **with** (5 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **head_sha** (4 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **pr_number** (4 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **concurrency** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **jobs** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **on** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **contents** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **permissions** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **env** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **inputs** (3 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **pull_request_target** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **workflow_dispatch** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **permissions** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **pull-requests** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **name** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **run** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **uses** (2 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **cancel-in-progress** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- **group** (1 connections) — `.agents/skills/awesome-rea/.github/workflows/review.yml`
-- *... and 20 more nodes in this community*
+- **check_tag_context.py** (0 connections) — `scratch/check_tag_context.py`
 
 ## Relationships
 
@@ -37,11 +12,11 @@
 
 ## Source Files
 
-- `.agents/skills/awesome-rea/.github/workflows/review.yml`
+- `scratch/check_tag_context.py`
 
 ## Audit Trail
 
-- EXTRACTED: 52 (100%)
+- EXTRACTED: 0 (0%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 
