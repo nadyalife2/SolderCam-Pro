@@ -6262,5 +6262,77 @@
     "seen": 1795610928.195911,
     "ast_hash": "d96d5c3a41678985bbb9d9746740f4cc",
     "semantic_hash": ""
+  },
+  "screenshots/dashboard_analysis_optimized.png": {
+    "mtime": 1795611633.0051131,
+    "seen": 1795709444.158026,
+    "ast_hash": "f6baa17ba2a557254f7c9cdfceb49cb2",
+    "semantic_hash": ""
+  },
+  "screenshots/dashboard_competitors_optimized.png": {
+    "mtime": 1795611607.70971,
+    "seen": 1795709444.158026,
+    "ast_hash": "09ad68d4196d2973c6b77f2a80b3c90f",
+    "semantic_hash": ""
+  },
+  "screenshots/dashboard_gaps_optimized.png": {
+    "mtime": 1795611643.9612157,
+    "seen": 1795709444.1585531,
+    "ast_hash": "32b2d56438e1f3f573b805dc9be409c8",
+    "semantic_hash": ""
+  },
+  "screenshots/dashboard_humanizer_clean.png": {
+    "mtime": 1795611655.961602,
+    "seen": 1795709444.1590798,
+    "ast_hash": "fbc0cea7241917af946c588fc5fa98fa",
+    "semantic_hash": ""
+  },
+  "screenshots/dashboard_models_dedicated.png": {
+    "mtime": 1795611594.016847,
+    "seen": 1795709444.167065,
+    "ast_hash": "4d7409f6980bfa28c7c64251fe4ec911",
+    "semantic_hash": ""
+  },
+  "screenshots/status_header_check_apollo.png": {
+    "mtime": 1795709296.4751794,
+    "seen": 1795709444.4689198,
+    "ast_hash": "6b479a7bea2ae21e11a7f995f3a37241",
+    "semantic_hash": ""
+  },
+  "screenshots/status_header_check_nord.png": {
+    "mtime": 1795709297.1624267,
+    "seen": 1795709444.4689198,
+    "ast_hash": "c88faf87e16af0245625522525a7bf3c",
+    "semantic_hash": ""
+  },
+  "screenshots/device_mi10t_node1_status.png": {
+    "mtime": 1795711457.354107,
+    "seen": 1795711489.4732332,
+    "ast_hash": "6b479a7bea2ae21e11a7f995f3a37241",
+    "semantic_hash": ""
+  },
+  "screenshots/device_nordn10_node2_status.png": {
+    "mtime": 1795711458.3730724,
+    "seen": 1795711489.4732332,
+    "ast_hash": "c88faf87e16af0245625522525a7bf3c",
+    "semantic_hash": ""
+  },
+  "ARTICLES/47_REDMI_NOTE_4_ROUTER_RESURRECTION_AND_ZERO_FAKE_TELEMETRY.md": {
+    "mtime": 1795713402.1569345,
+    "seen": 1795713468.3722727,
+    "ast_hash": "ef60b9d658ca26572210fa133b3dca74",
+    "semantic_hash": ""
+  },
+  "screenshots/redmi_note4_initial_screen.png": {
+    "mtime": 1795713218.9423077,
+    "seen": 1795713469.0136886,
+    "ast_hash": "790ff2de1c587a7669a23176bbee668a",
+    "semantic_hash": ""
+  },
+  "screenshots/redmi_note4_router_active.png": {
+    "mtime": 1795713303.1762278,
+    "seen": 1795713469.0136886,
+    "ast_hash": "f3c828a6eb48fd063b40f56227c10820",
+    "semantic_hash": ""
   }
 }
